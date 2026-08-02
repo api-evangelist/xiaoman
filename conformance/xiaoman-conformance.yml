@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/xiaoman-openapi.yml, openapi/xiaoman-okki-go-openapi.yml, provider docs
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OKKI CRM Open API issues Bearer tokens via POST /v1/oauth2/access_token
+      with password and client_credentials grants and standard OAuth2 error strings
+      (https://open.xiaoman.cn/api-3473041).
+  - id: oidc
+    conforms: false
+    evidence: No openid-configuration discovery document on any probed host (404).
+  - id: rfc9457-problem-details
+    conforms: true
+    evidence: OKKI Go API documents RFC 7807 Problem Details as its error format
+      with type/title/status/detail/instance fields (npm @okki-global/okki-go
+      api-reference.md §14); the CRM Open API does NOT use problem details.
+  - id: pagination
+    conforms: true
+    evidence: CRM list endpoints use start_index/count page-number pagination;
+      OKKI Go uses from/size and page/page_size patterns.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented on either API.
+  - id: webhooks
+    conforms: true
+    evidence: CRM message-push module publishes create/update/delete events for
+      18 modules with subscription management APIs (asyncapi/xiaoman-crm-webhooks.yml).
+  - id: rfc8594-sunset
+    conforms: false
+    evidence: No Sunset/Deprecation header support documented; OKKI Go retires
+      endpoints via 410 Gone with a documented replacement path.
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API.
+  - id: scim
+    conforms: false
+    evidence: User/department endpoints are read-only listing APIs, not SCIM paths.
+  - id: odata
+    conforms: false
+    evidence: No OData conventions present.
+  - id: json-api
+    conforms: false
+    evidence: Vendor envelopes ({code, message, now, data} and plain JSON) rather
+      than JSON:API media type.

@@ -1,0 +1,161 @@
+# open-api
+
+## Docs
+- [快速开始](https://open.xiaoman.cn/doc-338269.md): 
+- [授权登录](https://open.xiaoman.cn/folder-349137.md): 
+- 授权登录 [授权登录流程](https://open.xiaoman.cn/doc-338276.md): 
+- 客户 [客户](https://open.xiaoman.cn/doc-338291.md): 
+- 销售订单 [销售订单](https://open.xiaoman.cn/doc-338281.md): 
+- 采购订单 [采购订单](https://open.xiaoman.cn/doc-338283.md): 
+- 产品 [产品](https://open.xiaoman.cn/doc-338292.md): 
+- 回款登记 [回款登记](https://open.xiaoman.cn/doc-338286.md): 
+- 回款单 [回款单](https://open.xiaoman.cn/doc-338284.md): 
+- 付款单 [付款单](https://open.xiaoman.cn/doc-338288.md): 
+- 费用单 [费用单](https://open.xiaoman.cn/doc-338289.md): 
+- 报价单 [报价单](https://open.xiaoman.cn/doc-338293.md): 
+- 供应商 [供应商](https://open.xiaoman.cn/doc-338290.md): 
+- 商机 [商机](https://open.xiaoman.cn/doc-338294.md): 
+- 用户 [用户](https://open.xiaoman.cn/doc-338295.md): 
+- 销售出库单 [销售出库单](https://open.xiaoman.cn/doc-338296.md): 
+- 库存 [库存](https://open.xiaoman.cn/doc-338298.md): 
+- 线索 [线索](https://open.xiaoman.cn/doc-338297.md): 
+- 资金 [资金](https://open.xiaoman.cn/doc-338285.md): 
+- 采购入库单 [采购入库单](https://open.xiaoman.cn/doc-338300.md): 
+- 采购退货单 [采购退货单](https://open.xiaoman.cn/doc-338299.md): 
+- 示例接口（勿用） [示例说明](https://open.xiaoman.cn/doc-338279.md): 
+- 消息推送 [消息订阅流程](https://open.xiaoman.cn/doc-338308.md): 
+
+## API Docs
+- 授权登录 [鉴权接口](https://open.xiaoman.cn/api-3473041.md): 当使用client_credentials时可以参考下面传入，这种情况下不会有刷新token，可以在过期前重新再次请求一下即可，这种格式下请在请求body中写入如下JSON数据
+- 授权登录 [刷新令牌接口](https://open.xiaoman.cn/api-3483803.md): 
+- 客户 [客户列表](https://open.xiaoman.cn/api-3480070.md): 
+- 客户 [跟进动态查询接口](https://open.xiaoman.cn/api-3478244.md): 
+- 客户 [新增客户的联系人（待修改）](https://open.xiaoman.cn/api-3484681.md): 
+- 客户 [提交跟进动态](https://open.xiaoman.cn/api-3484682.md): ## 错误码解释
+- 客户 [客户分组新增/编辑](https://open.xiaoman.cn/api-3484700.md): ## 错误码解释
+- 客户 [删除客户分组](https://open.xiaoman.cn/api-3484701.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [客户阶段新增/编辑](https://open.xiaoman.cn/api-3484702.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [删除客户阶段](https://open.xiaoman.cn/api-3484703.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [客户标签新增/编辑](https://open.xiaoman.cn/api-3484704.md): 
+- 客户 [删除客户标签](https://open.xiaoman.cn/api-3484705.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [客户枚举:客户类型，客户标签，时区，规模，星级，采购意向，采购额度，职级](https://open.xiaoman.cn/api-3484706.md): 
+- 客户 [移入公海](https://open.xiaoman.cn/api-3496722.md): 
+- 客户 [客户查重](https://open.xiaoman.cn/api-3501118.md): 
+- 客户 [客户数据字典](https://open.xiaoman.cn/api-3478270.md): # 字段类型有哪些
+- 客户 [客户（含联系人）新增/编辑](https://open.xiaoman.cn/api-3478272.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [删除客户（仅支持公海客户）](https://open.xiaoman.cn/api-3478274.md): 
+- 客户 [客户详情](https://open.xiaoman.cn/api-3473043.md): | 异常码 | 异常消息 |异常解决方案|
+- 客户 [查询客户的阶段、分组、状态、地区、主营产品、来源](https://open.xiaoman.cn/api-3478275.md): 
+- 销售订单 [销售订单枚举:货币，付款方式，国家/地区，订单类型，订单状态，订单创建方式](https://open.xiaoman.cn/api-3485287.md): 
+- 销售订单 [销售订单字段](https://open.xiaoman.cn/api-3478253.md): # 字段类型有哪些
+- 销售订单 [销售订单删除](https://open.xiaoman.cn/api-3478257.md): 注意：
+- 销售订单 [销售订单新建/编辑](https://open.xiaoman.cn/api-3478252.md): ## 错误码解释
+- 销售订单 [销售订单列表](https://open.xiaoman.cn/api-3478254.md): 参数说明：
+- 销售订单 [销售订单详情](https://open.xiaoman.cn/api-3478251.md): ## 错误码解释
+- 采购订单 [采购订单列表](https://open.xiaoman.cn/api-3478331.md): 
+- 采购订单 [采购订单字段](https://open.xiaoman.cn/api-3484725.md): # 字段类型有哪些
+- 采购订单 [采购订单状态](https://open.xiaoman.cn/api-3484726.md): 
+- 采购订单 [采购订单新增/编辑](https://open.xiaoman.cn/api-3478249.md): 
+- 采购订单 [采购订单详情](https://open.xiaoman.cn/api-3478250.md): 
+- 产品 [产品枚举:产品类型，离岸价设置类型，创建方式，产品计量单位 ](https://open.xiaoman.cn/api-3484723.md): 
+- 产品 [产品分组删除](https://open.xiaoman.cn/api-3485272.md): 
+- 产品 [库存查询(通过skuId) ](https://open.xiaoman.cn/api-3485273.md): 
+- 产品 [查询产品库列表](https://open.xiaoman.cn/api-3478259.md): 
+- 产品 [产品新建/编辑](https://open.xiaoman.cn/api-3478260.md): **如何创建一个无规格产品**
+- 产品 [产品库的数据字典](https://open.xiaoman.cn/api-3478262.md): 产品字段包含系统字段和自定义字段
+- 产品 [产品详情](https://open.xiaoman.cn/api-3478263.md): product_no  与 product_id 选择其中一个传入
+- 产品 [产品分组新增/编辑](https://open.xiaoman.cn/api-3478264.md): 
+- 产品 [删除产品规格](https://open.xiaoman.cn/api-3478265.md): 
+- 产品 [查询产品分组](https://open.xiaoman.cn/api-3478266.md): 
+- 产品 [新增/编辑规格](https://open.xiaoman.cn/api-3478267.md): 
+- 产品 [查询产品规格列表](https://open.xiaoman.cn/api-3478269.md): 
+- 产品 [增量更新产品规格值](https://open.xiaoman.cn/api-3489012.md): | 异常码 | 异常消息 |异常解决方案|
+- 产品 [产品删除接口](https://open.xiaoman.cn/api-3501017.md): **注意：**
+- 产品 [产品配件新建/编辑](https://open.xiaoman.cn/api-3501059.md): 
+- 回款登记 [回款登记详情](https://open.xiaoman.cn/api-3484727.md): 
+- 回款登记 [回款登记字段](https://open.xiaoman.cn/api-3478292.md): # 字段类型有哪些
+- 回款登记 [回款登记新建/编辑](https://open.xiaoman.cn/api-3478293.md): 
+- 回款登记 [回款登记列表](https://open.xiaoman.cn/api-3478294.md): 
+- 回款登记 [回款登记核销](https://open.xiaoman.cn/api-3478295.md): 
+- 回款单 [回款方式枚举](https://open.xiaoman.cn/api-3485302.md): 
+- 回款单 [回款单列表](https://open.xiaoman.cn/api-3478279.md): 
+- 回款单 [回款单字段](https://open.xiaoman.cn/api-3478276.md): # 字段类型有哪些
+- 回款单 [回款单新建/编辑](https://open.xiaoman.cn/api-3478278.md): 
+- 回款单 [回款单详情](https://open.xiaoman.cn/api-3478277.md): 
+- 付款单 [付款单详情](https://open.xiaoman.cn/api-3483962.md): 
+- 付款单 [付款单字段](https://open.xiaoman.cn/api-3483963.md): # 字段类型有哪些
+- 付款单 [付款单列表](https://open.xiaoman.cn/api-3484721.md): 
+- 费用单 [费用单-详情](https://open.xiaoman.cn/api-3483958.md): 
+- 费用单 [费用单字段](https://open.xiaoman.cn/api-3483961.md): # 字段类型有哪些
+- 费用单 [费用项目列表](https://open.xiaoman.cn/api-3484020.md): 
+- 费用单 [费用单列表](https://open.xiaoman.cn/api-3484720.md): 
+- 报价单 [报价单列表](https://open.xiaoman.cn/api-3480192.md): 
+- 报价单 [报价单状态、币种查询](https://open.xiaoman.cn/api-3480193.md): 
+- 报价单 [报价单删除](https://open.xiaoman.cn/api-3480194.md): 
+- 报价单 [报价单数据字典](https://open.xiaoman.cn/api-3478281.md): 
+- 报价单 [报价单新建/编辑](https://open.xiaoman.cn/api-3478280.md): 
+- 报价单 [查询报价单详情](https://open.xiaoman.cn/api-3478282.md): 
+- 供应商 [供应商列表](https://open.xiaoman.cn/api-3481691.md): 
+- 供应商 [供应商字段](https://open.xiaoman.cn/api-3481699.md): 
+- 供应商 [供应商删除](https://open.xiaoman.cn/api-3484731.md): 
+- 供应商 [获取供应商产品列表](https://open.xiaoman.cn/api-3498455.md): 
+- 供应商 [供应商详情](https://open.xiaoman.cn/api-3478283.md): 
+- 供应商 [供应商新增/编辑](https://open.xiaoman.cn/api-3478285.md): 
+- 商机 [查询商机的销售流程 商机阶段 输单原因](https://open.xiaoman.cn/api-3485300.md): # 商机有不同的销售流程，流程中有不同商机阶段
+- 商机 [商机删除接口](https://open.xiaoman.cn/api-3485301.md): | 异常码 | 异常消息 |异常解决方案|
+- 商机 [商机列表](https://open.xiaoman.cn/api-3478286.md): 
+- 商机 [商机数据查询](https://open.xiaoman.cn/api-3478287.md): 
+- 商机 [商机数据字典](https://open.xiaoman.cn/api-3478288.md): 
+- 商机 [商机新建/编辑接口](https://open.xiaoman.cn/api-3478289.md): | 异常码 | 异常消息 |异常解决方案|
+- 用户 [用户部门列表](https://open.xiaoman.cn/api-3478460.md): 
+- 用户 [用户部门详情](https://open.xiaoman.cn/api-3478461.md): 
+- 用户 [用户列表](https://open.xiaoman.cn/api-3478290.md): 
+- 用户 [用户详情](https://open.xiaoman.cn/api-3478291.md): 
+- 销售出库单 [销售出库单列表](https://open.xiaoman.cn/api-3484729.md): 
+- 销售出库单 [销售出库单详情](https://open.xiaoman.cn/api-3483515.md): | 异常码 | 异常消息 |异常解决方案|
+- 销售出库单 [销售出库单字段](https://open.xiaoman.cn/api-3484728.md): # 字段类型有哪些
+- 销售出库单 [销售出库单删除](https://open.xiaoman.cn/api-3484730.md): | 异常码 | 异常消息 |异常解决方案|
+- 销售出库单 [新增/编辑销售出库单](https://open.xiaoman.cn/api-3478296.md): | 异常码 | 异常消息 |异常解决方案|
+- 库存 [库存写入](https://open.xiaoman.cn/api-3478297.md): 该接口支持同步外部的库存数据到小满，但通过该方式写入的库存只能用于查看，不能用于小满的出库。
+- 库存 [仓库查询](https://open.xiaoman.cn/api-3478298.md): 
+- 线索 [线索|联系人的数据字典](https://open.xiaoman.cn/api-3484687.md): 
+- 线索 [线索列表](https://open.xiaoman.cn/api-3484688.md): 
+- 线索 [线索数据查询](https://open.xiaoman.cn/api-3484689.md): 
+- 线索 [线索（含联系人）创建/编辑接口](https://open.xiaoman.cn/api-3478299.md): | 异常码 | 异常消息 |异常解决方案|
+- 资金 [资金账户列表](https://open.xiaoman.cn/api-3478248.md): 
+- 采购入库单 [采购入库单-列表](https://open.xiaoman.cn/api-3484297.md): 
+- 采购入库单 [采购入库单-详情](https://open.xiaoman.cn/api-3484298.md): | 异常码 | 异常消息 |异常解决方案|
+- 采购入库单 [采购入库单字段](https://open.xiaoman.cn/api-3484299.md): # 字段类型有哪些
+- 采购入库单 [采购入库单-删除](https://open.xiaoman.cn/api-3484312.md): 
+- 采购入库单 [采购入库单-新建/编辑](https://open.xiaoman.cn/api-3484333.md): | 异常码 | 异常消息 |异常解决方案|
+- 采购退货单 [采购退货单-列表](https://open.xiaoman.cn/api-3484264.md): 
+- 采购退货单 [采购退货单-详情](https://open.xiaoman.cn/api-3484265.md): 
+- 采购退货单 [采购退货单字段](https://open.xiaoman.cn/api-3484291.md): # 字段类型有哪些
+- 采购退货单 [采购退货单-新建/编辑](https://open.xiaoman.cn/api-3484292.md): | 异常码 | 异常消息 |异常解决方案|
+- 采购退货单 [采购退货单-删除](https://open.xiaoman.cn/api-3484293.md): | 异常码 | 异常消息 |异常解决方案|
+- 统计分析 [统计报告-统计详细](https://open.xiaoman.cn/api-3478247.md): 
+- 示例接口（勿用） [例子列表](https://open.xiaoman.cn/api-3486416.md): ## 错误码解释
+- 示例接口（勿用） [例子枚举值查询](https://open.xiaoman.cn/api-3486417.md): ## 参数说明
+- devops相关 [钉钉回调](https://open.xiaoman.cn/api-3496683.md): 
+- devops相关 [tapd回调接口](https://open.xiaoman.cn/api-3496684.md): 
+- devops相关 [获取智齿token](https://open.xiaoman.cn/api-3496685.md): 
+- devops相关 [智齿刷新接口](https://open.xiaoman.cn/api-3496686.md): 
+- devops相关 [app版本发布](https://open.xiaoman.cn/api-3496687.md): 
+- devops相关 [钉钉管理-删除账号](https://open.xiaoman.cn/api-3496688.md): 
+- 消息推送 [创建回调配置](https://open.xiaoman.cn/api-3497011.md): ## 回调说明
+- 消息推送 [修改回调配置](https://open.xiaoman.cn/api-3497056.md): 
+- 消息推送 [获取回调配置](https://open.xiaoman.cn/api-3497057.md): 
+- 消息推送 [删除回调配置](https://open.xiaoman.cn/api-3497058.md): 
+- 消息推送 [测试回调接口](https://open.xiaoman.cn/api-3497013.md): ## 回调接口说明
+- 消息推送 [重新生成加密密钥](https://open.xiaoman.cn/api-3497059.md): 
+- 消息推送 [创建订阅配置](https://open.xiaoman.cn/api-3497012.md): ## 请求参数说明
+- 消息推送 [修改订阅配置](https://open.xiaoman.cn/api-3497054.md): 
+- 消息推送 [删除订阅配置](https://open.xiaoman.cn/api-3497055.md): 
+- 消息推送 [获取订阅配置详情](https://open.xiaoman.cn/api-3497060.md): 
+- 消息推送 [获取订阅配置列表](https://open.xiaoman.cn/api-3497061.md): 
+
+## Schemas
+- [新增客户联系人](https://open.xiaoman.cn/schema-350328.md): 
+- [客户新增（仅新增）](https://open.xiaoman.cn/schema-350329.md): 
+- [数据字典响应](https://open.xiaoman.cn/schema-350333.md): 
+- [图片对象](https://open.xiaoman.cn/schema-350334.md): 

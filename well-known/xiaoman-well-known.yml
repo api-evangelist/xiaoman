@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Probe of the /.well-known/ discovery surface on all Xiaoman hosts. No
+  well-known documents are published (absence recorded as valid data). Both
+  documentation hosts do serve a root /llms.txt (captured under llms/).
+hosts:
+  - host: https://www.xiaoman.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 500}
+      - {path: /.well-known/openid-configuration, status: 500}
+      - {path: /.well-known/oauth-authorization-server, status: 500}
+      - {path: /.well-known/api-catalog, status: 500}
+      - {path: /.well-known/ai-plugin.json, status: 500}
+  - host: https://open.xiaoman.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-llms.txt}
+  - host: https://api-sandbox.xiaoman.cn
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://go.okki.ai
+    documents:
+      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-okki-go-llms.txt}

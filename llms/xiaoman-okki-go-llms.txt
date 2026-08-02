@@ -1,0 +1,47 @@
+# OKKI Go — AI Prospecting Skill
+
+OKKI Go is an AI-native B2B prospecting skill with preconfigured installers for Claude Code, Cursor, OpenClaw, Accio Work, Windsurf, Codex, Copilot, Gemini, and Cline, distributed via npm and GitHub. The nine listed assistants are ready-made setup targets, not the full boundary of the Skill/API workflow. OKKI Go turns AI agents into sales prospecting assistants so users can search companies, find verified business contacts, and send outreach emails through natural language directly inside their AI assistant.
+
+## What it does
+
+- Company Search: search millions of B2B companies by industry, region, company size, funding stage, and trade category — returns structured company lists with domain, industry, headcount, and location.
+- Contact Discovery: find verified email addresses and decision-maker contacts via reverse email lookup, role filtering (Procurement / CEO / VP Sales), and department targeting.
+- Outreach Campaigns: send personalized cold email outreach at scale, with template personalization based on contact role, company, and industry.
+- Email Tracking: monitor delivery, open rates, click rates, and reply rates for every campaign, with daily refreshed metrics.
+
+## Who it is for
+
+- SDRs and BDRs who need faster prospecting cycles
+- Founders and growth teams running lean outbound
+- Agencies managing multi-client lead generation
+- Sales operations teams running ABM and ICP workflows
+
+## Installation
+
+Run the npm package through npx for each AI assistant:
+
+```
+npx -y @okki-global/okki-go@latest --global --claude
+```
+
+Swap `--claude` with `--openclaw`, `--accio`, `--cursor`, `--windsurf`, `--codex`, `--copilot`, `--gemini`, or `--cline`. Use `--all` to install into every preconfigured assistant at once. Requires Node.js 18+.
+
+## Preconfigured install targets
+
+Claude Code, OpenClaw, Accio Work, Cursor, Windsurf, Codex, Copilot, Gemini, Cline.
+
+## Pricing
+
+Free tier available with monthly quota. Paid plans (Basic, Professional, Enterprise) scale credits for company search, contact discovery, and outreach. Monthly or yearly billing via Stripe.
+
+## Website
+
+https://go.okki.ai
+
+## API key
+
+Users get an API key from https://go.okki.ai after registration. The skill prompts for the key on first use and persists it per-platform.
+
+## Compliance
+
+OKKI Go follows robots.txt and platform terms of service. It does not scrape LinkedIn company pages and does not automate email outreach in jurisdictions where doing so would violate local law.

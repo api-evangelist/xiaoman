@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://open.xiaoman.cn and npm @okki-global/okki-go skill/references/api-reference.md
+apis:
+  - name: Xiaoman OKKI CRM Open API
+    versioning:
+      scheme: uri-path
+      current: v1
+      docs: https://open.xiaoman.cn
+    deprecation:
+      policy_url: null
+      sunset_header: false
+      notes: No published deprecation policy; docs mark some operations 待修改
+        (pending revision) and an example folder 勿用 (do not use).
+    sla: null
+    status_page: null
+  - name: OKKI Go API
+    versioning:
+      scheme: uri-path
+      current: v1
+      docs: npm @okki-global/okki-go skill/references/api-reference.md
+    deprecation:
+      policy_url: null
+      sunset_header: false
+      practice: Retired endpoints return RFC 7807 410 Gone with a machine-readable
+        code and replacement path (POST /api/v1/contacts/search →
+        /api/v1/companies/{companyHashId}/profileEmails); clients are instructed
+        to stop retrying on 410 and migrate.
+    sla: null
+    status_page: null
+deprecated_operations:
+  - openapi/xiaoman-okki-go-openapi.yml#searchContacts (410 Gone, replacement documented)
+notes: No public status page or SLA found for either surface.

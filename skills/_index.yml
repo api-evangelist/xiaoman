@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: mixed
+skills:
+  - file: okki-go/SKILL.md
+    name: OKKI Go (provider-published)
+    method: searched
+    source: npm @okki-global/okki-go 1.3.4
+    api: openapi/xiaoman-okki-go-openapi.yml
+    description: Xiaoman's own packaged Agent Skill for OKKI Go B2B prospecting,
+      saved verbatim from the npm package (SKILL.md plus the api-reference,
+      authentication, and workflows references; the full package also ships
+      helper scripts and 13 reference docs). Installers target Claude Code,
+      Cursor, Windsurf, Codex, Copilot, Gemini, Cline, OpenClaw, and Accio Work.
+  - file: xiaoman-okki-go-prospect-and-outreach.md
+    name: Prospect and outreach with OKKI Go
+    method: generated
+    api: openapi/xiaoman-okki-go-openapi.yml
+    operations: [searchCompaniesAdvanced, unlockCompany, getCompanyProfileEmails,
+      sendBatchEmails, listEmailTasks, getEmailTask, getCreditBalance]
+  - file: xiaoman-crm-customer-sync.md
+    name: Sync customers with OKKI CRM
+    method: generated
+    api: openapi/xiaoman-openapi.yml
+    operations: ['POST /v1/oauth2/access_token', 'GET /v1/company/list',
+      'GET /v1/company/info', 'GET /v1/company/query',
+      'POST /v1/company/pushCompanyAndCustomers']
+  - file: xiaoman-crm-webhook-subscriptions.md
+    name: Configure OKKI CRM webhook subscriptions
+    method: generated
+    api: openapi/xiaoman-openapi.yml
+    operations: ['POST /v1/webhook', 'POST /v1/webhook/test', 'POST /v1/subscribe',
+      'GET /v1/subscribe', 'POST /v1/webhook/regenerate-secret']

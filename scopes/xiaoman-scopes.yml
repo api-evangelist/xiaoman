@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://open.xiaoman.cn/api-3473041
+docs: https://open.xiaoman.cn/api-3473041
+description: >-
+  Module scopes for the Xiaoman OKKI CRM Open API OAuth2 token endpoint
+  (POST /v1/oauth2/access_token). The scope parameter is a space-separated
+  list; a token can only call APIs of modules whose scope it carries
+  (otherwise "no permission <module> scopes"). Each module's scope is also
+  shown on the first page of that module's docs section.
+schemes:
+  - name: XiaomanOAuth2
+    flows:
+      - flow: password
+        tokenUrl: https://api-sandbox.xiaoman.cn/v1/oauth2/access_token
+      - flow: clientCredentials
+        tokenUrl: https://api-sandbox.xiaoman.cn/v1/oauth2/access_token
+scopes:
+  - scope: company
+    description: Customers / companies module (客户)
+  - scope: lead
+    description: Leads module (线索)
+  - scope: opportunity
+    description: Opportunities module (商机)
+  - scope: product
+    description: Products module (产品)
+  - scope: invoices
+    description: Sales orders, quotations, and cash-collection invoices (订单、报价单、回款单)
+  - scope: purchaseOrder
+    description: Purchase orders module (采购订单)
+  - scope: costInvoice
+    description: Cost invoices module (费用单)
+  - scope: paymentInvoice
+    description: Payment invoices module (付款单)
+  - scope: warehouse
+    description: Inventory / warehouse module (库存)
+  - scope: capitalAccount
+    description: Capital accounts module (资金账户)
+  - scope: user
+    description: Users and departments (用户列表)
+  - scope: webhook
+    description: Message push / webhook subscription module (消息推送)

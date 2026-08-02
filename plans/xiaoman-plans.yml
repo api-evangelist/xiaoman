@@ -1,0 +1,83 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Xiaoman
+providerId: xiaoman
+created: '2026-07-21'
+modified: '2026-07-21'
+generated: '2026-07-21'
+method: searched
+tags:
+  - CRM
+  - Prospecting
+  - Email Marketing
+description: >-
+  OKKI Go (go.okki.ai) is credit-based with a free tier and paid plans
+  (Basic, Professional, Enterprise) billed monthly or yearly via Stripe;
+  credits cover company search points and EDM email quota, with a documented
+  permanent add-on pack. OKKI CRM is sold as product editions (Smart, Pro);
+  the Open API message-push/webhook feature is Pro-only. Per-plan prices for
+  OKKI Go tiers and OKKI CRM editions are quote/portal-based and not captured
+  here.
+sources:
+  - https://go.okki.ai/pricing
+  - https://go.okki.ai/llms.txt
+  - npm @okki-global/okki-go 1.3.4 skill/references/api-reference.md
+  - https://open.xiaoman.cn/doc-338308
+plans:
+  - id: okki-go-free
+    name: OKKI Go — Free
+    type: free
+    description: Free tier with monthly quota for company search; Free plan has no EDM send permission (403 forbidden on send endpoints).
+    entries:
+      - label: Monthly search/EDM quota
+        name: monthly_quota
+        type: quota
+        metric: credits
+        limit: -1
+        timeFrame: month
+        unit: 1
+        price: $0
+        userMultiplied: false
+  - id: okki-go-paid
+    name: OKKI Go — Basic / Professional / Enterprise
+    type: tiered
+    description: Paid plans scale credits for company search, contact discovery, and outreach; monthly or yearly billing via Stripe. Tier prices published in the go.okki.ai pricing portal.
+    entries:
+      - label: Company unlock
+        name: unlock_point
+        type: metered
+        metric: search_point
+        limit: -1
+        timeFrame: usage
+        unit: 1
+        price: 1 point per first unlock (free re-unlock for 30 days)
+        userMultiplied: false
+      - label: Outreach email
+        name: edm_quota
+        type: metered
+        metric: email
+        limit: -1
+        timeFrame: usage
+        unit: 1
+        price: 1 EDM quota per recipient
+        userMultiplied: false
+  - id: okki-go-addon
+    name: OKKI Go — Add-on pack
+    type: add-on
+    description: Permanent (never-expiring) credit pack consumed after monthly quota.
+    entries:
+      - label: 400 points + 2000 EDM
+        name: addon_pack
+        type: pack
+        metric: credits
+        limit: 400
+        timeFrame: usage
+        unit: 1
+        price: $39.99
+        userMultiplied: false
+  - id: okki-crm-pro
+    name: OKKI CRM — Pro (API-relevant edition)
+    type: edition
+    description: OKKI CRM Open API webhook/message-push subscriptions are available on the Pro edition only; the Smart edition does not support them. CRM pricing is quote-based via the xiaoman.cn sales funnel.
+    entries: []

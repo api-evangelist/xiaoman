@@ -1,0 +1,72 @@
+generated: '2026-07-21'
+method: searched
+source: npm @okki-global/okki-go skill/references/api-reference.md (§14) and https://open.xiaoman.cn/doc-338276
+description: >-
+  Error catalogs for both Xiaoman API surfaces. The OKKI Go API
+  (go.okki.ai) uses RFC 7807 Problem Details with documented type slugs.
+  The OKKI CRM Open API (api-sandbox.xiaoman.cn) returns a {code, message,
+  now, data} envelope with per-operation error-code tables (异常码) on each
+  docs page; its OAuth2 token endpoint returns standard OAuth2 error
+  strings.
+catalogs:
+  - api: OKKI Go API
+    format: rfc9457
+    envelope: '{type, title, status, detail, instance, code}'
+    example_type_uri: https://go.okki.ai/errors/insufficient-credits
+    problems:
+      - status: 400
+        type: bad-request
+        title: Bad Request
+        remediation: Check request-body parameters (email format, list-size limits).
+      - status: 401
+        type: unauthorized
+        title: Unauthorized
+        remediation: API key invalid, unconfigured, or revoked — check OKKIGO_API_KEY.
+      - status: 402
+        type: insufficient-credits
+        title: Payment Required
+        remediation: Search points or EDM quota exhausted — upgrade plan or buy add-on packs.
+      - status: 403
+        type: forbidden
+        title: Forbidden
+        remediation: Free plan has no EDM send permission — upgrade plan.
+      - status: 404
+        type: not-found
+        title: Not Found
+        remediation: companyHashId or resource does not exist; only use companyHashId from /companies/unlock.
+      - status: 410
+        type: contact_search_retired
+        title: Contact Search Retired
+        remediation: POST /api/v1/contacts/search is retired; use /companies/unlock + profileEmails.
+      - status: 429
+        type: rate-limit / quota-exceeded
+        title: Too Many Requests
+        remediation: 60 req/min shared limit or monthly/daily quota exceeded — wait and retry or buy add-ons.
+      - status: 502
+        type: upstream-error
+        title: Upstream Error
+        remediation: EDM third-party service failure — retry later; deducted quota is auto-refunded.
+  - api: Xiaoman OKKI CRM Open API
+    format: vendor-envelope
+    envelope: '{code, message, now, data}'
+    notes: Per-operation business error-code tables (异常码/异常消息/异常解决方案)
+      are published on each operation page at open.xiaoman.cn.
+    oauth_errors:
+      - code: invalid_grant
+        meaning: Authorization grant or refresh token invalid, expired, or revoked.
+      - code: invalid_request
+        meaning: Missing/invalid parameter or malformed request.
+      - code: unsupported_grant_type
+        meaning: Grant type not supported — check required parameters.
+      - code: invalid_scope
+        meaning: Requested scope invalid, unknown, or malformed.
+      - code: invalid_client
+        meaning: Client authentication failed.
+      - code: invalid_credentials
+        meaning: User credentials incorrect.
+      - code: access_denied
+        meaning: Request denied — typically expired token; re-acquire the token.
+      - code: server_error
+        meaning: Authorization server unexpected condition.
+      - code: no permission <module> scopes
+        meaning: Token scope missing the module scope for the called API.

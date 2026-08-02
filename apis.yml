@@ -1,8 +1,33 @@
 aid: xiaoman
-name: xiaoman
-description: xiaoman is a company surfaced as a portfolio company of qiming and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Xiaoman (OKKI)
+description: >-
+  Xiaoman Technology (小满科技, OKKI) is an AI-powered foreign-trade sales
+  platform under Alibaba International Station, serving Chinese B2B exporters
+  with the OKKI CRM, OKKI AiReach multi-channel customer acquisition, OKKI
+  Shops site building, and OKKI Go, a B2B prospecting engine built for AI
+  agents. The OKKI CRM Open API (open.xiaoman.cn) exposes 125 OAuth2
+  module-scoped operations across customers, leads, opportunities, products,
+  sales and purchase orders, quotations, payments, suppliers, inventory,
+  users, and Pro-plan webhook message-push subscriptions. The OKKI Go API
+  (go.okki.ai) provides company search, contact unlock, and cold-email
+  outreach, shipped with a provider-published Agent Skill on npm
+  (@okki-global/okki-go) that installs into Claude Code, Cursor, and other
+  agent runtimes. Originally surfaced as a Qiming portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/xiaoman/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.xiaoman.cn/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -10,16 +35,232 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- CRM
+- Foreign Trade
+- B2B
+- Sales
+- Prospecting
+- Email Marketing
+- AI Agents
+- China
+- Alibaba
+apis:
+- aid: xiaoman:xiaoman-companies-api
+  name: Xiaoman (OKKI) Companies API
+  description: The Companies API from Xiaoman (OKKI) — 4 operation(s) for companies.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-companies-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-contacts-api
+  name: Xiaoman (OKKI) Contacts API
+  description: The Contacts API from Xiaoman (OKKI) — 1 operation(s) for contacts.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-credits-api
+  name: Xiaoman (OKKI) Credits API
+  description: The Credits API from Xiaoman (OKKI) — 1 operation(s) for credits.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-credits-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-default-api
+  name: Xiaoman (OKKI) 产品 API
+  description: The 产品 API from Xiaoman (OKKI) — 113 operation(s) for 产品.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - 产品
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-default-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-devops-api
+  name: Xiaoman (OKKI) devops相关 API
+  description: The devops相关 API from Xiaoman (OKKI) — 6 operation(s) for devops相关.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - devops相关
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-devops-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-emails-api
+  name: Xiaoman (OKKI) Emails API
+  description: The Emails API from Xiaoman (OKKI) — 6 operation(s) for emails.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - Emails
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-emails-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
+- aid: xiaoman:xiaoman-s7-1-api
+  name: Xiaoman (OKKI) s7.1 API
+  description: The s7.1 API from Xiaoman (OKKI) — 35 operation(s) for s7.1.
+  humanURL: https://open.xiaoman.cn
+  baseURL: https://api-sandbox.xiaoman.cn
+  tags:
+  - s7.1
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaoman-s7-1-api-openapi.yml
+  - type: Documentation
+    url: https://open.xiaoman.cn
+  - type: GettingStarted
+    url: https://open.xiaoman.cn/doc-338269
+  - type: LLMsTxt
+    url: llms/xiaoman-llms.txt
+  - type: Documentation
+    url: https://go.okki.ai
+  - type: LLMsTxt
+    url: llms/xiaoman-okki-go-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/xiaoman-okki/overview
+- type: AgenticAccess
+  url: agentic-access/xiaoman-agentic-access.yml
+- type: DomainSecurity
+  url: security/xiaoman-domain-security.yml
 - type: Website
   url: https://xiaoman.cn
+- type: DeveloperPortal
+  url: https://open.xiaoman.cn
+- type: Documentation
+  url: https://open.xiaoman.cn
+- type: APIReference
+  url: https://open.xiaoman.cn
+- type: GettingStarted
+  url: https://open.xiaoman.cn/doc-338269
+- type: Support
+  url: https://www.yuque.com/help.xiaoman
+- type: Blog
+  url: https://www.xiaoman.cn/knowledge/
+- type: Login
+  url: https://login.xiaoman.cn/login?system_id=v5client
+- type: SignUp
+  url: https://www.xiaoman.cn/register.html
+- type: PrivacyPolicy
+  url: https://www.xiaoman.cn/privacy.html
+- type: TermsOfService
+  url: https://www.xiaoman.cn/authorization.html
+- type: Pricing
+  url: https://go.okki.ai/pricing
+- type: Authentication
+  url: authentication/xiaoman-authentication.yml
+- type: OAuthScopes
+  url: scopes/xiaoman-scopes.yml
+- type: Conventions
+  url: conventions/xiaoman-conventions.yml
+- type: ErrorCatalog
+  url: errors/xiaoman-problem-types.yml
+- type: Conformance
+  url: conformance/xiaoman-conformance.yml
+- type: Lifecycle
+  url: lifecycle/xiaoman-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/xiaoman-rate-limits.yml
+- type: Plans
+  url: plans/xiaoman-plans.yml
+- type: Webhooks
+  url: asyncapi/xiaoman-crm-webhooks.yml
+- type: MCPServer
+  url: mcp/xiaoman-mcp.yml
+- type: Packages
+  url: packages/xiaoman-packages.yml
+- type: SDKs
+  url: packages/xiaoman-packages.yml
+- type: CLI
+  url: cli/xiaoman-cli.yml
+- type: LLMsTxt
+  url: llms/xiaoman-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgentSkill
+  url: skills/okki-go/SKILL.md
+- type: Overlay
+  url: overlays/xiaoman-openapi-overlay.yaml

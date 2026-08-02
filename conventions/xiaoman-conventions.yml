@@ -1,0 +1,85 @@
+generated: '2026-07-21'
+method: searched
+source: https://open.xiaoman.cn (doc-338269, api pages) and npm @okki-global/okki-go skill/references/api-reference.md
+apis:
+  - name: Xiaoman OKKI CRM Open API
+    base_url: https://api-sandbox.xiaoman.cn
+    authentication:
+      style: oauth2-bearer
+      header: Authorization
+      token_endpoint: /v1/oauth2/access_token
+      notes: Module-scoped tokens (see scopes/xiaoman-scopes.yml); 8-hour lifetime.
+    versioning:
+      scheme: uri-path
+      current: v1
+    encoding: UTF-8
+    timeouts:
+      connect_seconds: 60
+      response_seconds: 60
+    pagination:
+      style: page-number
+      params:
+        page: start_index
+        page_size: count
+      notes: List endpoints take start_index (page number, default 1) and count
+        (page size, default 10); many also take time_type/start_time/end_time
+        window filters and a removed flag for deleted records.
+    error_envelope:
+      shape: '{code, message, now, data}'
+      notes: JSON envelope with integer business code, message, server time
+        (now), and data payload; per-operation error-code tables (异常码) are
+        published on the operation docs pages. OAuth token errors use the
+        standard OAuth2 error strings (see errors/xiaoman-problem-types.yml).
+    idempotency:
+      supported: false
+      notes: No idempotency-key mechanism documented; create/edit endpoints
+        are combined upsert-style operations (新增/编辑) keyed on record ids.
+    rate_limits:
+      documented: false
+    webhooks:
+      supported: true
+      notes: Pro-plan-only message push — see asyncapi/xiaoman-crm-webhooks.yml.
+  - name: OKKI Go API
+    base_url: https://go.okki.ai
+    authentication:
+      style: api-key
+      header: Authorization
+      format: 'ApiKey sk-...'
+    versioning:
+      scheme: uri-path
+      current: v1
+      notes: Paths are /api/v1/...; the retired POST /api/v1/contacts/search
+        returns RFC 7807 410 Gone with a documented replacement path.
+    pagination:
+      style: mixed
+      params:
+        search: from/size (offset, size max 50)
+        emails: page/page_size (page_size 1-100, sortable via sort_by/sort_order)
+        contacts: page/pageSize (pageSize max 100)
+    error_envelope:
+      shape: RFC 7807 Problem Details (type, title, status, detail, instance, code)
+      format: rfc9457
+    request_attribution:
+      headers: [X-Okki-Install-Id, X-Okki-Skill-Version, X-Okki-Skill-Runtime,
+        X-Okki-Source-Type, X-Okki-Source-Package, X-Okki-Channel-Code,
+        X-Okki-Campaign-Id, X-Okki-Agent, X-Okki-Agent-Model]
+      notes: Non-sensitive attribution headers sent by the Agent Skill for
+        usage analytics; never carry API keys or email content.
+    idempotency:
+      supported: false
+      notes: No idempotency-key mechanism documented; unlock is naturally
+        idempotent for 30 days per domain (re-unlock free, alreadyViewed flag).
+    rate_limits:
+      documented: true
+      limit: 60 requests/minute shared across all authenticated endpoints
+    billing_semantics:
+      points: 1 point per first company unlock (free re-unlock within 30 days)
+      edm: 1 EDM quota per recipient/email; failed sends refunded
+      order: monthly quota consumed before add-on packs; 402 when both exhausted
+cross_links:
+  errors: errors/xiaoman-problem-types.yml
+  authentication: authentication/xiaoman-authentication.yml
+  scopes: scopes/xiaoman-scopes.yml
+  lifecycle: lifecycle/xiaoman-lifecycle.yml
+  rate_limits: rate-limits/xiaoman-rate-limits.yml
+  webhooks: asyncapi/xiaoman-crm-webhooks.yml

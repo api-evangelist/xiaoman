@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: npm registry — @okki-aireach/aireach-cli 0.1.2
+cli:
+  name: aireach-cli
+  package: "@okki-aireach/aireach-cli"
+  description: OKKI AiReach protected-tool CLI wrapper. First-party (maintainer
+    okkiops, dev@xiaoman.cn) npm wrapper that dispatches to platform-specific
+    native binaries. Command surface is not publicly documented.
+  install:
+    - method: npm
+      command: npm install -g @okki-aireach/aireach-cli
+  binaries:
+    - "@okki-aireach/aireach-cli-darwin-arm64"
+    - "@okki-aireach/aireach-cli-linux-x64"
+    - "@okki-aireach/aireach-cli-windows-x64"
+  bin: aireach-cli
+  version: 0.1.2
+notes: >-
+  The OKKI Go npm package (@okki-global/okki-go) also ships executable helper
+  scripts (okki-auth.js, search-companies.js, unlock-companies.js,
+  send-email.js, email-status.js) that act as a de-facto command-line surface
+  for the go.okki.ai API — catalogued in packages/ and skills/.

@@ -1,0 +1,81 @@
+generated: '2026-07-21'
+method: searched
+source: https://open.xiaoman.cn/api-3497012 and https://open.xiaoman.cn/doc-338308
+type: Webhooks
+description: >-
+  Xiaoman OKKI CRM message-push (消息推送) webhook surface. Available on the
+  Pro plan only (Smart plan not supported). Configured entirely via the Open
+  API webhook-scope endpoints: a callback URL config (POST/PUT/GET/DELETE
+  /v1/webhook, POST /v1/webhook/test, POST /v1/webhook/regenerate-secret for
+  the encryption secret) plus per-module event subscriptions (POST/GET
+  /v1/subscribe, PUT/DELETE/GET /v1/subscribe/{subscribe_type}). One module
+  per subscription; multiple events of that module may be subscribed
+  together. No AsyncAPI document is published by the provider.
+management_operations:
+  - POST /v1/webhook (create callback config)
+  - PUT /v1/webhook (update callback config)
+  - GET /v1/webhook (get callback config)
+  - DELETE /v1/webhook (delete callback config)
+  - POST /v1/webhook/test (test callback)
+  - POST /v1/webhook/regenerate-secret (rotate encryption secret)
+  - POST /v1/subscribe (create subscription)
+  - GET /v1/subscribe (list subscriptions)
+  - GET /v1/subscribe/{subscribe_type} (subscription detail)
+  - PUT /v1/subscribe/{subscribe_type} (update subscription)
+  - DELETE /v1/subscribe/{subscribe_type} (delete subscription)
+event_naming: xiaoman.crm.<module>.<create|update|delete>
+modules:
+  - subscribe_type: crm.order
+    events: [xiaoman.crm.order.create, xiaoman.crm.order.update, xiaoman.crm.order.delete]
+    payload_fields: [order_id, order_no]
+  - subscribe_type: crm.company
+    events: [xiaoman.crm.company.create, xiaoman.crm.company.update, xiaoman.crm.company.delete]
+    payload_fields: [company_id, serial_id]
+  - subscribe_type: crm.dynamic_trail
+    events: [xiaoman.crm.dynamic_trail.create, xiaoman.crm.dynamic_trail.update, xiaoman.crm.dynamic_trail.delete]
+    payload_fields: [trail_id]
+  - subscribe_type: crm.purchase_order
+    events: [xiaoman.crm.purchase_order.create, xiaoman.crm.purchase_order.update, xiaoman.crm.purchase_order.delete]
+    payload_fields: [purchase_order_id, purchase_order_no]
+  - subscribe_type: crm.product
+    events: [xiaoman.crm.product.create, xiaoman.crm.product.update, xiaoman.crm.product.delete]
+    payload_fields: [product_id, product_no]
+  - subscribe_type: crm.cash_collection_invoice
+    events: [xiaoman.crm.cash_collection_invoice.create, xiaoman.crm.cash_collection_invoice.update, xiaoman.crm.cash_collection_invoice.delete]
+    payload_fields: [cash_collection_invoice_id, cash_collection_invoice_no]
+  - subscribe_type: crm.cash_collection
+    events: [xiaoman.crm.cash_collection.create, xiaoman.crm.cash_collection.update, xiaoman.crm.cash_collection.delete]
+    payload_fields: [cash_collection_id]
+  - subscribe_type: crm.payment_invoice
+    events: [xiaoman.crm.payment_invoice.create, xiaoman.crm.payment_invoice.update, xiaoman.crm.payment_invoice.delete]
+    payload_fields: [payment_invoice_id, payment_invoice_no]
+  - subscribe_type: crm.cost_invoice
+    events: [xiaoman.crm.cost_invoice.create, xiaoman.crm.cost_invoice.update, xiaoman.crm.cost_invoice.delete]
+    payload_fields: [cost_invoice_id, cost_invoice_no]
+  - subscribe_type: crm.quotation
+    events: [xiaoman.crm.quotation.create, xiaoman.crm.quotation.update, xiaoman.crm.quotation.delete]
+    payload_fields: [quotation_id, quotation_no]
+  - subscribe_type: crm.supplier
+    events: [xiaoman.crm.supplier.create, xiaoman.crm.supplier.update, xiaoman.crm.supplier.delete]
+    payload_fields: [supplier_id, supplier_no]
+  - subscribe_type: crm.opportunity
+    events: [xiaoman.crm.opportunity.create, xiaoman.crm.opportunity.update, xiaoman.crm.opportunity.delete]
+    payload_fields: [opportunity_id, serial_id]
+  - subscribe_type: crm.warehouse
+    events: [xiaoman.crm.warehouse.create, xiaoman.crm.warehouse.update, xiaoman.crm.warehouse.delete]
+    payload_fields: [warehouse_id, warehouse_no]
+  - subscribe_type: crm.lead
+    events: [xiaoman.crm.lead.create, xiaoman.crm.lead.update, xiaoman.crm.lead.delete]
+    payload_fields: [lead_id, serial_id]
+  - subscribe_type: crm.outbound_invoice
+    events: [xiaoman.crm.outbound_invoice.create, xiaoman.crm.outbound_invoice.update, xiaoman.crm.outbound_invoice.delete]
+    payload_fields: [outbound_invoice_id, serial_id]
+  - subscribe_type: crm.inbound_invoice
+    events: [xiaoman.crm.inbound_invoice.create, xiaoman.crm.inbound_invoice.update, xiaoman.crm.inbound_invoice.delete]
+    payload_fields: [inbound_invoice_id, serial_id]
+  - subscribe_type: crm.warehouse_return_invoice
+    events: [xiaoman.crm.warehouse_return_invoice.create, xiaoman.crm.warehouse_return_invoice.update, xiaoman.crm.warehouse_return_invoice.delete]
+    payload_fields: [warehouse_return_invoice_id, serial_id]
+  - subscribe_type: crm.customer
+    events: [xiaoman.crm.customer.create, xiaoman.crm.customer.update, xiaoman.crm.customer.delete]
+    payload_fields: [customer_id]

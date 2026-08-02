@@ -1,0 +1,48 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Xiaoman OKKI CRM Open API
+  version: 1.0.0
+  x-generated: '2026-07-21'
+  x-method: generated
+extends: openapi/xiaoman-openapi.yml
+actions:
+  - target: $.info
+    description: Attribution and enrichment metadata.
+    update:
+      x-apievangelist:
+        harvested: '2026-07-21'
+        source: https://open.xiaoman.cn/llms.txt
+        provider: xiaoman
+        notes: Aggregated from 123 per-operation OpenAPI fragments published on
+          the Apifox-hosted docs site; sample (勿用) endpoints excluded.
+  - target: $.components
+    description: >-
+      Declare the OAuth2 security scheme the docs describe but the published
+      fragments omit (every operation instead documents a raw Authorization
+      header parameter). Token endpoint and scopes from
+      https://open.xiaoman.cn/api-3473041.
+    update:
+      securitySchemes:
+        XiaomanOAuth2:
+          type: oauth2
+          description: Bearer token from POST /v1/oauth2/access_token; scope is a
+            space-separated module list. Tokens valid 8 hours (28800s).
+          flows:
+            password:
+              tokenUrl: https://api-sandbox.xiaoman.cn/v1/oauth2/access_token
+              scopes: &xiaoman-scopes
+                company: Customers module (客户)
+                lead: Leads module (线索)
+                opportunity: Opportunities module (商机)
+                product: Products module (产品)
+                invoices: Orders, quotations, cash-collection invoices (订单、报价单、回款单)
+                purchaseOrder: Purchase orders (采购订单)
+                costInvoice: Cost invoices (费用单)
+                paymentInvoice: Payment invoices (付款单)
+                warehouse: Inventory (库存)
+                capitalAccount: Capital accounts (资金账户)
+                user: Users (用户列表)
+                webhook: Message push (消息推送)
+            clientCredentials:
+              tokenUrl: https://api-sandbox.xiaoman.cn/v1/oauth2/access_token
+              scopes: *xiaoman-scopes

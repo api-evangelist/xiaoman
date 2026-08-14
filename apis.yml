@@ -5,7 +5,7 @@ description: >-
   platform under Alibaba International Station, serving Chinese B2B exporters
   with the OKKI CRM, OKKI AiReach multi-channel customer acquisition, OKKI
   Shops site building, and OKKI Go, a B2B prospecting engine built for AI
-  agents. The OKKI CRM Open API (open.xiaoman.cn) exposes 125 OAuth2
+  agents. The OKKI CRM Open API (open.xiaoman.cn) exposes 119 OAuth2
   module-scoped operations across customers, leads, opportunities, products,
   sales and purchase orders, quotations, payments, suppliers, inventory,
   users, and Pro-plan webhook message-push subscriptions. The OKKI Go API
@@ -35,13 +35,8 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
-x-enrichment:
-  date: '2026-07-21'
-  status: enriched
-  artifacts_added: 25
-  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
 - CRM
@@ -55,68 +50,68 @@ tags:
 - Alibaba
 apis:
 - aid: xiaoman:xiaoman-companies-api
-  name: Xiaoman (OKKI) Companies API
-  description: The Companies API from Xiaoman (OKKI) — 4 operation(s) for companies.
-  humanURL: https://open.xiaoman.cn
-  baseURL: https://api-sandbox.xiaoman.cn
+  name: OKKI Go Companies API
+  description: The Companies API from OKKI Go (go.okki.ai) — 4 operations for B2B company search, unlock, profile and decision-maker email retrieval.
+  humanURL: https://go.okki.ai
+  baseURL: https://go.okki.ai
   tags:
   - Companies
   properties:
   - type: OpenAPI
     url: openapi/xiaoman-companies-api-openapi.yml
   - type: Documentation
-    url: https://open.xiaoman.cn
-  - type: GettingStarted
-    url: https://open.xiaoman.cn/doc-338269
-  - type: LLMsTxt
-    url: llms/xiaoman-llms.txt
-  - type: Documentation
     url: https://go.okki.ai
+  - type: APIReference
+    url: https://github.com/okki-op/okki-go/blob/main/skill/references/api-reference.md
+  - type: GettingStarted
+    url: https://github.com/okki-op/okki-go#quick-start
+  - type: SourceCode
+    url: https://github.com/okki-op/okki-go
   - type: LLMsTxt
     url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-contacts-api
-  name: Xiaoman (OKKI) Contacts API
-  description: The Contacts API from Xiaoman (OKKI) — 1 operation(s) for contacts.
-  humanURL: https://open.xiaoman.cn
-  baseURL: https://api-sandbox.xiaoman.cn
+  name: OKKI Go Contacts API
+  description: The Contacts API from OKKI Go (go.okki.ai) — 1 retired operation (POST /api/v1/contacts/search returns 410 Gone; use company unlock + profileEmails).
+  humanURL: https://go.okki.ai
+  baseURL: https://go.okki.ai
   tags:
   - Contacts
   properties:
   - type: OpenAPI
     url: openapi/xiaoman-contacts-api-openapi.yml
   - type: Documentation
-    url: https://open.xiaoman.cn
-  - type: GettingStarted
-    url: https://open.xiaoman.cn/doc-338269
-  - type: LLMsTxt
-    url: llms/xiaoman-llms.txt
-  - type: Documentation
     url: https://go.okki.ai
+  - type: APIReference
+    url: https://github.com/okki-op/okki-go/blob/main/skill/references/api-reference.md
+  - type: GettingStarted
+    url: https://github.com/okki-op/okki-go#quick-start
+  - type: SourceCode
+    url: https://github.com/okki-op/okki-go
   - type: LLMsTxt
     url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-credits-api
-  name: Xiaoman (OKKI) Credits API
-  description: The Credits API from Xiaoman (OKKI) — 1 operation(s) for credits.
-  humanURL: https://open.xiaoman.cn
-  baseURL: https://api-sandbox.xiaoman.cn
+  name: OKKI Go Credits API
+  description: The Credits API from OKKI Go (go.okki.ai) — 1 operation returning remaining company-search points and EDM email quota.
+  humanURL: https://go.okki.ai
+  baseURL: https://go.okki.ai
   tags:
   - Credits
   properties:
   - type: OpenAPI
     url: openapi/xiaoman-credits-api-openapi.yml
   - type: Documentation
-    url: https://open.xiaoman.cn
-  - type: GettingStarted
-    url: https://open.xiaoman.cn/doc-338269
-  - type: LLMsTxt
-    url: llms/xiaoman-llms.txt
-  - type: Documentation
     url: https://go.okki.ai
+  - type: APIReference
+    url: https://github.com/okki-op/okki-go/blob/main/skill/references/api-reference.md
+  - type: GettingStarted
+    url: https://github.com/okki-op/okki-go#quick-start
+  - type: SourceCode
+    url: https://github.com/okki-op/okki-go
   - type: LLMsTxt
     url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-default-api
-  name: Xiaoman (OKKI) 产品 API
-  description: The 产品 API from Xiaoman (OKKI) — 113 operation(s) for 产品.
+  name: Xiaoman (OKKI CRM) 产品 API
+  description: The 产品 (products and general CRM) module of the Xiaoman OKKI CRM Open API — 113 operations across products, customers, leads, opportunities, orders, quotations, payments, suppliers, inventory, users and webhook message-push.
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
   tags:
@@ -126,17 +121,15 @@ apis:
     url: openapi/xiaoman-default-api-openapi.yml
   - type: Documentation
     url: https://open.xiaoman.cn
+  - type: APIReference
+    url: https://open.xiaoman.cn
   - type: GettingStarted
     url: https://open.xiaoman.cn/doc-338269
   - type: LLMsTxt
     url: llms/xiaoman-llms.txt
-  - type: Documentation
-    url: https://go.okki.ai
-  - type: LLMsTxt
-    url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-devops-api
-  name: Xiaoman (OKKI) devops相关 API
-  description: The devops相关 API from Xiaoman (OKKI) — 6 operation(s) for devops相关.
+  name: Xiaoman (OKKI CRM) devops相关 API
+  description: The devops相关 module of the Xiaoman OKKI CRM Open API — 6 internal integration operations (DingTalk and TAPD webhooks, Sobot token, app version release).
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
   tags:
@@ -146,37 +139,35 @@ apis:
     url: openapi/xiaoman-devops-api-openapi.yml
   - type: Documentation
     url: https://open.xiaoman.cn
+  - type: APIReference
+    url: https://open.xiaoman.cn
   - type: GettingStarted
     url: https://open.xiaoman.cn/doc-338269
   - type: LLMsTxt
     url: llms/xiaoman-llms.txt
-  - type: Documentation
-    url: https://go.okki.ai
-  - type: LLMsTxt
-    url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-emails-api
-  name: Xiaoman (OKKI) Emails API
-  description: The Emails API from Xiaoman (OKKI) — 6 operation(s) for emails.
-  humanURL: https://open.xiaoman.cn
-  baseURL: https://api-sandbox.xiaoman.cn
+  name: OKKI Go Emails API
+  description: The Emails API from OKKI Go (go.okki.ai) — 6 operations for batch and personalized cold-outreach email sending and per-mail delivery tracking.
+  humanURL: https://go.okki.ai
+  baseURL: https://go.okki.ai
   tags:
   - Emails
   properties:
   - type: OpenAPI
     url: openapi/xiaoman-emails-api-openapi.yml
   - type: Documentation
-    url: https://open.xiaoman.cn
-  - type: GettingStarted
-    url: https://open.xiaoman.cn/doc-338269
-  - type: LLMsTxt
-    url: llms/xiaoman-llms.txt
-  - type: Documentation
     url: https://go.okki.ai
+  - type: APIReference
+    url: https://github.com/okki-op/okki-go/blob/main/skill/references/api-reference.md
+  - type: GettingStarted
+    url: https://github.com/okki-op/okki-go#quick-start
+  - type: SourceCode
+    url: https://github.com/okki-op/okki-go
   - type: LLMsTxt
     url: llms/xiaoman-okki-go-llms.txt
 - aid: xiaoman:xiaoman-s7-1-api
-  name: Xiaoman (OKKI) s7.1 API
-  description: The s7.1 API from Xiaoman (OKKI) — 35 operation(s) for s7.1.
+  name: Xiaoman (OKKI CRM) s7.1 API
+  description: The s7.1 release group of the Xiaoman OKKI CRM Open API — 35 operations covering customer detail/field dictionaries, follow-up trails, inventory, capital accounts and reporting.
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
   tags:
@@ -186,14 +177,12 @@ apis:
     url: openapi/xiaoman-s7-1-api-openapi.yml
   - type: Documentation
     url: https://open.xiaoman.cn
+  - type: APIReference
+    url: https://open.xiaoman.cn
   - type: GettingStarted
     url: https://open.xiaoman.cn/doc-338269
   - type: LLMsTxt
     url: llms/xiaoman-llms.txt
-  - type: Documentation
-    url: https://go.okki.ai
-  - type: LLMsTxt
-    url: llms/xiaoman-okki-go-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -264,3 +253,16 @@ common:
   url: skills/okki-go/SKILL.md
 - type: Overlay
   url: overlays/xiaoman-openapi-overlay.yaml
+- type: ToolCrosswalk
+  url: mcp/xiaoman-tool-crosswalk.yml
+- type: DataModel
+  url: data-model/xiaoman-data-model.yml
+- type: GitHubOrganization
+  url: https://github.com/okki-op
+- type: SourceCode
+  url: https://github.com/okki-op/okki-go
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 14
+  pass: local-v1

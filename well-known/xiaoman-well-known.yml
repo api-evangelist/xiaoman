@@ -1,9 +1,21 @@
-generated: '2026-07-21'
-method: searched
+generated: '2026-08-13'
+method: probed
 description: >-
-  Probe of the /.well-known/ discovery surface on all Xiaoman hosts. No
-  well-known documents are published (absence recorded as valid data). Both
-  documentation hosts do serve a root /llms.txt (captured under llms/).
+  Probe of the /.well-known/ discovery surface on all Xiaoman/OKKI hosts.
+  NO well-known document is published on any host — recorded absence, valid
+  data. Re-probed 2026-08-13 including the A2A agent-card paths.
+
+  IMPORTANT — go.okki.ai is an SPA catch-all: it answers HTTP 200 with the
+  site's HTML shell for EVERY path, including /.well-known/agent-card.json,
+  /.well-known/agent.json, /.well-known/oauth-protected-resource,
+  /openapi.json and /mcp. Verified by fetching a deliberately nonexistent path
+  (/zzz-nonexistent-xyz) and confirming the 200 body is byte-identical
+  (42,698 bytes) to the SPA shell returned for those paths. Every 200 on that
+  host below is therefore a MISS, not a document. No WellKnown, SecurityTxt or
+  AgentCard pointer is emitted for this provider.
+
+  Both documentation hosts do serve a real root /llms.txt (captured under
+  llms/, re-verified byte-identical on 2026-08-13).
 hosts:
   - host: https://www.xiaoman.cn
     documents:
@@ -12,6 +24,7 @@ hosts:
       - {path: /.well-known/oauth-authorization-server, status: 500}
       - {path: /.well-known/api-catalog, status: 500}
       - {path: /.well-known/ai-plugin.json, status: 500}
+      - {path: /.well-known/agent-card.json, status: 500}
   - host: https://open.xiaoman.cn
     documents:
       - {path: /.well-known/security.txt, status: 404}
@@ -19,7 +32,10 @@ hosts:
       - {path: /.well-known/oauth-authorization-server, status: 404}
       - {path: /.well-known/api-catalog, status: 404}
       - {path: /.well-known/ai-plugin.json, status: 404}
-      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-llms.txt}
+      - {path: /.well-known/agent-card.json, status: 404, note: HTML docs 404 page}
+      - {path: /.well-known/agent.json, status: 404, note: HTML docs 404 page}
+      - {path: /openapi.json, status: 404}
+      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-llms.txt, verified: '2026-08-13'}
   - host: https://api-sandbox.xiaoman.cn
     documents:
       - {path: /.well-known/security.txt, status: 404}
@@ -27,6 +43,24 @@ hosts:
       - {path: /.well-known/oauth-authorization-server, status: 404}
       - {path: /.well-known/api-catalog, status: 404}
       - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404, note: 'JSON API 404 — {"code":0,"message":"Not Found"}'}
+      - {path: /openapi.json, status: 404}
+      - {path: /v1/oauth2/access_token, status: 400, note: 'Live — returns a real OAuth2 unsupported_grant_type error, confirming this host serves the CRM Open API.'}
   - host: https://go.okki.ai
+    spa_catch_all: true
     documents:
-      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-okki-go-llms.txt}
+      - {path: /llms.txt, status: 200, file: ../llms/xiaoman-okki-go-llms.txt, verified: '2026-08-13', real_document: true}
+      - {path: /.well-known/agent-card.json, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /.well-known/agent.json, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /.well-known/oauth-protected-resource, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /.well-known/oauth-authorization-server, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /openapi.json, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /api/v1/openapi.json, status: 200, real_document: false, note: SPA HTML shell — miss}
+      - {path: /mcp, status: 200, real_document: false, note: SPA HTML shell — miss, not a JSON-RPC endpoint}
+      - {path: /zzz-nonexistent-xyz, status: 200, real_document: false, note: 'Control probe — establishes the catch-all baseline (42,698 bytes).'}
+summary:
+  well_known_documents_found: 0
+  security_txt: false
+  agent_card: false
+  oauth_metadata: false
+  llms_txt_hosts: 2

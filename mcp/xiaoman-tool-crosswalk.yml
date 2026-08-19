@@ -1,0 +1,195 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/xiaoman-mcp.yml (candidate tool list),
+  openapi/_original/xiaoman-okki-go-openapi.yml,
+  openapi/_original/xiaoman-openapi.yml,
+  and the provider-published Agent Skill scripts saved verbatim under
+  skills/okki-go/ (github.com/okki-op/okki-go, npm @okki-global/okki-go 1.3.4).
+description: >-
+  Crosswalk binding Xiaoman/OKKI agent-facing tools to the REST operations that
+  back them. Xiaoman ships NO MCP server (hosted or stdio) — its agent surface is
+  a packaged Agent Skill distributed on npm whose executable scripts wrap the
+  OKKI Go REST API. Each row therefore binds either an API Evangelist candidate
+  MCP tool (mcp/xiaoman-mcp.yml) or a provider-shipped skill script to the
+  OKKI Go operationId it calls. The 119-operation OKKI CRM Open API has no agent
+  tooling at all and is recorded in rest_only[]. Confidence is high where the
+  provider's own api-reference.md documents the script/endpoint pairing.
+surfaces:
+  openapi:
+    - file: openapi/_original/xiaoman-okki-go-openapi.yml
+      name: OKKI Go API
+      base: https://go.okki.ai
+      operations: 12
+      gated: false
+    - file: openapi/_original/xiaoman-openapi.yml
+      name: Xiaoman (OKKI CRM) Open API
+      base: https://api-sandbox.xiaoman.cn
+      operations: 119
+      gated: false
+      note: >-
+        Harvested fragments publish no operationIds; CRM rows are keyed by
+        METHOD + path.
+  graphql: null
+  mcp:
+    url: null
+    status: none
+    note: >-
+      No hosted or stdio MCP server published. Probed 2026-08-13:
+      https://go.okki.ai/mcp returns the site's SPA HTML shell (HTTP 200,
+      byte-identical to a nonexistent path), not a JSON-RPC endpoint.
+  agent_skill:
+    package: '@okki-global/okki-go'
+    repo: https://github.com/okki-op/okki-go
+    files: skills/okki-go/
+    status: published
+    note: >-
+      Provider-published Agent Skill — the real agent surface. Installs into
+      Claude Code, Cursor, Windsurf, Codex, Copilot, Gemini, Cline, OpenClaw
+      and Accio Work.
+crosswalk:
+  - tool: get_credit_balance
+    skill_script: skill/scripts/okki-auth.js
+    category: credits
+    rest: [getCreditBalance]
+    binding: rest
+    confidence: high
+  - tool: search_companies_advanced
+    skill_script: skill/scripts/search-companies.js
+    category: prospecting
+    rest: [searchCompaniesAdvanced]
+    binding: rest
+    confidence: high
+  - tool: unlock_company
+    skill_script: skill/scripts/unlock-companies.js
+    category: prospecting
+    rest: [unlockCompany]
+    binding: rest
+    confidence: high
+    note: >-
+      Paid action (1 search point on first unlock, free re-unlock for 30 days);
+      skills/okki-go/paid-actions.md governs the preflight/confirmation contract.
+  - tool: get_company_profile
+    skill_script: skill/scripts/unlock-companies.js
+    category: prospecting
+    rest: [getCompanyProfile]
+    binding: rest
+    confidence: high
+  - tool: get_company_profile_emails
+    skill_script: skill/scripts/search-contacts.js
+    category: contacts
+    rest: [getCompanyProfileEmails]
+    binding: rest
+    confidence: high
+    note: >-
+      Replacement path for the retired searchContacts operation (410 Gone).
+  - tool: send_batch_emails
+    skill_script: skill/scripts/send-email.js
+    category: outreach
+    rest: [sendBatchEmails]
+    binding: rest
+    confidence: high
+    note: Paid action — 1 EDM quota per recipient, max 100 recipients per call.
+  - tool: send_personalized_emails
+    skill_script: skill/scripts/send-email.js
+    category: outreach
+    rest: [sendPersonalizedEmails]
+    binding: rest
+    confidence: high
+    note: Paid action — max 100 individually-written emails per call.
+  - tool: list_email_tasks
+    skill_script: skill/scripts/email-status.js
+    category: outreach
+    rest: [listEmailTasks]
+    binding: rest
+    confidence: high
+  - tool: get_email_task
+    skill_script: skill/scripts/email-status.js
+    category: outreach
+    rest: [getEmailTask]
+    binding: rest
+    confidence: high
+  - tool: list_email_mails
+    skill_script: skill/scripts/email-status.js
+    category: outreach
+    rest: [listEmailMails]
+    binding: rest
+    confidence: medium
+    note: >-
+      email-status.js covers task and mail listing; the reference does not name
+      which flag selects the mails collection.
+  - tool: get_email_mail
+    skill_script: skill/scripts/email-status.js
+    category: outreach
+    rest: [getEmailMail]
+    binding: rest
+    confidence: medium
+skill_only:
+  - tool: discover_companies_batch
+    script: skill/scripts/discover-companies-batch.js
+    reason: >-
+      Client-side composite — fans out repeated searchCompaniesAdvanced calls
+      and holds batch state (skill/scripts/lib/batch-state.js). No single REST
+      operation backs it.
+  - tool: prepare_unlock_plan
+    script: skill/scripts/prepare-unlock-plan.js
+    reason: >-
+      Client-side cost preflight for paid unlocks; computes the point spend and
+      confirmation payload before any unlockCompany call. No REST equivalent.
+  - tool: okki_state
+    script: skill/scripts/okki-state.js
+    reason: Local skill state store (unlocked companies, session context).
+  - tool: okki_envelope
+    script: skill/scripts/okki-envelope.js
+    reason: >-
+      Client-side output-contract enforcement (skills/okki-go/output-contracts.md
+      and context-firewall.md). Not an API capability.
+  - tool: resolve_api_key
+    script: skill/scripts/resolve-api-key.sh
+    reason: Local credential resolution for OKKIGO_API_KEY. No REST equivalent.
+mcp_only: []
+rest_only:
+  - api: OKKI Go API
+    operations: [searchContacts]
+    reason: >-
+      Retired 2026 — returns RFC 7807 410 Gone with a machine-readable
+      replacement path. Deliberately not exposed as a tool.
+  - api: Xiaoman (OKKI CRM) Open API
+    operation_count: 119
+    reason: >-
+      The entire OKKI CRM Open API has no agent tooling — no MCP server, no
+      skill scripts, no first-party SDK. Agents must call it directly over HTTPS
+      with an OAuth2 module-scoped Bearer token.
+    capability_groups:
+      - {group: 授权登录 (auth), operations: 2}
+      - {group: 客户 (customers), operations: 18}
+      - {group: 产品 (products), operations: 15}
+      - {group: 消息推送 (webhooks), operations: 11}
+      - {group: s7.1 (release group), operations: 35}
+      - {group: 销售订单 (sales orders), operations: 6}
+      - {group: 报价单 (quotations), operations: 6}
+      - {group: 供应商 (suppliers), operations: 6}
+      - {group: 商机 (opportunities), operations: 6}
+      - {group: devops相关, operations: 6}
+      - {group: 采购订单 (purchase orders), operations: 5}
+      - {group: 回款单 (receipts), operations: 5}
+      - {group: 回款登记 (receipt registration), operations: 5}
+      - {group: 销售出库单 (sales outbound), operations: 5}
+      - {group: 采购退货单 (purchase returns), operations: 5}
+      - {group: 采购入库单 (purchase inbound), operations: 5}
+      - {group: 用户 (users), operations: 4}
+      - {group: 线索 (leads), operations: 4}
+      - {group: 费用单 (cost invoices), operations: 4}
+      - {group: 付款单 (payment invoices), operations: 3}
+      - {group: 库存 (inventory), operations: 2}
+      - {group: 统计分析 (reporting), operations: 1}
+      - {group: 资金 (capital accounts), operations: 1}
+coverage:
+  tools_named: 11
+  tools_bound: 11
+  skill_only: 5
+  mcp_only: 0
+  rest_operations_total: 131
+  rest_operations_with_a_tool: 11
+  rest_operations_without_a_tool: 120
+  bound_surface: OKKI Go only

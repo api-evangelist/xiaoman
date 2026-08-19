@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  registry.npmjs.org release metadata for @okki-global/okki-go and
+  @okki-aireach/aireach-cli, plus direct probes of the documentation hosts for
+  a changelog page.
+description: >-
+  Xiaoman/OKKI publishes NO dated changelog or release-notes page for either API
+  surface. Probed 2026-08-13 (see absence_evidence). What the provider does
+  publish, dated and versioned, is the npm release history of its first-party
+  Agent Skill and CLI packages — recorded below as the only machine-readable
+  release signal available. Because an npm dist history is not an API changelog,
+  this artifact deliberately carries NO type ChangeLog pointer in apis.yml; the
+  change_log_present check should not fire for this provider.
+api_changelog_published: false
+absence_evidence:
+  - {url: 'https://open.xiaoman.cn/llms.txt', status: 200, finding: 'Complete docs index — 47 doc/folder entries, none named 更新日志, changelog or release notes.'}
+  - {url: 'https://go.okki.ai/changelog', status: 302, finding: 'Redirects into the SPA catch-all; the followed 200 body is byte-identical to a nonexistent path.'}
+  - {url: 'https://www.xiaoman.cn/update/', status: 500}
+  - {url: 'https://www.xiaoman.cn/changelog', status: 500}
+  - {url: 'https://mobile.xiaoman.cn/mobile/update/product/1', status: 0, finding: 'A product 更新日志 page is indexed by search engines but the host does not resolve from outside China (DNS NXDOMAIN); it covers the CRM product, not the Open API, in any case.'}
+package_releases:
+  - package: '@okki-global/okki-go'
+    what: Provider-published OKKI Go Agent Skill (the OKKI Go API agent surface)
+    registry: npm
+    scheme: semver
+    current: 1.3.4
+    current_published: '2026-07-09'
+    days_since_release_at_check: 35
+    entries:
+      - {version: 1.3.4, date: '2026-07-09'}
+      - {version: 1.3.3, date: '2026-06-29'}
+      - {version: 1.3.2, date: '2026-06-24'}
+      - {version: 1.3.0, date: '2026-06-12'}
+      - {version: 1.0.13, date: '2026-05-29'}
+      - {version: 1.0.12, date: '2026-05-27'}
+      - {version: 1.0.10, date: '2026-05-22'}
+      - {version: 1.0.8, date: '2026-04-27'}
+    note: >-
+      No CHANGELOG.md in the public repo (github.com/okki-op/okki-go); versions
+      carry no published release notes. Repo pushed_at 2026-07-09 matches the
+      1.3.4 publish exactly, so npm is the full public history.
+  - package: '@okki-aireach/aireach-cli'
+    what: OKKI AiReach protected-tool CLI wrapper
+    registry: npm
+    scheme: semver
+    current: 0.1.5
+    current_published: '2026-07-07'
+    dist_tags: {latest: 0.1.2, release: 0.1.5, beta: 0.1.5-beta.4}
+    entries:
+      - {version: 0.1.5, date: '2026-07-07'}
+      - {version: 0.1.5-beta.4, date: '2026-07-07'}
+      - {version: 0.1.5-beta.3, date: '2026-07-07'}
+      - {version: 0.1.5-beta.2, date: '2026-07-07'}
+      - {version: 0.1.5-beta.1, date: '2026-07-03'}
+      - {version: 0.1.4, date: '2026-06-04'}
+      - {version: 0.1.3, date: '2026-05-28'}
+      - {version: 0.1.2, date: '2026-05-14'}
+      - {version: 0.1.1, date: '2026-05-08'}
+    note: >-
+      Dist-tag hazard: the `latest` tag still points at 0.1.2 (2026-05-14) while
+      0.1.5 (2026-07-07) is the newest release, published under a `release` tag.
+      `npm install -g @okki-aireach/aireach-cli` therefore installs a build three
+      releases behind.
+api_surface_versioning:
+  - {api: Xiaoman (OKKI CRM) Open API, scheme: uri-path, current: v1, changelog: null}
+  - {api: OKKI Go API, scheme: uri-path, current: v1, changelog: null}
+cross_links:
+  packages: packages/xiaoman-packages.yml
+  lifecycle: lifecycle/xiaoman-lifecycle.yml

@@ -1,0 +1,2011 @@
+{
+  "item": [
+    {
+      "id": "b139fd4b-449f-43ef-887e-0312f54fd338",
+      "name": "Emails",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a32730e4-9042-4b86-91fe-070df7542af3",
+          "name": "Send batch outreach email (one template, many recipients)",
+          "request": {
+            "name": "Send batch outreach email (one template, many recipients)",
+            "description": {
+              "content": "Costs 1 EDM quota per recipient; max 100 recipients per request. Asynchronous — record task_id to track progress. Insufficient balance refunds all and returns 402.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "send",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed83f986-ca93-4f5f-ba5e-0b4c66e115ba",
+              "name": "Task created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"task_id\": 6468,\n  \"total\": 5304,\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ac9f140-c501-4afc-807e-060e189d6caf",
+              "name": "RFC 7807 insufficient-credits: search points or EDM quota exhausted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d877313-1794-44ee-ac2b-c2673ea43c8f",
+              "name": "RFC 7807 forbidden: plan does not include EDM sending",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bace7fab-cbe3-4770-b49a-e4c8963e8181",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad406985-2616-4e84-af59-b1bc150b96e1",
+              "name": "RFC 7807 upstream-error: EDM third-party service failure; deducted quota is refunded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"body_format\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6219f685-3040-43e2-910a-5861af6aa5f2",
+          "name": "Send personalized outreach emails (independent bodies)",
+          "request": {
+            "name": "Send personalized outreach emails (independent bodies)",
+            "description": {
+              "content": "Costs 1 EDM quota per email; max 100 emails per request. Partial-balance failures refund deducted quota and return 402.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "send",
+                "personalized"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54741c6d-011c-4b7f-be0f-2ad68b912146",
+              "name": "Tasks created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "personalized"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8301,\n  \"tasks\": [\n    {\n      \"task_id\": 6984,\n      \"mail_id\": 1339,\n      \"email\": \"string\"\n    },\n    {\n      \"task_id\": 5782,\n      \"mail_id\": 4519,\n      \"email\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "160fd2d2-3c83-4634-8f65-e54a0c81041b",
+              "name": "RFC 7807 insufficient-credits: search points or EDM quota exhausted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "personalized"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56e60e82-8501-49f9-816c-3085eaff3fda",
+              "name": "RFC 7807 forbidden: plan does not include EDM sending",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "personalized"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83f91002-bf69-4e61-81a4-1211ccd2c6d2",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "personalized"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93211edb-512f-4d80-a301-af453ed6756e",
+              "name": "RFC 7807 upstream-error: EDM third-party service failure; deducted quota is refunded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "send",
+                    "personalized"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"content\": \"<string>\",\n      \"body_format\": \"<string>\",\n      \"email\": \"<email>\",\n      \"subject\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"variables\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"task_subject\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55c5cee1-8872-4a66-abe0-a32636e31478",
+          "name": "List email tasks",
+          "request": {
+            "name": "List email tasks",
+            "description": {
+              "content": "Free. Filter by task ids, subject, status (pending/requested/completed/partial/failed), recipient, and creation window; paginated (page/page_size, 1-100) and sortable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated task ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "subject",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_subject",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Comma-separated pending/requested/completed/partial/failed"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_nickname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "created_at"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e4a6223-8c68-462e-b08f-73861bd295ea",
+              "name": "Task list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"taskId\": 7737,\n      \"totalCount\": 3512,\n      \"status\": \"partial\",\n      \"sentCount\": 8065,\n      \"failedCount\": 7625,\n      \"openedCount\": 8213,\n      \"taskSubject\": \"string\",\n      \"createdAt\": \"1957-08-11T10:12:12.063Z\",\n      \"completedAt\": \"1964-04-12T23:58:57.151Z\"\n    },\n    {\n      \"taskId\": 9295,\n      \"totalCount\": 6170,\n      \"status\": \"failed\",\n      \"sentCount\": 9549,\n      \"failedCount\": 2006,\n      \"openedCount\": 8624,\n      \"taskSubject\": \"string\",\n      \"createdAt\": \"1949-03-20T13:54:08.585Z\",\n      \"completedAt\": \"2016-08-25T07:07:28.136Z\"\n    }\n  ],\n  \"total\": 6917,\n  \"page\": 167,\n  \"page_size\": 1402\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7480e9cc-52e9-4eb0-917b-01b665cfb24c",
+              "name": "RFC 7807 unauthorized: API key missing, invalid, or revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b807b1de-81a4-41f6-aed5-f7a300767d3c",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1abac2f8-8dbe-4531-8317-de4d71993762",
+          "name": "Get email task detail (per-mail delivery status)",
+          "request": {
+            "name": "Get email task detail (per-mail delivery status)",
+            "description": {
+              "content": "Free. Includes per-mail status, callbackReceivedAt delivery confirmation, and failureReason. 404 when the task does not exist or belongs to another user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "586362cd-2858-482d-953c-8c6c6189c8ee",
+              "name": "Task detail with mails[]",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": 5058,\n  \"totalCount\": 5948,\n  \"status\": \"pending\",\n  \"sentCount\": 4646,\n  \"failedCount\": 3926,\n  \"openedCount\": 6090,\n  \"taskSubject\": \"string\",\n  \"createdAt\": \"2022-07-13T05:49:28.564Z\",\n  \"completedAt\": \"2008-08-03T13:57:43.742Z\",\n  \"content\": \"string\",\n  \"bodyFormat\": \"string\",\n  \"mails\": [\n    {\n      \"mailId\": 680,\n      \"taskId\": 5375,\n      \"recipientEmail\": \"string\",\n      \"recipientNickname\": \"string\",\n      \"subject\": \"string\",\n      \"status\": \"failed\",\n      \"sentAt\": \"1955-04-13T07:54:09.277Z\",\n      \"callbackReceivedAt\": \"2013-08-19T03:08:37.575Z\",\n      \"failureReason\": \"string\"\n    },\n    {\n      \"mailId\": 2245,\n      \"taskId\": 133,\n      \"recipientEmail\": \"string\",\n      \"recipientNickname\": \"string\",\n      \"subject\": \"string\",\n      \"status\": \"sent\",\n      \"sentAt\": \"2006-05-18T17:03:42.616Z\",\n      \"callbackReceivedAt\": \"1993-04-07T01:46:35.779Z\",\n      \"failureReason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c56f3da-3226-4e5b-a50c-102f091064b9",
+              "name": "RFC 7807 not-found: resource does not exist or belongs to another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cca9ef4-9438-4368-9eed-d076da8944d1",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efc0f10d-cab4-48d6-85ed-0f4ef0a8c350",
+          "name": "List individual sent-mail records across tasks",
+          "request": {
+            "name": "List individual sent-mail records across tasks",
+            "description": {
+              "content": "Free. Filter by task/mail ids, subject, status (pending/requested/sent/failed), recipient, sent and callback windows; paginated and sortable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "mails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mail_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subject",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Comma-separated pending/requested/sent/failed"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_nickname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sent_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sent_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "received_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "received_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "sent_at"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "desc"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ed7e70b-fba1-47a6-a0d6-aa4a4fed0d02",
+              "name": "Mail records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mail_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sent_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sent_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "sent_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"mailId\": 8107,\n      \"taskId\": 612,\n      \"recipientEmail\": \"string\",\n      \"recipientNickname\": \"string\",\n      \"subject\": \"string\",\n      \"status\": \"pending\",\n      \"sentAt\": \"2019-12-21T20:23:36.166Z\",\n      \"callbackReceivedAt\": \"1975-10-07T02:50:59.056Z\",\n      \"failureReason\": \"string\"\n    },\n    {\n      \"mailId\": 6774,\n      \"taskId\": 8017,\n      \"recipientEmail\": \"string\",\n      \"recipientNickname\": \"string\",\n      \"subject\": \"string\",\n      \"status\": \"failed\",\n      \"sentAt\": \"1985-07-05T04:29:04.004Z\",\n      \"callbackReceivedAt\": \"1970-01-02T04:39:33.976Z\",\n      \"failureReason\": \"string\"\n    }\n  ],\n  \"total\": 4243,\n  \"page\": 1252,\n  \"page_size\": 4854\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "481d2301-24b6-469c-90f8-8a1b363ac12f",
+              "name": "RFC 7807 unauthorized: API key missing, invalid, or revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mail_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sent_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sent_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "sent_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e85b2336-aa83-44bc-9386-befebe92d69c",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mail_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_nickname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sent_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sent_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "received_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "sent_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c4f284f-d989-4d9b-ae6d-d1ebf0003658",
+          "name": "Get a single sent mail (full body and delivery state)",
+          "request": {
+            "name": "Get a single sent mail (full body and delivery state)",
+            "description": {
+              "content": "Free. bodyFormat (text|html) governs rendering. 404 when the mail does not exist or belongs to another user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "emails",
+                "mails",
+                ":mailId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "mailId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "14e3f7a1-e503-4a7c-b7f9-3531aa84fa5b",
+              "name": "Mail detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails",
+                    ":mailId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mailId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mailId\": 7877,\n  \"taskId\": 4476,\n  \"recipientEmail\": \"string\",\n  \"recipientNickname\": \"string\",\n  \"subject\": \"string\",\n  \"status\": \"sent\",\n  \"sentAt\": \"1953-01-23T09:55:49.460Z\",\n  \"callbackReceivedAt\": \"2025-04-16T04:36:45.249Z\",\n  \"failureReason\": \"string\",\n  \"content\": \"string\",\n  \"bodyFormat\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba9fea87-c9dd-4ed8-a7b6-b32303768ed4",
+              "name": "RFC 7807 not-found: resource does not exist or belongs to another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails",
+                    ":mailId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mailId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3944013c-5876-4ad8-9fac-380c0f1b37f2",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "emails",
+                    "mails",
+                    ":mailId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mailId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 383,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://go.okki.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ab1491c-3a05-42a3-82e8-b9c64b9056b9",
+    "name": "OKKI Go Emails API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OKKI Go is a B2B prospecting engine for AI agents and sales teams from Xiaoman (小满科技, an Alibaba company). Search global B2B companies, unlock company profiles and decision-maker contact emails, send batch or personalized cold outreach email (EDM), and track delivery — designed to be driven from AI agents via the provider-published OKKI Go Agent Skill. This OpenAPI was generated by API Evangelist from the provider's published API reference shipped inside the @okki-global/okki-go npm package (skill/references/api-reference.md, v1.3.4); endpoint paths, parameters, billing notes, and error semantics are taken verbatim from that document. Errors use RFC 7807 Problem Details. All authenticated endpoints share a 60 requests/minute rate limit.",
+      "type": "text/plain"
+    }
+  }
+}

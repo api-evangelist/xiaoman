@@ -1,6 +1,9 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: npm registry (registry.npmjs.org); PyPI probed (no xiaoman project, 404)
+source: >-
+  npm registry (registry.npmjs.org, re-read 2026-08-13); GitHub API
+  (api.github.com/users/okki-op); PyPI, Maven Central, NuGet, RubyGems,
+  Packagist, crates.io and pkg.go.dev all probed with no first-party result.
 packages:
   - language: javascript
     registry: npm
@@ -14,7 +17,14 @@ packages:
       (search/unlock/profileEmails/send-email wrappers) with installers for
       Claude Code, Cursor, Windsurf, Codex, Copilot, Gemini, Cline, OpenClaw,
       and Accio Work. Maintained by xiaoman.cn (okkiops, dev@xiaoman.cn).
-    repository: https://github.com/okki-op/okki-go (not publicly accessible)
+    repository: https://github.com/okki-op/okki-go
+    repository_public: true
+    repository_note: >-
+      Corrected 2026-08-13 — a prior round recorded this repo as "not publicly
+      accessible". It is public (created 2026-05-27, pushed 2026-07-09,
+      topics okki/okki-go/prospecting-skill, no license file) and its
+      skill/references/ tree plus AGENTS.md are now saved verbatim under
+      skills/okki-go/.
     homepage: https://go.okki.ai/
   - language: javascript
     registry: npm
@@ -22,8 +32,15 @@ packages:
     url: https://www.npmjs.com/package/@okki-aireach/aireach-cli
     install: npm install -g @okki-aireach/aireach-cli
     official: true
-    version: 0.1.2
-    published: '2026-05-14'
+    version: 0.1.5
+    published: '2026-07-07'
+    dist_tags: {latest: 0.1.2, release: 0.1.5, beta: 0.1.5-beta.4}
+    currency_note: >-
+      The npm `latest` tag is STALE — it still points at 0.1.2 (2026-05-14)
+      while 0.1.5 (2026-07-07) is the newest published release, tagged
+      `release` instead. The documented install command resolves `latest` and
+      therefore fetches a build three releases old. `version:` above records
+      the newest release actually published.
     description: OKKI AiReach protected-tool CLI wrapper (bin aireach-cli) with
       platform-specific native binary packages (darwin-arm64, linux-x64,
       windows-x64). Maintained by okkiops (dev@xiaoman.cn).
@@ -33,9 +50,18 @@ packages:
     url: https://www.npmjs.com/search?q=%40xiaoman
     official: true
     api_client: false
+    version: null
+    published: null
     description: First-party frontend tooling scope (eslint-config,
       stylelint-config, etc.) published by the xiaoman-fe team — internal
-      tooling, not API client libraries.
-notes: No first-party SDKs found for the OKKI CRM Open API itself (no packages
-  on PyPI, Maven Central, NuGet, RubyGems, Packagist, or crates.io); the CRM
-  API is consumed directly over HTTPS.
+      tooling, not API client libraries. Not version-tracked here because no
+      single package represents the scope; the matching GitHub org
+      (github.com/xiaoman-fe) does not exist publicly (404).
+notes: >-
+  No first-party SDK exists for the OKKI CRM Open API — the 119-operation CRM
+  surface has no client library on any registry (PyPI, Maven Central, NuGet,
+  RubyGems, Packagist, crates.io and pkg.go.dev all probed, no result) and is
+  consumed directly over HTTPS. Both published packages serve OKKI Go / AiReach
+  only. Both are current relative to their APIs (newest release 2026-07-09,
+  35 days before this check), so there is no SDK-decay signal here — the gap is
+  coverage, not staleness.

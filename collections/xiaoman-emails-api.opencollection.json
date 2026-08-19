@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OKKI Go Emails API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Emails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send batch outreach email (one template, many recipients)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://go.okki.ai/api/v1/emails/send/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Costs 1 EDM quota per recipient; max 100 recipients per request. Asynchronous — record task_id to track progress. Insufficient balance refunds all and returns 402."
+        },
+        {
+          "info": {
+            "name": "Send personalized outreach emails (independent bodies)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://go.okki.ai/api/v1/emails/send/personalized",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Costs 1 EDM quota per email; max 100 emails per request. Partial-balance failures refund deducted quota and return 402."
+        },
+        {
+          "info": {
+            "name": "List email tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/emails/tasks",
+            "params": [
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated task ids"
+              },
+              {
+                "name": "subject",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "task_subject",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated pending/requested/completed/partial/failed"
+              },
+              {
+                "name": "recipient_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_nickname",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free. Filter by task ids, subject, status (pending/requested/completed/partial/failed), recipient, and creation window; paginated (page/page_size, 1-100) and sortable."
+        },
+        {
+          "info": {
+            "name": "Get email task detail (per-mail delivery status)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/emails/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free. Includes per-mail status, callbackReceivedAt delivery confirmation, and failureReason. 404 when the task does not exist or belongs to another user."
+        },
+        {
+          "info": {
+            "name": "List individual sent-mail records across tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/emails/mails",
+            "params": [
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mail_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subject",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated pending/requested/sent/failed"
+              },
+              {
+                "name": "recipient_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_nickname",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sent_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sent_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "received_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "received_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free. Filter by task/mail ids, subject, status (pending/requested/sent/failed), recipient, sent and callback windows; paginated and sortable."
+        },
+        {
+          "info": {
+            "name": "Get a single sent mail (full body and delivery state)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/emails/mails/:mailId",
+            "params": [
+              {
+                "name": "mailId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free. bodyFormat (text|html) governs rendering. 404 when the mail does not exist or belongs to another user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

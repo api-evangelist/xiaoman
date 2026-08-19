@@ -1,0 +1,3513 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaoman (OKKI CRM) 产品 API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "产品",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "查询产品库列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "时间筛选 1-按更新时间，2-按创建时间"
+              },
+              {
+                "name": "start_time",
+                "value": "2024-01-21",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2025-01-11",
+                "type": "query",
+                "description": "截止时间"
+              },
+              {
+                "name": "start_index",
+                "value": "10",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "count",
+                "value": "1",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "product_type",
+                "value": "0",
+                "type": "query",
+                "description": "产品类型 1:无规格 2:多规格 3:组合"
+              }
+            ]
+          },
+          "docs": "查询产品库列表"
+        },
+        {
+          "info": {
+            "name": "产品新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**如何创建一个无规格产品**\n\n<details>\n  <summary>新建无规格产品</summary>\n  \n```\n{\n  \"images\": [],\n  \"name\": \"testname\",\n  \"product_no\": \"testno\",\n  \"product_type\": 1,\n  \"package_remark\": \"remark\"\n  }\n```\n</details>\n参数列表中有罗列可传入参数以及数据类型\n\n**如何编辑一个无规格产品**\n\n<details>\n  <summary>编辑无规格产品</summary>\n```\n{\n  \"product_id\":xxxxxx,\n  \"images\": [],\n  \"name\": \"testname\",\n  \"product_no\": \"test\",\n  \"product_type\": 1,\n  \"package_remark\": \"remark\"\n  }\n```\n</details>\n编辑无规格产品，需要获取info接口中的product_id传入，参数列表中有罗列可传入参数以及数据类型。\n\n\n========="
+        },
+        {
+          "info": {
+            "name": "产品库的数据字典",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjMzMDllMTljNzI2YzY5NWM2N2RmOTRlNjk4ZmU2MjI4NDYxNjg0NjBiZGRjZDc3NTgxY2EyODJiMDhlZWIzMDllZGEwNjVmZDBkMWY2NzU1IiwiaWF0IjoxNjc1OTkyMjAxLjk1MjAxNSwibmJmIjoxNjc1OTkyMjAxLjk1MjAxOCwiZXhwIjoxNjc2MDIxMDAxLjkyNTU2Nywic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIl19.mj5SSS6V3K2oDI53G7PRf7apJnIP-rh8mCAH6LbA6CbDGku6dXlAWG6grbBnu8Iz5eXakZM1iVCZ7Sl1zYEBSM9RbTQREoUQx48Iv0NZms3rnillyqSgLKwPGeKmIb2z5LrhI1JPwTEajwQFYLkAsuSR7eyv7oWgmuroI5aCPfrb9jgnCJVv4nk-XAdeRcBaKt7-hx8o6uOiL_crjN9z48oNmdpyI6PBZVB6tgpSw6j8ZR9Dd1HgqgTp8JzJCOtBwTUjBopmeFofniZMcaaII_89mZq5bHWG1shbn3ipD8pS_WF2a9BeL8Jb6vQmXaJs-3LJ2WGESDvhUwkPWPjnVg"
+              }
+            ]
+          },
+          "docs": "产品字段包含系统字段和自定义字段\n# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n| 24 | 金额（即带小数的数字字段） |\n| 25 | 网址 |\n| 26 | 视频 |\n| 27 | 百分比（即小数，例子一般格式为0.13）|\n| 28 | 联系电话|\n| 29 | 人员|\n| 30 | 部"
+        },
+        {
+          "info": {
+            "name": "产品详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/info",
+            "params": [
+              {
+                "name": "product_no",
+                "value": "",
+                "type": "query",
+                "description": "产品编码，最长256个字符"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "产品ID，与上product_no参数二选一"
+              }
+            ]
+          },
+          "docs": "product_no  与 product_id 选择其中一个传入\n选择product_no会根据编号找到对应的产品展示详情\n选择product_id会根据product_id找到对应的产品展示详情\n"
+        },
+        {
+          "info": {
+            "name": "产品分组新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/push-groups",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjFhYTIwMWVlNDE0YzhjNzk2YWFhZmQwODZkYTJiMGY5N2Y4YTAyYTYxYTQyN2I5NmU0ZGMxYWVjMmQ0YTIxNDc4MTE2ZWFlMTQwOTVhOWY5IiwiaWF0IjoxNjg1NTk4OTI3LjQ3MjgxMiwibmJmIjoxNjg1NTk4OTI3LjQ3MjgxMywiZXhwIjoxNjg1NjI3NzI3LjQ2MjAyNCwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiXX0.TWTk2mLMclUidd1ywZAC0BR5q9Rs81MmedesipmzCHHnNuWW510OormVZde7liQ7CBXElStoVRfOJ4QGWCvn1-IXDbQ0wysuyGK8sOXpONvezTz9WQGFPNtM1mgBtcnTJbfxnE8nwfLHbnO47mYnHLBdzQRsrXS5bTnjuKjsDfHEVV1hz4BPVkDwb3fogq_rDKFx7ahUHqXttE_K8yO9DdKzmWyytkNdKNgkeIESV40-3a_3VnG0Q_krl1WSUmGdjeGRZG32x_zHmOTnvw4SNCcSaw9LOr9K101UzTPK5lf_Z8pQvDriXf-suWtgCXEj4YqkIca78l0w9iKBl8BWyQ"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "产品分组新增/编辑"
+        },
+        {
+          "info": {
+            "name": "删除产品规格",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/remove-sku-attribute",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU1Zjk0ZmJhNDQ2NzI3YTg5YjJkYjY5NzdhYmQ4OTA4YTUwNTMxNjM2ZmE4MGQ2OGRhNmYyMmQzMTBlMjVmYTgxNGYxNmIxY2VmN2M0MzY5IiwiaWF0IjoxNjg2MDE5NjI0LjgxMjYxOSwibmJmIjoxNjg2MDE5NjI0LjgxMjYyLCJleHAiOjE2ODYwNDg0MjQuODA1MTIzLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.DYbZoeEhcSCuFmeNdOFzw_5RaFI56epVmq5nbZku0RwY88cAKFCx6MGYIFlmJ7CbWZu9DciGA0YtchyXxBSV7nBx3DYXNCY0bCRKXg6jKwZwrXfeb6mcmnxoMJovDzGbaCG8dHPXSqu4-WuSdMw7kflfjope-uYQ4It0lZ0XjhEHqGk7xQLjJi8EwgiyXRoDZ8fFRY6wpt-06WCStNm0TkguBtYT323g2UNC88a5m2zvIbwUhJQkpNhxLKzZSua8mMFJVvMPw6Bu8H6e--hJe2gXNSTNFMMFWpZC95yb5CkTF58FDDpgJCzl2OVrymfpsQWF9nF1ELDiNp8S3qFdUw"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "删除产品规格"
+        },
+        {
+          "info": {
+            "name": "查询产品分组",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/groups",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjY3YTNmNDM0NDUwMzE3YzNmMWMzZjU1OThlNjliZDUxMWI4MWI0NzJiZTgwMzlmNjM3YzRlNzUyNzUxMjU3ZjU4ODIxZjAyZDA3ZmQ4YzcyIiwiaWF0IjoxNjg5NjU5MTYwLjMxMzg0LCJuYmYiOjE2ODk2NTkxNjAuMzEzODUyLCJleHAiOjE2ODk2ODc5NjAuMzA1OTA2LCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.Vu8n9k_E2VZ9H6Yz0dHd9uhzcpgnO0rX5p1N3Ea-pwnYiGYyw8HJz6nDR7dvwxhc8Mxrv-qCAPxcAqpLqDQky4DkLaTVF2C0YdcY_g9OsTTPkGnM43fAX6BZyLeTYPfTnpHGm8gBQa3I-qhJTrsKUgRwheju8knGjDKtx8cnhTs03suVAMJ0aIFFEN_YcesfjlSAXwunbqwgkK-SaCWTh13qFbNV4-Vpy4dUvrfnZ5cEZwQ45ckEaA2K5nPEnCfQSXvAhxaHnV_cNLfb7k8CeMS0Z204AKWPYGpC_d3ohFNvx_SMkC1aLsihuKCyi2QA6Y8HufQetXcHh5JQWmQ68w"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "query",
+                "description": "产品分组ID 不传则查询所有产品分组"
+              },
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "query",
+                "description": "产品分组名称"
+              }
+            ]
+          },
+          "docs": "查询产品分组"
+        },
+        {
+          "info": {
+            "name": "新增/编辑规格",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/push-sku-attribute",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU1Zjk0ZmJhNDQ2NzI3YTg5YjJkYjY5NzdhYmQ4OTA4YTUwNTMxNjM2ZmE4MGQ2OGRhNmYyMmQzMTBlMjVmYTgxNGYxNmIxY2VmN2M0MzY5IiwiaWF0IjoxNjg2MDE5NjI0LjgxMjYxOSwibmJmIjoxNjg2MDE5NjI0LjgxMjYyLCJleHAiOjE2ODYwNDg0MjQuODA1MTIzLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.DYbZoeEhcSCuFmeNdOFzw_5RaFI56epVmq5nbZku0RwY88cAKFCx6MGYIFlmJ7CbWZu9DciGA0YtchyXxBSV7nBx3DYXNCY0bCRKXg6jKwZwrXfeb6mcmnxoMJovDzGbaCG8dHPXSqu4-WuSdMw7kflfjope-uYQ4It0lZ0XjhEHqGk7xQLjJi8EwgiyXRoDZ8fFRY6wpt-06WCStNm0TkguBtYT323g2UNC88a5m2zvIbwUhJQkpNhxLKzZSua8mMFJVvMPw6Bu8H6e--hJe2gXNSTNFMMFWpZC95yb5CkTF58FDDpgJCzl2OVrymfpsQWF9nF1ELDiNp8S3qFdUw"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "新增/编辑规格"
+        },
+        {
+          "info": {
+            "name": "查询产品规格列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/sku-attribute-list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU1Zjk0ZmJhNDQ2NzI3YTg5YjJkYjY5NzdhYmQ4OTA4YTUwNTMxNjM2ZmE4MGQ2OGRhNmYyMmQzMTBlMjVmYTgxNGYxNmIxY2VmN2M0MzY5IiwiaWF0IjoxNjg2MDE5NjI0LjgxMjYxOSwibmJmIjoxNjg2MDE5NjI0LjgxMjYyLCJleHAiOjE2ODYwNDg0MjQuODA1MTIzLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.DYbZoeEhcSCuFmeNdOFzw_5RaFI56epVmq5nbZku0RwY88cAKFCx6MGYIFlmJ7CbWZu9DciGA0YtchyXxBSV7nBx3DYXNCY0bCRKXg6jKwZwrXfeb6mcmnxoMJovDzGbaCG8dHPXSqu4-WuSdMw7kflfjope-uYQ4It0lZ0XjhEHqGk7xQLjJi8EwgiyXRoDZ8fFRY6wpt-06WCStNm0TkguBtYT323g2UNC88a5m2zvIbwUhJQkpNhxLKzZSua8mMFJVvMPw6Bu8H6e--hJe2gXNSTNFMMFWpZC95yb5CkTF58FDDpgJCzl2OVrymfpsQWF9nF1ELDiNp8S3qFdUw"
+              }
+            ]
+          },
+          "docs": "查询产品规格列表"
+        },
+        {
+          "info": {
+            "name": "产品枚举:产品类型，离岸价设置类型，创建方式，产品计量单位 ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/productEnums",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "field",
+                "value": "unit_list",
+                "type": "query",
+                "description": "unit_list :返回计量单位 product_type_ist:返回产品类型 fob_type_ist:返回离岸价类型 source_type_ist:返回创建方式"
+              }
+            ]
+          },
+          "docs": "产品枚举:产品类型，离岸价设置类型，创建方式，产品计量单位 "
+        },
+        {
+          "info": {
+            "name": "产品分组删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/remove-groups",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "group_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "产品分组删除"
+        },
+        {
+          "info": {
+            "name": "库存查询(通过skuId) ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/inventory-list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "sku_id",
+                "value": "3604006368",
+                "type": "query",
+                "description": "SKU ID 多个之间使用逗号隔开"
+              }
+            ]
+          },
+          "docs": "库存查询(通过skuId) "
+        },
+        {
+          "info": {
+            "name": "增量更新产品规格值",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/append-sku-attributes-value",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | The specifications don't exist | 检查传入的item_id是否存在 |"
+        },
+        {
+          "info": {
+            "name": "产品删除接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "product_id",
+                "value": "314773666",
+                "type": "query",
+                "description": "要删除的CRM产品ID"
+              }
+            ]
+          },
+          "docs": "**注意：**\n\n**一般不建议删除产品，但慎用该接口，该接口实现与CRM web端实现不一样，会宽松很多，所以调用前请确认真的要删除某产品。**"
+        },
+        {
+          "info": {
+            "name": "产品配件新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/edit-parts-list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "产品配件新建/编辑"
+        },
+        {
+          "info": {
+            "name": "付款单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/paymentInvoice/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "payment_invoice_id",
+                "value": "4242551903",
+                "type": "query",
+                "description": "付款单ID ID或编号必须传其中一项"
+              },
+              {
+                "name": "payment_invoice_no",
+                "value": "A0345",
+                "type": "query",
+                "description": "付款单编号"
+              }
+            ]
+          },
+          "docs": "付款单详情"
+        },
+        {
+          "info": {
+            "name": "付款单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/paymentInvoice/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "付款单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/paymentInvoice/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "时间筛选 1-按更新时间，2-按创建时间"
+              },
+              {
+                "name": "start_time",
+                "value": "2022-09-21",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2022-09-22",
+                "type": "query",
+                "description": "截止时间"
+              },
+              {
+                "name": "start_index",
+                "value": "0",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "count",
+                "value": "0",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "默认值: 0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "0",
+                "type": "query",
+                "description": "用单状态:1-草稿、2-待付款、3-已付款、4-已作废"
+              }
+            ]
+          },
+          "docs": "付款单列表"
+        },
+        {
+          "info": {
+            "name": "供应商详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplier/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "supplier_id",
+                "value": "",
+                "type": "query",
+                "description": "供应商ID"
+              },
+              {
+                "name": "supplier_name",
+                "value": "",
+                "type": "query",
+                "description": "供应商名称"
+              }
+            ]
+          },
+          "docs": "供应商详情"
+        },
+        {
+          "info": {
+            "name": "供应商新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplier/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "供应商新增/编辑"
+        },
+        {
+          "info": {
+            "name": "供应商列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplier/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "更新开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "更新截止时间"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "is_delete",
+                "value": "",
+                "type": "query",
+                "description": "默认值: 0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "page_size",
+                "value": "20",
+                "type": "query"
+              },
+              {
+                "name": "page_no",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "供应商列表"
+        },
+        {
+          "info": {
+            "name": "供应商字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplier/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "供应商字段"
+        },
+        {
+          "info": {
+            "name": "供应商删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplier/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "supplier_id",
+                "value": "3137319521",
+                "type": "query",
+                "description": "供应商ID"
+              }
+            ]
+          },
+          "docs": "供应商删除"
+        },
+        {
+          "info": {
+            "name": "获取供应商产品列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/supplierProduct/supplierProductRelationList",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "product_no",
+                "value": "{{PSL_product_no}}",
+                "type": "query"
+              },
+              {
+                "name": "supplier_product_no",
+                "value": "{{PSL_supplier_product_no}}",
+                "type": "query"
+              },
+              {
+                "name": "product_id",
+                "value": "{{PSL_product_id}}",
+                "type": "query"
+              },
+              {
+                "name": "suku_id",
+                "value": "{{PSL_sku_id}}",
+                "type": "query"
+              },
+              {
+                "name": "supplier_id",
+                "value": "{{PSL_supplier_id}}",
+                "type": "query"
+              },
+              {
+                "name": "supplier_product_name",
+                "value": "{{PSL_supplier_product_name}}",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "获取供应商产品列表"
+        },
+        {
+          "info": {
+            "name": "商机列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImIyOGJhZDRlNWY3NmY0YjhhNDJjYTM3OWJhN2NmZjhhYTVlOTY4ZTE0ODdiNTNhODU1Zjg1ZGFlYmZiODI5OGUwMzAwNzI4YjNmMjIwMDBkIiwiaWF0IjoxNjg1MzU1MTAwLjEzMjk3MiwibmJmIjoxNjg1MzU1MTAwLjEzMjk3MywiZXhwIjoxNjg1MzU3MzE4LCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.fNXB54NIgQpxlOyfFDP0F5gYyOFcNHnubwgZPtRaVj2eN8wIu1v4-BKVmshC8VA0OBtuMl6UrPkx-njfiZP4lFIsrHVuAoYk0Bn9GE5f0ojw3jOjn0wM5733rOdqkpnir7nFhSUokV8fqOE2cOlFuEi1Zytav1L3zwjQkllxhcF5XkdcW4H6rB2d1EMnM1YUYMklNgOA8CY-pqWWwGV2G1nl0OT4flOO5MS5ZC5wDf3hhyfETKpGGRA7xYiVm2owaIA5FTQq3PXC1mzhZZCu-Zkhb8JmKDJ6bkb9TRP5kcMlOifmkYvO5yfp_HTYErSYrJKUwr6crku2RKyfNTJung"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "第几页，默认 = 1"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页记录数，默认 = 10"
+              },
+              {
+                "name": "start_time",
+                "value": "2024-01-01",
+                "type": "query",
+                "description": "更新时间查询范围：开始日期"
+              },
+              {
+                "name": "end_time",
+                "value": "2024-01-31",
+                "type": "query",
+                "description": "更新时间查询范围：结束日期"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "商机列表"
+        },
+        {
+          "info": {
+            "name": "商机数据查询",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjEwNjhkMTExYTVmM2QwNjVhZWU3ODc4MDdkMDkzNzdjNTJiZDk2NzliY2ZhMWU4NzBhNTRkMjgwZTBkYjhiODViMjM3NTQ5YWE4ZTY3ODZiIiwiaWF0IjoxNjg1MzU4Mjk5LjA4MDQ5NCwibmJmIjoxNjg1MzU4Mjk5LjA4MDQ5NiwiZXhwIjoxNjg1Mzg3MDk5LjA2ODEzMywic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiXX0.Hr2pF-OldVYelITGkfDyfV8E0G_JclMg2WwHJeUQCuLbKpds4T6ezBtT4qeYhJvy3pIslgIJCQ-htI36-Weh0bGRvUlwx8MsxQBv7nFuXzWBeak1TOGGu-KMqdpf72rC6bege5nl4GTmyiN9sg0XJNXvZAsd7Xju_4zffqfScgVtDNE3nU7IOY56KYRH0Hljoon_YwlwGvqCOsFZ22_B-OYNB4TF9-twlB6k3UTkR8e746DfK8DKu7Z-ZFp2JhToltZfx9Ba8y0jY_Tvb-_wsRduqEKFjl5WKti1HrP_RVNEb4Bbm4Ctx-l4tHYzOSGq-XZwEUsGA3geiNqa_aK6Mg"
+              }
+            ],
+            "params": [
+              {
+                "name": "opportunity_id",
+                "value": "1103937572",
+                "type": "query",
+                "description": "商机ID  值来自/v1/opportunity/list 接口"
+              },
+              {
+                "name": "serial_id",
+                "value": "",
+                "type": "query",
+                "description": "商机编号"
+              }
+            ]
+          },
+          "docs": "商机数据查询"
+        },
+        {
+          "info": {
+            "name": "商机数据字典",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjEwNjhkMTExYTVmM2QwNjVhZWU3ODc4MDdkMDkzNzdjNTJiZDk2NzliY2ZhMWU4NzBhNTRkMjgwZTBkYjhiODViMjM3NTQ5YWE4ZTY3ODZiIiwiaWF0IjoxNjg1MzU4Mjk5LjA4MDQ5NCwibmJmIjoxNjg1MzU4Mjk5LjA4MDQ5NiwiZXhwIjoxNjg1Mzg3MDk5LjA2ODEzMywic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiXX0.Hr2pF-OldVYelITGkfDyfV8E0G_JclMg2WwHJeUQCuLbKpds4T6ezBtT4qeYhJvy3pIslgIJCQ-htI36-Weh0bGRvUlwx8MsxQBv7nFuXzWBeak1TOGGu-KMqdpf72rC6bege5nl4GTmyiN9sg0XJNXvZAsd7Xju_4zffqfScgVtDNE3nU7IOY56KYRH0Hljoon_YwlwGvqCOsFZ22_B-OYNB4TF9-twlB6k3UTkR8e746DfK8DKu7Z-ZFp2JhToltZfx9Ba8y0jY_Tvb-_wsRduqEKFjl5WKti1HrP_RVNEb4Bbm4Ctx-l4tHYzOSGq-XZwEUsGA3geiNqa_aK6Mg"
+              }
+            ]
+          },
+          "docs": "商机数据字典"
+        },
+        {
+          "info": {
+            "name": "商机新建/编辑接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | The associated customer cannot be empty use company_id | 检查是否opportunity_id为空时，company_id也为空了 |\n| 400 | Invalid data json | 检查json格式是否正确 |"
+        },
+        {
+          "info": {
+            "name": "查询商机的销售流程 商机阶段 输单原因",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/fields/selector",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "field",
+                "value": "sales_flow",
+                "type": "query",
+                "description": "销售流程:sales_flow 销售阶段:stage_list 输单原因fail_reason"
+              },
+              {
+                "name": "flow_id",
+                "value": "2345",
+                "type": "query",
+                "description": "销售流程ID ：查询销售阶段时候需要带上销售流程ID，数据来源于当前接口field=sales_flow"
+              }
+            ]
+          },
+          "docs": "# 商机有不同的销售流程，流程中有不同商机阶段\n    请选择合适的流程和阶段进行接入\n## 1、商机流程获取\n    传入field=sales_flow 获取到某流程ID，\n## 2、商机流程阶段获取\n    传入field=stage_list,flow_id=4850316434641(流程ID)获取具体某流程的阶段"
+        },
+        {
+          "info": {
+            "name": "商机删除接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/opportunity/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "opportunity_id",
+                "value": "5203694883",
+                "type": "query",
+                "description": "商机ID 值来自于/v1/opportunity/list 商机列表接口"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource | 检查opportunity_id传递是否不正确 |\n| 400 | Invalid query | 检查opportunity_id传递是否为空 |\n"
+        },
+        {
+          "info": {
+            "name": "回款单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receipt/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "回款单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receipt/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "cash_collection_id",
+                "value": "",
+                "type": "query",
+                "description": "回款单ID"
+              },
+              {
+                "name": "cash_collection_no",
+                "value": "",
+                "type": "query",
+                "description": "回款单编号，与回款单ID二选一"
+              }
+            ]
+          },
+          "docs": "回款单详情"
+        },
+        {
+          "info": {
+            "name": "回款单新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receipt/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "回款单新建/编辑"
+        },
+        {
+          "info": {
+            "name": "回款单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receipt/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码，默认1"
+              },
+              {
+                "name": "count",
+                "value": "20",
+                "type": "query",
+                "description": "每页条数，默认20"
+              },
+              {
+                "name": "start_time",
+                "value": "2023-01-11 00:00:00",
+                "type": "query",
+                "description": "更新时间开始日期"
+              },
+              {
+                "name": "end_time",
+                "value": "2023-12-11 23:59:59",
+                "type": "query",
+                "description": "更新时间结束日期"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "是否返回删除的回款单"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "回款单列表"
+        },
+        {
+          "info": {
+            "name": "回款方式枚举",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receipt/types",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "回款方式枚举"
+        },
+        {
+          "info": {
+            "name": "回款登记字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receiptRegistration/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "回款登记新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receiptRegistration/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "回款登记新建/编辑"
+        },
+        {
+          "info": {
+            "name": "回款登记列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receiptRegistration/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "2023-10-10 11:55:17",
+                "type": "query",
+                "description": "创建/更新开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2023-10-20 11:55:17",
+                "type": "query",
+                "description": "创建/更新截止时间"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "默认值1， 1更新时间，2创建时间"
+              }
+            ]
+          },
+          "docs": "回款登记列表"
+        },
+        {
+          "info": {
+            "name": "回款登记核销",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receiptRegistration/allocate",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "回款登记核销"
+        },
+        {
+          "info": {
+            "name": "回款登记详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/receiptRegistration/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "cash_collection_invoice_id",
+                "value": "",
+                "type": "query",
+                "description": "回款登记ID"
+              },
+              {
+                "name": "cash_collection_invoice_no",
+                "value": "",
+                "type": "query",
+                "description": "回款登记编号"
+              }
+            ]
+          },
+          "docs": "回款登记详情"
+        },
+        {
+          "info": {
+            "name": "客户详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU3NTBiMWY2MDZjMDc5MTc3YzdmZjZjZDM3ZWZkMWFjYWZlMjhmNjNhY2U2YzJlMDg2ZmQyMTY4YmRhYTkzYTAzMDAyZDY3OGJhOTBkMDgxIiwiaWF0IjoxNjc4OTQ5NTQwLjcyNjQwMSwibmJmIjoxNjc4OTQ5NTQwLjcyNjQwNCwiZXhwIjoxNjc4OTc4MzQwLjcxODk3Niwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIl19.XJfFkUedgP9Kz-a4-nIKlb8DNt2YoIXxatZiUJDaMXxVEtpceWz59QMJtpqMHS-qgB38bY8B5_9bdMUYg3fCvSTu0RNWfMyvEri9Dqmp3RBE88DYoKC4b-kugv-49ujkAl_GUv1X3FVI5L3RXDdhGVmVVEwqbDXnIWaSSNi9LhdJ2XX6RU0LkjVYnL3_nwwrcmDB_FJ2JHDNnB6Hin0fiteA6SY03vsxB2jnwMLKtoN6wab5eJex7mGnhEe8d0lG1XviOjIeU9DhQN-31dSKdjbDjfCCtrxtqmxCDFVdIDiuoH2CuxSVn2c0skjiBMm9zOQ5bfV-wWRjY_fxdG-e4g"
+              }
+            ],
+            "params": [
+              {
+                "name": "company_id",
+                "value": "1",
+                "type": "query",
+                "description": " 公司客户ID 来自于/v1/company/list接口company_id"
+              },
+              {
+                "name": "format",
+                "value": " 1",
+                "type": "query",
+                "description": " 是否返回格式化后的数据，默认值: 0 "
+              },
+              {
+                "name": "serial_id",
+                "value": " A01",
+                "type": "query",
+                "description": " 客户编号 来自于/v1/company/list接口serial_id"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource | 检查传入的company_id 或者 serial_id是否正确 |"
+        },
+        {
+          "info": {
+            "name": "跟进动态查询接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/dynamic/trail/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "company_id",
+                "value": "1",
+                "type": "query",
+                "description": "客户ID"
+              },
+              {
+                "name": "lead_id",
+                "value": "1",
+                "type": "query",
+                "description": "线索ID"
+              },
+              {
+                "name": "opportunity_id",
+                "value": "1",
+                "type": "query",
+                "description": "商机ID"
+              },
+              {
+                "name": "start_time",
+                "value": "2022-09-21 21:50:00",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2022-09-23 21:50:00",
+                "type": "query",
+                "description": "结束时间"
+              },
+              {
+                "name": "count",
+                "value": "1",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "跟进动态查询接口"
+        },
+        {
+          "info": {
+            "name": "客户数据字典",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjdhMjA3NTY5MmViNTc1ZGFlNTAyNmNhMzUwNDljYTFiNTgzNmM4MGQ3OTFhMGQzNzk5NTliMGQxODk4ZjI3YjhmYmM3OWE1NDE2NTQyMzQ1IiwiaWF0IjoxNjc1ODI0MTA5LjQ3NzIyLCJuYmYiOjE2NzU4MjQxMDkuNDc3MjIxLCJleHAiOjE2NzU4NTI5MDkuNDUwNTMxLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiXX0.PvaNNsQqk6yBl1dlaEQGCWpkn8EoFzuSdkyv8RpKyV_W91-LLDq4qNpBJPW7ieA_qKV44977GIQghGd9FDjvZucY1IfQwxfpeGIztEC5mcdSItSgsCXNWTP-Pw7FX28n6qIvIfKLmm7r4NrBrYbFsLOwFaJ9v13RNFF6NhvZognYlcveVIT2vwRL48HSZUjzRqPKo93rWbEojXaqGfsc9qLptyZ1IAhJqSh6ZrEVQBe6awa-R7G4AiFiqCMXQfsuON6xWu__F51FyEzk-vr40qvmBY82SuSAGuTkUsVKXDpoZHz8ZQoY9KG822t5WMeziaGq8CW8er6A7LF0IeWUDQ"
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "company",
+                "type": "query",
+                "description": "company=客户数据字典，customer=联系人数据字典 默认值: company"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "客户（含联系人）新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/pushCompanyAndCustomers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU4MjllNmU5N2FjOWE0ZmQxYjdmOTQ4ZmMwOTE0ZTZkMjkxZWU4Zjg5NjczYzk0NDEyMWE5NjVhNTAxZDdkMmM5NTVmZTBiMzdlMjUyM2Y4IiwiaWF0IjoxNjg2ODAyNDI1LjMwMzk3MiwibmJmIjoxNjg2ODAyNDI1LjMwMzk3MywiZXhwIjoxNjg2ODMxMjI1LjI5MzgwOSwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiXX0.jllCo8AVbZuMumrSAHkiL7a3QBhagiHWn_CjLbGhz60WOhGQytZ5xsWZ04z34vgT1bW5LJvnpWQ90c4Tyk4smzXAL6KfabQUTl8_RAnrKpNXdxPQOuQWjqxHzNdtf8VR0TjSNw0yHVmL5MN_XoCQvl_a2PfW7MbcoUJJld7yrxMbFQhl5-ct0QfavvBNifJ-jIp_O7w9PjJ8V7FoV-OmogFhC-YwBxPZBOePVT-OoAmgLtdbWXh-PasrXvd7lusB8o7tUcDyaBpkfgOwP8L6k7oNn-OjOnR6iXQzRRvlXxIfs6v3CiV75WVBINs5lgyCQ8ZOTJbnXYBgCOW5iLDfZw"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource | 检查传入company_id是否有误 |\n| 404 | No Privilege | 检查传入user_id是否是私海客户的跟进人 |\n"
+        },
+        {
+          "info": {
+            "name": "删除客户（仅支持公海客户）",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/removeCompanyAndCustomers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImU3NTBiMWY2MDZjMDc5MTc3YzdmZjZjZDM3ZWZkMWFjYWZlMjhmNjNhY2U2YzJlMDg2ZmQyMTY4YmRhYTkzYTAzMDAyZDY3OGJhOTBkMDgxIiwiaWF0IjoxNjc4OTQ5NTQwLjcyNjQwMSwibmJmIjoxNjc4OTQ5NTQwLjcyNjQwNCwiZXhwIjoxNjc4OTc4MzQwLjcxODk3Niwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIl19.XJfFkUedgP9Kz-a4-nIKlb8DNt2YoIXxatZiUJDaMXxVEtpceWz59QMJtpqMHS-qgB38bY8B5_9bdMUYg3fCvSTu0RNWfMyvEri9Dqmp3RBE88DYoKC4b-kugv-49ujkAl_GUv1X3FVI5L3RXDdhGVmVVEwqbDXnIWaSSNi9LhdJ2XX6RU0LkjVYnL3_nwwrcmDB_FJ2JHDNnB6Hin0fiteA6SY03vsxB2jnwMLKtoN6wab5eJex7mGnhEe8d0lG1XviOjIeU9DhQN-31dSKdjbDjfCCtrxtqmxCDFVdIDiuoH2CuxSVn2c0skjiBMm9zOQ5bfV-wWRjY_fxdG-e4g"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "company_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "删除客户（仅支持公海客户）"
+        },
+        {
+          "info": {
+            "name": "查询客户的阶段、分组、状态、地区、主营产品、来源",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/fields/selector",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImNhYzU2YzI2ZTc3OWVjNGM3ZmVlY2E2NzIyYzFmZDFkNzI2NzlhZjI2YzZmOWQzNTlmMWEyZjcxZGY0Y2RhNmQ1NjNhYjJjODcxMmY2OWVmIiwiaWF0IjoxNjg3NjU4Mjg3LjM0ODA2MSwibmJmIjoxNjg3NjU4Mjg3LjM0ODA2MywiZXhwIjoxNjg3Njg3MDg3LjMzNjUzNiwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiXX0.dowqE7SM07NmkduIZb6WstAXpSUx5hNOr9YIdfJ_YfyWrRAxHREYPYG2W7gFO8Nh407rNKhhh653dt1bCdhX2DlAkYvMIYFN4jSimgkIu173kBh0gyVBg1ktenNvskJKzvn_DcaLuZGP6-LO9kX_a_ewRObL9F7kQMalR2A00EwuNJvdEVc2CHhi_ok5tj_BBIRP-0BsDK8UCI2AQFZhS9Ikx-gk26ssS11ia5PI2viIs95UgWX6GeBEZ9ymFNsQmwAbvUaYIefUnmguP8S-qQs1Fx_9szTjlkjR2Ch-OmSj4U0-sKQZSo27mk_AlQurOYt5oqxLaO9pCV45dHsVrA"
+              }
+            ],
+            "params": [
+              {
+                "name": "field",
+                "value": "trail_status",
+                "type": "query",
+                "description": "可传的值，field=trail_status，客户阶段；field=group_id，客户分组；field=pool_id，公海分组；field=origin,来源列表；field=product_group，产品分组；field=category，主营产品；field=country，国家地区"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "查询客户的阶段、分组、状态、地区、主营产品、来源"
+        },
+        {
+          "info": {
+            "name": "客户列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "20",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "默认值:0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "all",
+                "value": "1",
+                "type": "query",
+                "description": "默认值:1，设置=1查询所有客户，设置=0只查询私海客户，设置=2查询公海客户"
+              },
+              {
+                "name": "group_id",
+                "value": "1",
+                "type": "query",
+                "description": "设置客户分组ID后，只查询对应分组的客户 \n传入值来自/v1/company/fields/selector?field=group_id返回值data中的id"
+              },
+              {
+                "name": "start_time",
+                "value": "2022-09-21 21:50:00",
+                "type": "query",
+                "description": "开始时间，YYYY-MM-DD"
+              },
+              {
+                "name": "end_time",
+                "value": "2022-09-23 21:50:00",
+                "type": "query",
+                "description": "结束时间，YYYY-MM-DD"
+              },
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "控制start_time，end_time查询什么时间字段，默认值=1，1 更新时间 , 2 创建时间, 3 建档时间"
+              }
+            ]
+          },
+          "docs": "客户列表"
+        },
+        {
+          "info": {
+            "name": "新增客户的联系人（待修改）",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/push/customer",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "新增客户的联系人（待修改）"
+        },
+        {
+          "info": {
+            "name": "提交跟进动态",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/dynamic/trail/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## 错误码解释\n| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| -1 | 不支持的类型| remark_type传递有误，不在允许的范围内 |\n| -1 | 备注内容不能为空| content传递为空 |\n|-1 |lead_id and company_id and opportunity_id is empty|lead_id 与company_id 与 opportunity_id ，需要传递其中某一项|\n"
+        },
+        {
+          "info": {
+            "name": "客户分组新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/pushGroup",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## 错误码解释\n| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| -1 | 分组不存在 | 检查传入的group_id是否正确|"
+        },
+        {
+          "info": {
+            "name": "删除客户分组",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/removeGroup",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "group_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | 系统分组无法被删除 | 替换传入的客户分组id |"
+        },
+        {
+          "info": {
+            "name": "客户阶段新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/pushTrail",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | 分类设置不存在 | 检查客户阶段ID传入是否有误 |"
+        },
+        {
+          "info": {
+            "name": "删除客户阶段",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/removeTrail",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "trail_id",
+                "value": "3555516886",
+                "type": "query",
+                "description": "客户阶段ID\n传入值来自/v1/company/fields/selector返回值"
+              },
+              {
+                "name": "to_trail_id",
+                "value": "1101043657",
+                "type": "query",
+                "description": "被删除客户阶段若有应用被前往这个客户阶段ID\n传入值来自/v1/company/fields/selector返回值"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 400 | Invalid query | trail_id 或者 to_trail_id没有传入，或者传入为空 |\n"
+        },
+        {
+          "info": {
+            "name": "客户标签新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/pushTag",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "客户标签新增/编辑"
+        },
+        {
+          "info": {
+            "name": "删除客户标签",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/removeTag",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "tag_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n|400 | Invalid query | tag_id传递为空或者为0|"
+        },
+        {
+          "info": {
+            "name": "客户枚举:客户类型，客户标签，时区，规模，星级，采购意向，采购额度，职级",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/companyEnums",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "客户枚举:客户类型，客户标签，时区，规模，星级，采购意向，采购额度，职级"
+        },
+        {
+          "info": {
+            "name": "移入公海",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/moveToPublic",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI2MzlhYTA1MmZlMGNkMzJhYmQyMWJlNWZjOGU2NWQ2ZDg5OGRhMmQxN2MwODI1NTgwZjA4M2M5MGU4MGU0MTZmZjI2YTQyNmYwYjVjOWQ1YSIsImp0aSI6IjI2ODMyNThlMDMyOTNjZDQ1ZWZiZGVkODQyZThjM2E0YmY1NDYyYTJjZDQ4NWEzMzlmN2ExMjE2YjQ3ZGZjMTZhMGUzMzdlMWU0NjA4YWNlIiwiaWF0IjoxNzQ3NjQ2NzIyLjgxMjg3OCwibmJmIjoxNzQ3NjQ2NzIyLjgxMjg4MSwiZXhwIjoxNzQ3Njc1NTIyLjgwMjc1NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.VoNtwQCrv8w1DoittcOEfXCbV0kMpmizJQn9YLB934KRslg0SSX4ws8HA0kJir9PPzLVQirSaiGzJCUfN8KSh6w3fctZJ1Kwe7HZlVgZ13FqFWYX6RQ7FKNjT4-mimoAkXeyDcpZxxnIBJcURqeftcF0gfp_eWFr9Qm3Fj1k0ZSZKqpWuw45R-S9H8tZUHk0ArZz7uROhkJdu_ghTAmAENdpl_ndhihX_L2jDkLaFiPcviRAw6ouBevct7Cex_e1mLRJqQiFakgrHdyDOdT78X8HjBIKRWjTZLIQeh3GJnUxHZ3uxPNKmgV5gCBUJ-IK4457PkhFTABOv1LbHHif0w"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "移入公海"
+        },
+        {
+          "info": {
+            "name": "客户查重",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/company/query",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "20",
+                "type": "query",
+                "description": "单页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "word",
+                "value": "1235@xiaoman.com",
+                "type": "query",
+                "description": "关键词（邮箱/联系方式/公司名称）"
+              },
+              {
+                "name": "search_field",
+                "value": "name",
+                "type": "query",
+                "description": "name:公司名称/公司简称；serial_id：客户编号；customer_list.email：客户邮箱；\ncustomer_list.email.domain:邮箱后缀；customer_list.name:联系人名称；customer_list.tel：联系电话；customer_list.contact.value"
+              }
+            ]
+          },
+          "docs": "客户查重"
+        },
+        {
+          "info": {
+            "name": "库存写入",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/product/push-inventory",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjY1NzdkNjQ5MGM0ODcyNWJkNjcwZTMyMmQ4MWJjMmRhODU3NzZkMDQ0M2UwZDA0MjI3NjMwNjAxMDAyNWY2N2YwYzNiYmQ4ZjIzZWUyNGExIiwiaWF0IjoxNzA1MzcyMDY0LjkwNTk4NiwibmJmIjoxNzA1MzcyMDY0LjkwNTk4OCwiZXhwIjoxNzA1NDAwODY0Ljg5ODM2Niwic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiLCJyZXBvcnQiLCJwdXJjaGFzZU9yZGVyIl19.GYnyGpMmJ0f0YI8k78ZE1BZI4QYo_KnqEgD55ca7ftjCDPO3I4qoB0XfpepUkpuZASREUOnBN1Jq9RPyjjCHa0FZb061DpbpjQ5LCy-D_ZrrodMXu6lSvM1qgVWnf01e7FzkvnB92VG_iI3VBKoHr4VKzqptoSIWsIyX6trgoaxQVXPdwXBp-tS3yzHPiKpKQFBjg76htLhZ8A7KTs5uIE30yOiVv8mwsOjRvKTTfuhSEdZ-c-D-zXJihbdr2OZFRYd8TINemWS9q7mcgfcy6QF7T-WNuUitkmFE2hqee8tp_l9dZpqeCgCiesoAI69hQ9VbjtDr9J4DRmPwPT4zZQ"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "该接口支持同步外部的库存数据到小满，但通过该方式写入的库存只能用于查看，不能用于小满的出库。"
+        },
+        {
+          "info": {
+            "name": "仓库查询",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/warehouse/list",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjY1NzdkNjQ5MGM0ODcyNWJkNjcwZTMyMmQ4MWJjMmRhODU3NzZkMDQ0M2UwZDA0MjI3NjMwNjAxMDAyNWY2N2YwYzNiYmQ4ZjIzZWUyNGExIiwiaWF0IjoxNzA1Mzg1MjA1Ljc5ODc0NywibmJmIjoxNzA1Mzg1MjA1Ljc5ODc0OSwiZXhwIjoxNzA1NDAwODY0LCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCIsInB1cmNoYXNlT3JkZXIiXX0.ChfnpuPMmz-rcgY_xQctvpV_ITahm8Ds1g0Gehy_M-yFC2qyY-NbTCbP38wv1PrQT_tqQ9H05mZKu1OsLdnSXX-P9LLr3de4Dn3Zz0uCFvwa0MuojvqIPft8QI2gMkX-cJpOCAiN4A_mUmnDB1XuRFGlfc1uBRw_OFalkbCyu817G4iaxuwEWao0UQ1d014U8vZ-8QYNiYOXF3_mBxgnuO9ApWV9KLpN7r31U2VR0FARk8IbsmByzeMVvD-GcpNBSl8iEh-1PabNW7bLbBnks4fJvDJih-BnqlZnWF53lpZ6mIxXBSIvpqHeaOSPgnqmDcunHNkjZb_YQ7anNnehNw"
+              },
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "warehouse_id",
+                "value": "1131355530",
+                "type": "query",
+                "description": "仓库ID查询条件"
+              },
+              {
+                "name": "warehouse_no",
+                "value": "WH001",
+                "type": "query",
+                "description": "仓库编号"
+              }
+            ]
+          },
+          "docs": "仓库查询"
+        },
+        {
+          "info": {
+            "name": "报价单新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjQ5ZmQyMWJkOGNjMjVkY2FiNTcxNzVkMDZmNDIxOTE4OTU1YmYyZWM1ZmQ0OGVhMDQwNGRjMWIxMjg4NjVlODI3MTdjYWU2NTA5NzYyNjY0IiwiaWF0IjoxNjg0MTM5ODY0Ljk4Nzg5OCwibmJmIjoxNjg0MTM5ODY0Ljk4NzkwMSwiZXhwIjoxNjg0MTQ1MzMwLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciJdfQ.GSj6bWBxDiBwOe8pH1GGaeia_nlY9DAE_gbF1uS_K13dReY6HFkU-r0a50FbzRPKzRi9GiVfYFEs1_wgyp8FWos8yOjwBOe9Ke6wmxH7onEXFIn2DHCdf3_k7JTNVxVDL7d6SBrPhgv5-xq0J1AaIhn5gptx2RQQCJ012kFv0cWesCy47-ToD_a5MiqFBiHxqBuYDemewWCquCmgdYi0o3aZPbQ8Ni7xEg1grEYWj-gfsOEsrJgc8H4m19omgYWC-xT9nbBxQArXFHCIfafMlMzFKiEAK7hzWSmTE-Rr5kKYnz-4TZAe6IhVjlWxZZx3T_pDiQr8aHVb7PAcryceKg"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "报价单新建/编辑"
+        },
+        {
+          "info": {
+            "name": "报价单数据字典",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImY0YjZhMDM3NGZjMzYxZjNmYzU3ZTUzN2YyNjFjMjc0ZjIxMWU4MjdmYzY5NjVmODZkZjBjOWEwNjI4ZTQ5MzEyNzY4NTNjMjRiZjVlNzgwIiwiaWF0IjoxNjg4NDU5OTg1Ljg0MDMwNywibmJmIjoxNjg4NDU5OTg1Ljg0MDMwOCwiZXhwIjoxNjg4NDg4Nzg1LjgzMzYxLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.K6nZOP7G8tA26aQx5GtQigrwo2r7QOJYl2r98-ayb0g-mjKItJJz67lPR2DJXIoX0ywz4qKESUwCGH5zcrZLWH647hwKfdlkpJ2dE9e8xpYiLt7EAZNXgaqxVIV-vp3FjtsP_3OOYMeMf17W7B5HMjvbYgNTxh0pO0SGSogCLQTQneuaKXBJHMUNKK3RtWsf5rd60spPI_6sE25iD4Fqd9zCPAsuWs4mEz63LYsLwTlQBeUFmI1Il62IWZZ91JEK4TVQokk-dz99rBMbPLZUI0GBSs_Mr1KvVOYoKHKwMxssmu8PSoJafrea58yN4db0nk7AVLpjUi9Fc1IfyssaBw"
+              }
+            ]
+          },
+          "docs": "报价单数据字典"
+        },
+        {
+          "info": {
+            "name": "查询报价单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjlkOTQzYjhkMDA2NTVkNTViMjI3YzE1MTA1NGNmNzc1Y2E2ZjEyM2NmMmYyN2Y0ZDBkMDM3NzI3M2I2NDhjMGY2ZDdjNjNkYzI4NDYyMGQwIiwiaWF0IjoxNjg5NTY1NTI4LjYxODY3LCJuYmYiOjE2ODk1NjU1MjguNjE4NjcyLCJleHAiOjE2ODk1OTQzMjguNjExODY5LCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCJdfQ.O5OVPC-o3YN3IX9MIiU3DbeWkY98CJ1b5x0rGfYykgl-sHDC3b4HZ22RDJV4rtXlMN7JXGPrmptdd_4RVuRy2GfjI8qlFYgUGShH0yWdtGg8RS_xtV2fon0NeTFGL_44DuZin1i4C6vN2NJErG2YLw3ehPEZqDtXERf2TUngB6HEnHiHjsJCdRvDVyKeGVoIvTWwuSt40hZzmxTSM8hXfe_yPSa3_f8SPkhMQNbk1JTlbBzlYqdwe6y5sP-iQJRLb8bsdAmSs3yF-OVYhhIc2Xib_DwJqVujLzrgWH_4qb9Rqm3lG48Uq9F8_l2YnF7uJjSipy0z0ZriHNxWRdx6Ag"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "查询报价单详情"
+        },
+        {
+          "info": {
+            "name": "报价单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "时间查询范围：开始日期"
+              },
+              {
+                "name": "end_time\t",
+                "value": "",
+                "type": "query",
+                "description": "时间查询范围：结束日期"
+              },
+              {
+                "name": "start_index",
+                "value": "",
+                "type": "query",
+                "description": "第几页，默认 = 1"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "每页记录数，默认 = 10"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "默认0，1表示查询已删除的数据列表"
+              },
+              {
+                "name": "approval",
+                "value": "",
+                "type": "query",
+                "description": "默认0，1表示查询审批通过的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "默认值: 0，设置对应的状态值可以查询相关状态的数据列表，支持以半角逗号分割的多个状态值"
+              }
+            ]
+          },
+          "docs": "报价单列表"
+        },
+        {
+          "info": {
+            "name": "报价单状态、币种查询",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/fields/selector",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "field",
+                "value": "status",
+                "type": "query",
+                "description": "查询字段值，field=status,报价单状态；field=currency,报价单币种"
+              }
+            ]
+          },
+          "docs": "报价单状态、币种查询"
+        },
+        {
+          "info": {
+            "name": "报价单删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/quotation/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "quotation_id",
+                  "value": ""
+                },
+                {
+                  "name": "quotation_no",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "报价单删除"
+        },
+        {
+          "info": {
+            "name": "鉴权接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/oauth2/access_token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "当使用client_credentials时可以参考下面传入，这种情况下不会有刷新token，可以在过期前重新再次请求一下即可，这种格式下请在请求body中写入如下JSON数据\n{\n    \"grant_type\":\"client_credentials\",\n    \"client_id\": \"xxx\",\n    \"client_secret\": \"xxxx\",\n    \"scope\": \"invoices purchaseOrder\"\n}\n\n注意：\n1、不管是password 还是 client_credentials 返回的token都有有效期，一般为8小时，期间8小时内重新获取不会刷新token有效时间，区别于走client_credentials没有expires_in，refresh_token返回。\n2、其中参数scope理解为我们每个模块都有一个scope值，申请token时带入，比如客户模块为company，若只需要对接客户的模块的话，只需要在scope参数填入company即可，这时token只能访问客户模块的API，其他模块API不允许访问，否则会提示无权限比如no"
+        },
+        {
+          "info": {
+            "name": "刷新令牌接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/oauth2/refresh_token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "刷新令牌接口"
+        },
+        {
+          "info": {
+            "name": "获取回调配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "获取回调配置"
+        },
+        {
+          "info": {
+            "name": "创建回调配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## 回调说明\n1. 消息推送后需要响应：{\"data\" : {\"message_id\" : xxxxx}}\n2. 消息重试时间为 10s 30s 60s 三次重试失败则会丢弃消息"
+        },
+        {
+          "info": {
+            "name": "修改回调配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "修改回调配置"
+        },
+        {
+          "info": {
+            "name": "删除回调配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "删除回调配置"
+        },
+        {
+          "info": {
+            "name": "获取订阅配置列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/subscribe",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "获取订阅配置列表"
+        },
+        {
+          "info": {
+            "name": "创建订阅配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/subscribe",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## 请求参数说明\n1. subscribe_type ：订阅的模块\n2. subscribe_configs ：订阅的配置\n3. biz_type：订阅的事件\n特殊说明： 一次只能订阅一个模块，但可以同时订阅一个模块下的多个事件\n## 支持的订阅类型\n| 模块 | 创建事件 | 更新事件 | 删除事件 |返回字段|\n|----------------|-----------------|-----------------|-----------------|---------------------|\n| crm.order | xiaoman.crm.order.create | xiaoman.crm.order.update | xiaoman.crm.order.delete | order_id, order_no |\n| crm.company | xiaoman.crm.company.create | xiaoman.crm.company.update | xiaoman.crm.company.delete | company_id, serial_id |\n| "
+        },
+        {
+          "info": {
+            "name": "测试回调接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook/test",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "## 回调接口说明\n1. 调用该接口会向 回调配置中 添加的 callback_url 发送一个请求\n1.1 Header 包含一个 X-Signature 校验头， X-Timestamp 时间戳\n1.2 Body格式： {\"message_id\":\"msg_xxx\",\"data\":\"加密内容\"}\n1.3 用户可根据自身需要对 消息内容进行校验，加密方式：HMAC-SHA256 通过Header中X-Timestamp的内容+Body中的data数据，以及创建回调配置时返回的 加密串 security_config 进行解密校验\n2. 该接口需要一个正确的响应\n2.1 响应内容需要包含 message_id 这个与后续消息推送的响应一致\n2.2 测试接口需要额外返回biz_data 进行校验\n2.2.1 解密逻辑通过 AES-256-GCM 方式进行解密，最终得到 {\"biz\":[{\"biz_type\":\"xiaoman.open.callback.test\",\"biz_data\":\"xxx\"}]} 的数据结构\n2.3 响应体结构 ： {\"code\":200,\"data\":{\"mes"
+        },
+        {
+          "info": {
+            "name": "获取订阅配置详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/subscribe/:subscribe_type",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscribe_type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "获取订阅配置详情"
+        },
+        {
+          "info": {
+            "name": "修改订阅配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.xiaoman.cn/v1/subscribe/:subscribe_type",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscribe_type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "修改订阅配置"
+        },
+        {
+          "info": {
+            "name": "删除订阅配置",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.xiaoman.cn/v1/subscribe/:subscribe_type",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscribe_type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "删除订阅配置"
+        },
+        {
+          "info": {
+            "name": "重新生成加密密钥",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/webhook/regenerate-secret",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "重新生成加密密钥"
+        },
+        {
+          "info": {
+            "name": "用户列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/user/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "enable_flag",
+                "value": "1",
+                "type": "query",
+                "description": "默认1，0冻结，1正常，2已删除"
+              }
+            ]
+          },
+          "docs": "用户列表"
+        },
+        {
+          "info": {
+            "name": "用户详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/user/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "user_id",
+                "value": "1",
+                "type": "query",
+                "description": "需要查询用户ID"
+              },
+              {
+                "name": "email",
+                "value": "xxx@xx.com",
+                "type": "query",
+                "description": "需要查询用户邮箱"
+              },
+              {
+                "name": "nickname",
+                "value": "小张",
+                "type": "query",
+                "description": "用户昵称"
+              },
+              {
+                "name": "full_name",
+                "value": "小王",
+                "type": "query",
+                "description": "用户姓名"
+              }
+            ]
+          },
+          "docs": "用户详情"
+        },
+        {
+          "info": {
+            "name": "用户部门列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/user/departmentList",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "用户部门列表"
+        },
+        {
+          "info": {
+            "name": "用户部门详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/user/departmentInfo",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "department_id",
+                "value": "1",
+                "type": "query",
+                "description": "需要查询部门id"
+              },
+              {
+                "name": "department_name",
+                "value": "xxx",
+                "type": "query",
+                "description": "需要查询部门名称"
+              }
+            ]
+          },
+          "docs": "用户部门详情"
+        },
+        {
+          "info": {
+            "name": "线索（含联系人）创建/编辑接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/lead/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6IjZiYzJkMjgxNGVkZDMyNTU2YWFmYTUwNzhhMDRkYzFkYmUxYjcyODU3ZmJjNmYwNDIxMWFiYTYzYTlhMjYwMmU4NzJlMTMyYjZmOGM2Njg0IiwiaWF0IjoxNzE0MDQ1Nzk0LjQ2OTIwNywibmJmIjoxNzE0MDQ1Nzk0LjQ2OTIwOSwiZXhwIjoxNzE0MDcyMDAzLCJzdWIiOiIiLCJzY29wZXMiOlsicHJvZHVjdCIsImNvbXBhbnkiLCJpbnZvaWNlcyIsImxlYWQiLCJvcHBvcnR1bml0eSIsInVzZXIiLCJzdXBwbGllciIsIndhcmVob3VzZSIsInJlcG9ydCIsInB1cmNoYXNlT3JkZXIiLCJjYXBpdGFsQWNjb3VudCJdfQ.Z4euFldG7vO4IXjBIX26LqDBiArdS392llP-RdOucPwEaRsYjNSlsY69veGOqlpsDIvb_W9VpU1pRGMlH-Z8I31oVgZIa7v7Ey8wGeAxGgUI9AVOnb7nhQ25X8Gf8aJQzfMm0IVD3oEGzjyBrO9XciUwuFsq1HdWcm1riPh9DZ_5yIGVsx9V7oZT4pi0VlCf2DjpfuN9q4kkzW7X-UDLfoZIn6HNVS0Yz_BepTtmz7uibRyYjtC1ZhPCs314-bn2qq0k_Ft0_zWAPGCIsYnvZhDJB_1Tz0pKa5hVL6lRmiIDFbEyionLjKFgGOejtv0p0WU2opzDU_lyyGl-whjo8A"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| 404 | Input data validate error origin_list must be array | 检查传入的origin_list是否是数组 |\n| 404 | Not Found Resource | 检查传入的lead_id是否存在 |\n| 400  | Invalid data json | 检查传入的数据是否是json格式 |\n| 400  | Empty POST request body data | 检查传入的数据是否为空 |"
+        },
+        {
+          "info": {
+            "name": "线索|联系人的数据字典",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/lead/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "lead",
+                "type": "query",
+                "description": "lead=线索数据字典，customer=联系人数据字典 默认值: lead"
+              }
+            ]
+          },
+          "docs": "线索|联系人的数据字典"
+        },
+        {
+          "info": {
+            "name": "线索列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/lead/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "第几页，默认 = 1"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页记录数，默认 = 10"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "时间查询范围：开始日期"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "时间查询范围：结束日期"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "联系人邮箱"
+              },
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "线索来源 值来源于接口/v1/company/fields/selector"
+              },
+              {
+                "name": "sort_field",
+                "value": "update_time",
+                "type": "query",
+                "description": "排序与搜索字段  update_time  默认值 order_time最近联系时间 edit_time 最近编辑时间"
+              },
+              {
+                "name": "archive",
+                "value": "0",
+                "type": "query",
+                "description": "归档状态 1:已归档 2:已转化"
+              }
+            ]
+          },
+          "docs": "线索列表"
+        },
+        {
+          "info": {
+            "name": "线索数据查询",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/lead/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "lead_id",
+                "value": "21343",
+                "type": "query",
+                "description": "线索ID 值来源于/v1/lead/list"
+              },
+              {
+                "name": "serial_id",
+                "value": "",
+                "type": "query",
+                "description": "线索编号"
+              }
+            ]
+          },
+          "docs": "线索数据查询"
+        },
+        {
+          "info": {
+            "name": "统计报告-统计详细",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/report/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMWMxMzU5NmRlMGJjYzM1MzRlYTIxMWEyMTE0MTdjODcxZjMzZGVjNjVmMzE1MDcxM2EwMTE5N2I0NGJlODY2NDM0YWFmYjczZmI0ZWIwYiIsImp0aSI6ImIyYjU0ZDhiNTJlMGIwOThlNzE1MmQ1MzBiNjVjYmRkNjE0OWFjNTFiZTMxZmM1ZmY2NmY1N2E4MDNlYjAzNzVkZjIzYzJlNjM0NGE1Y2VhIiwiaWF0IjoxNjg0MzA2NTkyLjg4NDMwOCwibmJmIjoxNjg0MzA2NTkyLjg4NDMxMSwiZXhwIjoxNjg0MzM1MzkyLjg3MjU5Nywic3ViIjoiIiwic2NvcGVzIjpbInByb2R1Y3QiLCJjb21wYW55IiwiaW52b2ljZXMiLCJsZWFkIiwib3Bwb3J0dW5pdHkiLCJ1c2VyIiwic3VwcGxpZXIiLCJ3YXJlaG91c2UiXX0.Mf76vreuzUKA-Qf2_Osu10N3JhDcHyRlgamBj_fvQDVAq1YeN-8833PpPQixk-CQnU9UBJ5HSVuMWWHQB49uRsqwSOCv4B_feAwRPvxN4W1Cc5O5pQf3Tj7D-_15tqvsvhK4c3NuuM3N8HofjB5apD3sAyP9oqN0gfZCSlVfj0uXlDDQLpP8EqEumBDsRkWn-KkUsqyKUFh-tuoji-IWxNG2T2I-JxejhqZ1wNXpqyNC8ruJdWS7sJC_B8g98o6oV5zxjwhaqvhQa6DsYTGFNwRResYMzfdFXcZKogAwWSdEgGU49lTinqrpq95lGtwxWOyDJEGv3rw5ozGtARXqkg"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "统计报告-统计详细"
+        },
+        {
+          "info": {
+            "name": "费用单-详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/costInvoice/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "cost_invoice_no",
+                "value": "FY0002",
+                "type": "query",
+                "description": "费用单编号 编号和ID必须填写一项"
+              },
+              {
+                "name": "cost_invoice_id",
+                "value": "5001110926",
+                "type": "query",
+                "description": "费用单ID"
+              }
+            ]
+          },
+          "docs": "费用单-详情"
+        },
+        {
+          "info": {
+            "name": "费用单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/costInvoice/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "费用项目列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/costInvoice/items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "费用项目列表"
+        },
+        {
+          "info": {
+            "name": "费用单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/costInvoice/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "时间筛选 1-按更新时间，2-按创建时间"
+              },
+              {
+                "name": "start_time",
+                "value": "2022-09-21",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2022-09-22",
+                "type": "query",
+                "description": "截止时间"
+              },
+              {
+                "name": "start_index",
+                "value": "0",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "count",
+                "value": "0",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "默认值: 0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "0",
+                "type": "query",
+                "description": "费用单状态:1-待审批、2-待付款、3-部分付款、4-已结清"
+              }
+            ]
+          },
+          "docs": "费用单列表"
+        },
+        {
+          "info": {
+            "name": "资金账户列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/capitalAccount/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页数量，默认值 10"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "status",
+                "value": "0",
+                "type": "query",
+                "description": "资金账户状态：1-启用，2-停用"
+              }
+            ]
+          },
+          "docs": "资金账户列表"
+        },
+        {
+          "info": {
+            "name": "采购入库单-列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseInbound/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "2025-01-13 11:13:27",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2025-01-13 11:13:27",
+                "type": "query",
+                "description": "结束时间"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "页面数量"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "默认0，1表示查询已删除的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "1",
+                "type": "query",
+                "description": "对应的状态值1是"
+              },
+              {
+                "name": "time_type",
+                "value": "2",
+                "type": "query",
+                "description": "时间查询参数，默认为1，1是更新时间排序，2是创建时间排序"
+              },
+              {
+                "name": "serial_id",
+                "value": "",
+                "type": "query",
+                "description": "采购入库单号"
+              }
+            ]
+          },
+          "docs": "采购入库单-列表"
+        },
+        {
+          "info": {
+            "name": "采购入库单-详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseInbound/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "inbound_invoice_id",
+                "value": "5159083481",
+                "type": "query",
+                "description": "采购入库单id"
+              },
+              {
+                "name": "serial_id",
+                "value": "CGRK2501130025",
+                "type": "query",
+                "description": "采购入库单编号"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 400 | Invalid query | 是否inbound_invoice_id 与  serial_id 同时为空|"
+        },
+        {
+          "info": {
+            "name": "采购入库单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseInbound/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "采购入库单-删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseInbound/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "inbound_invoice_id",
+                "value": "5138062155",
+                "type": "query",
+                "description": "采购入库单ID"
+              },
+              {
+                "name": "serial_id",
+                "value": "CGRK2412240012",
+                "type": "query",
+                "description": "采购入库单编号"
+              }
+            ]
+          },
+          "docs": "采购入库单-删除"
+        },
+        {
+          "info": {
+            "name": "采购入库单-新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseInbound/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|\n"
+        },
+        {
+          "info": {
+            "name": "采购订单新增/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/purchaseOrder/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "access_token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "采购订单新增/编辑"
+        },
+        {
+          "info": {
+            "name": "采购订单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/purchaseOrder/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "access_token"
+              }
+            ],
+            "params": [
+              {
+                "name": "purchase_order_id",
+                "value": "",
+                "type": "query",
+                "description": "采购订单ID"
+              },
+              {
+                "name": "purchase_order_no",
+                "value": "",
+                "type": "query",
+                "description": "采购订单编码，可与采购订单ID二选一"
+              }
+            ]
+          },
+          "docs": "采购订单详情"
+        },
+        {
+          "info": {
+            "name": "采购订单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/purchaseOrder/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "access_token"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "创建/更新开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "创建/更新截止时间"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "每页数量，默认20"
+              },
+              {
+                "name": "start_index",
+                "value": "",
+                "type": "query",
+                "description": "页码，默认1"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "默认值: 0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "time_type",
+                "value": "",
+                "type": "query",
+                "description": "默认值1， 1更新时间，2创建时间"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "采购订单状态，值为/v1/purchaseOrder/fields/selector接口的状态ID"
+              },
+              {
+                "name": "status_name",
+                "value": "",
+                "type": "query",
+                "description": "采购订单状态名称"
+              }
+            ]
+          },
+          "docs": "采购订单列表"
+        },
+        {
+          "info": {
+            "name": "采购订单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/purchaseOrder/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "access_token"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "采购订单状态",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/purchaseOrder/fields/selector",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "access_token"
+              }
+            ],
+            "params": [
+              {
+                "name": "field",
+                "value": "status",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "采购订单状态"
+        },
+        {
+          "info": {
+            "name": "采购退货单-列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseReturn/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "结束时间"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页条数"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "默认0，1表示查询已删除的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "对应的状态值1是"
+              },
+              {
+                "name": "time_type",
+                "value": "2",
+                "type": "query",
+                "description": "时间查询参数，默认为1，1是更新时间排序，2是创建时间排序"
+              },
+              {
+                "name": "serial_id",
+                "value": "",
+                "type": "query",
+                "description": "采购退货单号"
+              }
+            ]
+          },
+          "docs": "采购退货单-列表"
+        },
+        {
+          "info": {
+            "name": "采购退货单-详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseReturn/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "warehouse_return_invoice_id",
+                "value": "5208577575",
+                "type": "query",
+                "description": "采购退货单id 值来自/v1/invoices/purchaseReturn/list"
+              },
+              {
+                "name": "serial_id",
+                "value": "CGTH2405060082",
+                "type": "query",
+                "description": "采购退货单编号 值来自/v1/invoices/purchaseReturn/list"
+              }
+            ]
+          },
+          "docs": "采购退货单-详情"
+        },
+        {
+          "info": {
+            "name": "采购退货单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseReturn/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "采购退货单-新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseReturn/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|"
+        },
+        {
+          "info": {
+            "name": "采购退货单-删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/purchaseReturn/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "warehouse_return_invoice_id",
+                "value": "1",
+                "type": "query",
+                "description": "采购退货id 值来自/v1/invoices/purchaseInbound/list"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 400 | Invalid query | 检查warehouse_return_invoice_id 与 serial_id 是否同时为空|"
+        },
+        {
+          "info": {
+            "name": "新增/编辑销售出库单",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/outbound/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|\n"
+        },
+        {
+          "info": {
+            "name": "销售出库单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/outbound/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "outbound_invoice_id",
+                "value": "",
+                "type": "query",
+                "description": "销售出库单ID，值可以来自/v1/invoices/outbound/list"
+              },
+              {
+                "name": "serial_id",
+                "value": "",
+                "type": "query",
+                "description": "销售出库单号，与ID必须选择一项\n值可以来自/v1/invoices/outbound/list"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 400 | Invalid query | 检查outbound_invoice_id与serial_id是否同时为空 |"
+        },
+        {
+          "info": {
+            "name": "销售出库单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/outbound/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n\n若发现没有的字段类型可以咨询对接群，或者提客户工单。\n"
+        },
+        {
+          "info": {
+            "name": "销售出库单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/outbound/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "2025-05-08 00:00:00",
+                "type": "query",
+                "description": "创建/更新开始时间"
+              },
+              {
+                "name": "end_time",
+                "value": "2025-05-09 23:59:59",
+                "type": "query",
+                "description": "创建/更新截止时间"
+              },
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "默认值1， 1更新时间，2创建时间"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页数量"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "默认值: 0，设置=1时查询已删除的数据列表"
+              },
+              {
+                "name": "status",
+                "value": "1",
+                "type": "query",
+                "description": "销售出库单状态：1-待出库，2-已出库"
+              }
+            ]
+          },
+          "docs": "销售出库单列表"
+        },
+        {
+          "info": {
+            "name": "销售出库单删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/outbound/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "outbound_invoice_id",
+                "value": "5263024713",
+                "type": "query",
+                "description": "销售出库单ID 值来自/v1/invoices/outbound/list"
+              },
+              {
+                "name": "serial_id",
+                "value": "XSCK2504290195",
+                "type": "query",
+                "description": "销售出库单号 与销售出库单ID  必须传递其中一个\n值来自/v1/invoices/outbound/list"
+              }
+            ]
+          },
+          "docs": "| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource. | 销售出库单不存在或者已删除 |\n| 404 | 单据被锁定，无法操作 | 销售出库单被锁定 |\n| 400 | Invalid query | 销售出库单ID与销售出库单号 同时为空 |"
+        },
+        {
+          "info": {
+            "name": "销售订单详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/info",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "order_id",
+                "value": "1",
+                "type": "query",
+                "description": "销售订单ID或销售订单编号必须传其中一个"
+              },
+              {
+                "name": "order_no",
+                "value": "O1",
+                "type": "query",
+                "description": "销售订单ID或销售订单编号必须传其中一个"
+              }
+            ]
+          },
+          "docs": "## 错误码解释\n| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource（未知异常） | 请先排查单据是否在小满是否真实存在，再联系对接群，并提供相关请求参数与请求时间 |"
+        },
+        {
+          "info": {
+            "name": "销售订单新建/编辑",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/push",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## 错误码解释\n| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource没有权限编辑XXX| 若传入user_id字段，则会根据该用户ID校验用户是否有操作订单相关字段权限，若出现该错误可以到【角色权限中新增权限】或者【更改传入有订单权限的用户ID】 |\n## 价格条款\n\n需要对接 price_contract 价格条款 字段的同学，临时参考下面价格条款传入对应的CODE，后面会维护在销售订单枚举接口中，目前小满CRM只下面几种：\n传入例子：\n\n```\n{\n     \"price_contract\": \"EXW\"\n}\n```\n\n| 价格条款CODE | 价格条款名称 |\n| --- | --- |\n|EXW|卖方工厂交货|\n|FOB|指定装运港船上交货|\n|CFR|成本加运费|\n|CIF|成本加运费保险费|\n|DDU|未完税交货|\n|DDP|完税后交货|\n|FCA|货交承运人|\n|CPT|运费付至|\n|FAS|指定装运港船边交货|\n|CIP|运费、保险费付至|\n|DPU|卸货地交货|\n|DEQ|目的港码头"
+        },
+        {
+          "info": {
+            "name": "销售订单字段",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/fields",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "# 字段类型有哪些\n| field_type |  |\n| --- | --- |\n| 1 | 单行文本 |\n| 2 | 多行文本 |\n| 3 | 单选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 4 | 日期，YYYY-MM-DD |\n| 5 | 数字 |\n| 6 | 图片 |\n| 7 | 多选，在该字段选项枚举值在返回值中的ext_info里面，可用于单据新建、编辑该字段传值 |\n| 8 | 附件 |\n| 9 | 关联字段 |\n| 10 | 日期时间，YYYY-MM-DD HH:mm:ss |\n| 11 | 公式 |\n| 12 | 汇总 |\n| 13 | 布尔 |\n| 17 | 状态 |\n| 18 | 阶段 |\n| 21 | 时间范围 |\n| 22 | 富文本 |\n| 23 | 引用 |\n| 24 | 金额（即带小数的数字字段） |\n| 25 | 网址 |\n| 26 | 视频 |\n| 27 | 百分比（即小数，例子一般格式为0.13）|\n| 28 | 联系电话|\n| 29 | 人员|\n| 30 | 部门|\n| 31 | 坐标|\n| 3"
+        },
+        {
+          "info": {
+            "name": "销售订单列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/list",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "开始时间，YYYY-MM-DD"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "结束时间，YYYY-MM-DD"
+              },
+              {
+                "name": "time_type",
+                "value": "1",
+                "type": "query",
+                "description": "控制start_time，end_time查询什么时间字段，默认值=1，1 更新时间 , 2 创建时间，3 订单日期，4 删除时间"
+              },
+              {
+                "name": "count",
+                "value": "10",
+                "type": "query",
+                "description": "每页数量，默认10"
+              },
+              {
+                "name": "start_index",
+                "value": "1",
+                "type": "query",
+                "description": "页码，默认1"
+              },
+              {
+                "name": "removed",
+                "value": "0",
+                "type": "query",
+                "description": "是否返回已经删除订单，1是返回已经删除订单"
+              },
+              {
+                "name": "approval",
+                "value": "",
+                "type": "query",
+                "description": "审核状态，1是有审批"
+              },
+              {
+                "name": "approval_with_draft",
+                "value": "",
+                "type": "query",
+                "description": "查询的已审核单据是否包含草稿：1-是，0-否。默认值为 0"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "订单状态，传入值来自/v1/invoices/order/orderEnums返回值中order_status_list中的code"
+              }
+            ]
+          },
+          "docs": "参数说明：\n1、time_type 参数用于对start_time，end_time查询CRM中某字段，比如若time_type=1，则查询订单更新时间字段。若time_type=4，则查询订单的删除时间，其他time_type类比。\n\n更新日志：\n1、增加time_type=4 ，该参数枚举于2026年2月6日之后生效。\n\n"
+        },
+        {
+          "info": {
+            "name": "销售订单删除",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/remove",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "销售订单ID，销售订单ID或销售订单编号必须传其中一个"
+              },
+              {
+                "name": "order_no",
+                "value": "",
+                "type": "query",
+                "description": "销售订单编号，销售订单ID或销售订单编号必须传其中一个"
+              }
+            ]
+          },
+          "docs": "注意：\n1、订单若是已经确认态，则不允许删除。\n2、订单若是有下游关联单据，则不允许删除。\n3、审批中的订单，则不允许删除。\n4、删除的账号若非主账号，需要有该订单的操作权限和用户角色要有删除操作权限才可以删除。（这种情况只有修改了主账号情况下才会出现）"
+        },
+        {
+          "info": {
+            "name": "销售订单枚举:货币，付款方式，国家/地区，订单类型，订单状态，订单创建方式",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/invoices/order/orderEnums",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "销售订单枚举:货币，付款方式，国家/地区，订单类型，订单状态，订单创建方式"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

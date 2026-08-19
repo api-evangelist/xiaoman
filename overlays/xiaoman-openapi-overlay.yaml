@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   x-generated: '2026-07-21'
   x-method: generated
-extends: openapi/xiaoman-openapi.yml
+extends: openapi/_original/xiaoman-openapi.yml
 actions:
   - target: $.info
     description: Attribution and enrichment metadata.

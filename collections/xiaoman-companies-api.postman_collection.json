@@ -1,0 +1,1110 @@
+{
+  "item": [
+    {
+      "id": "9218d6a8-b8e3-4b02-8877-f1b5ac0f23f0",
+      "name": "Companies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "849eab4b-0d0a-4d68-8d5c-773d732fb41c",
+          "name": "Search companies (advanced profile search)",
+          "request": {
+            "name": "Search companies (advanced profile search)",
+            "description": {
+              "content": "Free (no points deducted). Multi-dimensional company-profile search. At least one of companyTypeKeywords, productKeywords, or industryKeywords must be non-empty; country fields are filters only. Only the listed fields are supported — filters such as employee_range, decision_roles, website, or limit do not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "search-advanced"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyTypeKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"industryKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"withEmails\": \"<integer>\",\n  \"crossFieldOperator\": \"<string>\",\n  \"from\": 0,\n  \"size\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72e90838-fe55-4e65-a647-46aec4c7a98e",
+              "name": "Company list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "search-advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyTypeKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"industryKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"withEmails\": \"<integer>\",\n  \"crossFieldOperator\": \"<string>\",\n  \"from\": 0,\n  \"size\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 688,\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"company_name\": \"string\",\n      \"domain\": \"string\",\n      \"country_code\": \"string\",\n      \"company_type\": [\n        \"string\",\n        \"string\"\n      ],\n      \"industry\": [\n        \"string\",\n        \"string\"\n      ],\n      \"main_products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"company_profile\": \"string\",\n      \"founding_time\": \"string\",\n      \"employees_count\": \"string\",\n      \"email_count\": 6367,\n      \"whatsapp_count\": 5370\n    },\n    {\n      \"id\": \"string\",\n      \"company_name\": \"string\",\n      \"domain\": \"string\",\n      \"country_code\": \"string\",\n      \"company_type\": [\n        \"string\",\n        \"string\"\n      ],\n      \"industry\": [\n        \"string\",\n        \"string\"\n      ],\n      \"main_products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"company_profile\": \"string\",\n      \"founding_time\": \"string\",\n      \"employees_count\": \"string\",\n      \"email_count\": 5762,\n      \"whatsapp_count\": 7288\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26705cf8-77f3-40e9-898e-98007bb488a1",
+              "name": "RFC 7807 bad-request: malformed parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "search-advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyTypeKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"industryKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"withEmails\": \"<integer>\",\n  \"crossFieldOperator\": \"<string>\",\n  \"from\": 0,\n  \"size\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb91791e-80bf-4303-91e4-e237b03b35ef",
+              "name": "RFC 7807 unauthorized: API key missing, invalid, or revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "search-advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyTypeKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"industryKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"withEmails\": \"<integer>\",\n  \"crossFieldOperator\": \"<string>\",\n  \"from\": 0,\n  \"size\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac6b9ba5-ec60-44d5-bb5a-f026369a0164",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "search-advanced"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyTypeKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"industryKeywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeCountry\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"withEmails\": \"<integer>\",\n  \"crossFieldOperator\": \"<string>\",\n  \"from\": 0,\n  \"size\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89e82781-3289-48dd-af41-ad3a6f65abd4",
+          "name": "Unlock a company (resolve domain to companyHashId)",
+          "request": {
+            "name": "Unlock a company (resolve domain to companyHashId)",
+            "description": {
+              "content": "First unlock of a domain costs 1 search point; re-unlocking the same domain within 30 days is free. The returned companyHashId is the only valid key for profile and profileEmails lookups. 404 (no match) is not charged.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "unlock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"countryCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02edb058-9398-416f-95d8-9a8334a8c5c1",
+              "name": "Unlocked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"countryCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"companyHashId\": \"string\",\n  \"companyName\": \"string\",\n  \"charged\": false,\n  \"alreadyViewed\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afecacb-216c-457d-a52b-4357860f6a93",
+              "name": "RFC 7807 insufficient-credits: search points or EDM quota exhausted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"countryCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e83a4fd-5e9c-421b-8097-ac76045431bc",
+              "name": "RFC 7807 not-found: resource does not exist or belongs to another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"countryCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1155477-a380-422c-a7fe-890d58fcd807",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"countryCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1a7d9ff-1182-460f-ac8f-e550cb255d5d",
+          "name": "Get an unlocked company profile",
+          "request": {
+            "name": "Get an unlocked company profile",
+            "description": {
+              "content": "Free (pure query). Requires a companyHashId obtained from /companies/unlock. Includes firmographics and trade data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                ":companyHashId",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyHashId",
+                  "description": "(Required) Company hash id from /companies/unlock"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3f106cf-d2c0-4d77-b294-aa3aab73eb9c",
+              "name": "Company profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) Company hash id from /companies/unlock"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"companyHashId\": \"string\",\n  \"name\": \"string\",\n  \"country\": \"string\",\n  \"industry\": \"string\",\n  \"employeeCount\": 4477,\n  \"website\": \"string\",\n  \"description\": \"string\",\n  \"tradeData\": [\n    {\n      \"hsCode\": \"string\",\n      \"value\": 7070.307572883196,\n      \"date\": \"string\",\n      \"direction\": \"string\"\n    },\n    {\n      \"hsCode\": \"string\",\n      \"value\": 707.0298271016584,\n      \"date\": \"string\",\n      \"direction\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77fcc143-1453-493b-bab8-4105e2abfe80",
+              "name": "RFC 7807 not-found: resource does not exist or belongs to another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) Company hash id from /companies/unlock"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d12c9013-432a-4ede-a332-f95bcb1cc85f",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) Company hash id from /companies/unlock"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3931ec16-c8f4-4b35-99e3-ca96efe28f65",
+          "name": "Get contact emails for an unlocked company",
+          "request": {
+            "name": "Get contact emails for an unlocked company",
+            "description": {
+              "content": "Free (pure query). Requires companyHashId from /companies/unlock. May be called in parallel across companies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                ":companyHashId",
+                "profileEmails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "Filter contacts by title/name keyword"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyHashId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d467e6c9-62b0-42dc-9f7e-bfafde5f8501",
+              "name": "Contact emails (empty array when none available)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profileEmails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emails\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"email\": \"string\",\n      \"linkedin\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"email\": \"string\",\n      \"linkedin\": \"string\"\n    }\n  ],\n  \"total\": 7382,\n  \"page\": 2867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8384c4dc-6e2b-40af-8204-23bea9dac0b0",
+              "name": "RFC 7807 not-found: resource does not exist or belongs to another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profileEmails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ead32035-d348-4bda-8d49-22f6cf751b00",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "companies",
+                    ":companyHashId",
+                    "profileEmails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyHashId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8646,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://go.okki.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8872690b-dbe6-4764-b01d-e252dfcf172f",
+    "name": "OKKI Go Companies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OKKI Go is a B2B prospecting engine for AI agents and sales teams from Xiaoman (小满科技, an Alibaba company). Search global B2B companies, unlock company profiles and decision-maker contact emails, send batch or personalized cold outreach email (EDM), and track delivery — designed to be driven from AI agents via the provider-published OKKI Go Agent Skill. This OpenAPI was generated by API Evangelist from the provider's published API reference shipped inside the @okki-global/okki-go npm package (skill/references/api-reference.md, v1.3.4); endpoint paths, parameters, billing notes, and error semantics are taken verbatim from that document. Errors use RFC 7807 Problem Details. All authenticated endpoints share a 60 requests/minute rate limit.",
+      "type": "text/plain"
+    }
+  }
+}

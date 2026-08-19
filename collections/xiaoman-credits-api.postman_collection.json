@@ -1,0 +1,224 @@
+{
+  "item": [
+    {
+      "id": "1ae941fd-4ff2-4432-86c8-b0c79c35b83e",
+      "name": "Credits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11550ad8-5d9c-4c66-8bc9-e0c6b612e87d",
+          "name": "Get search-credit and EDM quota balance",
+          "request": {
+            "name": "Get search-credit and EDM quota balance",
+            "description": {
+              "content": "Free. Returns monthly plan and add-on pack balances. Usable credits = monthlyPoints + addonPoints; monthly is consumed before add-on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "credit",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b22dd43f-c667-481d-a28a-1ad44c063294",
+              "name": "Balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "credit",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"string\",\n  \"monthlyPoints\": 8428,\n  \"monthlyEdm\": 3093,\n  \"monthlyExpiresAt\": \"1986-09-16T17:59:51.200Z\",\n  \"addonPoints\": 7428,\n  \"addonEdm\": 1339\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2143ad0-474b-4227-89ec-36010c8326e5",
+              "name": "RFC 7807 unauthorized: API key missing, invalid, or revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "credit",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 663,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73a75cd3-c843-42f8-aa4e-282ae146b978",
+              "name": "RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "credit",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 663,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://go.okki.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0634c789-3612-4691-9891-bd76c4b7da2a",
+    "name": "OKKI Go Credits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OKKI Go is a B2B prospecting engine for AI agents and sales teams from Xiaoman (小满科技, an Alibaba company). Search global B2B companies, unlock company profiles and decision-maker contact emails, send batch or personalized cold outreach email (EDM), and track delivery — designed to be driven from AI agents via the provider-published OKKI Go Agent Skill. This OpenAPI was generated by API Evangelist from the provider's published API reference shipped inside the @okki-global/okki-go npm package (skill/references/api-reference.md, v1.3.4); endpoint paths, parameters, billing notes, and error semantics are taken verbatim from that document. Errors use RFC 7807 Problem Details. All authenticated endpoints share a 60 requests/minute rate limit.",
+      "type": "text/plain"
+    }
+  }
+}

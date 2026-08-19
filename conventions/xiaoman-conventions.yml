@@ -1,9 +1,20 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
 source: https://open.xiaoman.cn (doc-338269, api pages) and npm @okki-global/okki-go skill/references/api-reference.md
 apis:
   - name: Xiaoman OKKI CRM Open API
     base_url: https://api-sandbox.xiaoman.cn
+    base_url_note: >-
+      Verified 2026-08-13. Despite the -sandbox label in the hostname, the
+      quick-start doc states 正式域名:https://api-sandbox.xiaoman.cn — "production
+      domain". This is the ONLY host the provider publishes; no separate
+      production or test host exists (api.xiaoman.cn, openapi.xiaoman.cn,
+      api-prod.xiaoman.cn and open-api.xiaoman.cn all fail to resolve). A live
+      POST to /v1/oauth2/access_token returns a real OAuth2
+      unsupported_grant_type error, confirming the host serves the CRM API.
+      Consequence: there is NO sandbox/test separation for this API — the same
+      host, credentials and data are used for development and production, which
+      is why no sandbox/ artifact is published for this provider.
     authentication:
       style: oauth2-bearer
       header: Authorization

@@ -1,54 +1,66 @@
 generated: '2026-07-21'
 method: derived
 status: candidate
-description: >-
-  No official hosted MCP server was found for Xiaoman/OKKI. Notably, the
-  provider ships agent access as a packaged Agent Skill instead
-  (@okki-global/okki-go, see skills/) with script wrappers around the
-  go.okki.ai API. This manifest is an API Evangelist candidate tool list
-  derived from the two OpenAPI surfaces in this repo.
+description: No official hosted MCP server was found for Xiaoman/OKKI. Notably, the provider ships agent
+  access as a packaged Agent Skill instead (@okki-global/okki-go, see skills/) with script wrappers around
+  the go.okki.ai API. This manifest is an API Evangelist candidate tool list derived from the two OpenAPI
+  surfaces in this repo.
 server:
   name: xiaoman
   transport: http
   url: null
 tools:
-  - name: search_companies_advanced
-    description: Search global B2B companies by type/product/industry keywords with country filters (free)
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#searchCompaniesAdvanced
-  - name: unlock_company
-    description: Resolve a company domain to a companyHashId (1 credit first unlock)
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#unlockCompany
-  - name: get_company_profile
-    description: Get an unlocked company profile with trade data (free)
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#getCompanyProfile
-  - name: get_company_profile_emails
-    description: Get decision-maker contact emails for an unlocked company (free)
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#getCompanyProfileEmails
-  - name: send_batch_emails
-    description: Send one email template to up to 100 recipients (1 EDM quota each)
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#sendBatchEmails
-  - name: send_personalized_emails
-    description: Send up to 100 individually-written outreach emails
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#sendPersonalizedEmails
-  - name: list_email_tasks
-    description: List outreach email tasks with status filters
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#listEmailTasks
-  - name: get_email_task
-    description: Get per-mail delivery status for an email task
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#getEmailTask
-  - name: list_email_mails
-    description: List individual sent-mail records across tasks
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#listEmailMails
-  - name: get_email_mail
-    description: Get a single sent mail with full body and delivery state
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#getEmailMail
-  - name: get_credit_balance
-    description: Check remaining search points and EDM quota
-    source_operation: openapi/xiaoman-okki-go-openapi.yml#getCreditBalance
-crm_note: >-
-  The OKKI CRM Open API (openapi/xiaoman-openapi.yml, 125 operations across
-  customers, leads, opportunities, products, orders, quotations, payments,
-  suppliers, inventory, users, and webhook subscriptions) publishes no
-  operationIds; candidate CRM tools should be derived per-path (e.g.
-  GET /v1/company/list → list_customers, POST /v1/company → upsert_customer)
-  once ids are assigned via overlays/xiaoman-openapi-overlay.yaml.
+- name: search_companies_advanced
+  description: Search global B2B companies by type/product/industry keywords with country filters (free)
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#searchCompaniesAdvanced
+- name: unlock_company
+  description: Resolve a company domain to a companyHashId (1 credit first unlock)
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#unlockCompany
+- name: get_company_profile
+  description: Get an unlocked company profile with trade data (free)
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#getCompanyProfile
+- name: get_company_profile_emails
+  description: Get decision-maker contact emails for an unlocked company (free)
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#getCompanyProfileEmails
+- name: send_batch_emails
+  description: Send one email template to up to 100 recipients (1 EDM quota each)
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#sendBatchEmails
+- name: send_personalized_emails
+  description: Send up to 100 individually-written outreach emails
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#sendPersonalizedEmails
+- name: list_email_tasks
+  description: List outreach email tasks with status filters
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#listEmailTasks
+- name: get_email_task
+  description: Get per-mail delivery status for an email task
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#getEmailTask
+- name: list_email_mails
+  description: List individual sent-mail records across tasks
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#listEmailMails
+- name: get_email_mail
+  description: Get a single sent mail with full body and delivery state
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#getEmailMail
+- name: get_credit_balance
+  description: Check remaining search points and EDM quota
+  source_operation: openapi/xiaoman-okki-go-openapi.yml#getCreditBalance
+crm_note: The OKKI CRM Open API (openapi/xiaoman-openapi.yml, 125 operations across customers, leads,
+  opportunities, products, orders, quotations, payments, suppliers, inventory, users, and webhook subscriptions)
+  publishes no operationIds; candidate CRM tools should be derived per-path (e.g. GET /v1/company/list
+  → list_customers, POST /v1/company → upsert_customer) once ids are assigned via overlays/xiaoman-openapi-overlay.yaml.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+  tools: 11
+  checked: '2026-08-13'
+  source: >-
+    Direct probe 2026-08-13 — https://go.okki.ai/mcp returns HTTP 200 with the
+    site's SPA HTML shell, byte-identical to the shell served for a deliberately
+    nonexistent path, so it is not a JSON-RPC MCP endpoint. No stdio server
+    either: the npm scope publishes an Agent Skill (@okki-global/okki-go) and a
+    protected-tool CLI (@okki-aireach/aireach-cli), neither of which speaks MCP.
+    Xiaoman's agent surface is the packaged Agent Skill, not MCP — see
+    skills/okki-go/ and mcp/xiaoman-tool-crosswalk.yml.

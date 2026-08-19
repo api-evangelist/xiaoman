@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OKKI Go Credits API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get search-credit and EDM quota balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/credit/balance",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free. Returns monthly plan and add-on pack balances. Usable credits = monthlyPoints + addonPoints; monthly is consumed before add-on."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

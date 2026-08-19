@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OKKI Go Contacts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Contact search (retired)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://go.okki.ai/api/v1/contacts/search",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retired: returns 410 Gone with code contact_search_retired. Use /companies/unlock then /companies/{companyHashId}/profileEmails instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

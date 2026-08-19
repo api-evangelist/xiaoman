@@ -1,16 +1,45 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: mixed
+source: >-
+  Provider-published skill saved verbatim from github.com/okki-op/okki-go
+  (main, re-verified byte-identical to npm @okki-global/okki-go 1.3.4 on
+  2026-08-13); generated skills grounded in openapi/.
 skills:
   - file: okki-go/SKILL.md
     name: OKKI Go (provider-published)
     method: searched
-    source: npm @okki-global/okki-go 1.3.4
+    source: https://github.com/okki-op/okki-go/blob/main/skill/SKILL.md
     api: openapi/xiaoman-okki-go-openapi.yml
-    description: Xiaoman's own packaged Agent Skill for OKKI Go B2B prospecting,
-      saved verbatim from the npm package (SKILL.md plus the api-reference,
-      authentication, and workflows references; the full package also ships
-      helper scripts and 13 reference docs). Installers target Claude Code,
-      Cursor, Windsurf, Codex, Copilot, Gemini, Cline, OpenClaw, and Accio Work.
+    description: >-
+      Xiaoman's own packaged Agent Skill for OKKI Go B2B prospecting, saved
+      verbatim. The COMPLETE reference set is now captured (13 of 13 reference
+      documents plus the repository-level AGENTS.md); a prior round had saved
+      only api-reference, authentication and workflows. Installers target Claude
+      Code, Cursor, Windsurf, Codex, Copilot, Gemini, Cline, OpenClaw and Accio
+      Work.
+    files:
+      - okki-go/SKILL.md
+      - okki-go/AGENTS.md
+      - okki-go/api-reference.md
+      - okki-go/authentication.md
+      - okki-go/workflows.md
+      - okki-go/context-firewall.md
+      - okki-go/discovery-playbook.md
+      - okki-go/expansion-playbook.md
+      - okki-go/merchant-profile-playbook.md
+      - okki-go/output-contracts.md
+      - okki-go/paid-actions.md
+      - okki-go/result-review.md
+      - okki-go/sales-mentor-playbook.md
+      - okki-go/search-fast-path.md
+      - okki-go/search-strategy.md
+    notable: >-
+      paid-actions.md and context-firewall.md are an unusually explicit
+      agent-safety contract for a commercial API — preflight cost confirmation
+      before any point-spending unlock or EDM send, and a firewall on what
+      search results may re-enter the model context. AGENTS.md is a
+      repository-development discipline document (determinism over convenience,
+      invariants before optimization), not API operating instructions.
   - file: xiaoman-okki-go-prospect-and-outreach.md
     name: Prospect and outreach with OKKI Go
     method: generated

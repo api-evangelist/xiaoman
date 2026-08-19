@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaoman (OKKI CRM) devops相关 API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "devops相关",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "钉钉回调",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/v1/dingtalk/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "钉钉回调"
+        },
+        {
+          "info": {
+            "name": "tapd回调接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/v1/tapd/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "tapd回调接口"
+        },
+        {
+          "info": {
+            "name": "获取智齿token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/api/internal/sobot/getsobottoken",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "获取智齿token"
+        },
+        {
+          "info": {
+            "name": "智齿刷新接口",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.xiaoman.cn/api/internal/sobot/refreshsobottoken",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ]
+          },
+          "docs": "智齿刷新接口"
+        },
+        {
+          "info": {
+            "name": "app版本发布",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/api/internal/prometheus/cisaveappversion",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "app_key",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "version",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "app_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "app_platform",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "version_description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "secret_key",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "min_version",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_size",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_md5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "content",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "extension_data",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "is_diff",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "is_ABTest",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "status",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "project_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "branch",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pipeline_tag",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pipeline_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "app版本发布"
+        },
+        {
+          "info": {
+            "name": "钉钉管理-删除账号",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.xiaoman.cn/api/dingtalkwrite/deletedingtalkmember",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "{{access_token}}"
+              }
+            ],
+            "params": [
+              {
+                "name": "dingtalk_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "crm_user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "钉钉管理-删除账号"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

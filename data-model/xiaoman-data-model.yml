@@ -1,0 +1,244 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/xiaoman-openapi.yml (119 operations),
+  openapi/_original/xiaoman-okki-go-openapi.yml (12 operations),
+  asyncapi/xiaoman-crm-webhooks.yml (webhook payload id fields),
+  and https://open.xiaoman.cn module docs.
+description: >-
+  Entity-relationship graph for the two Xiaoman/OKKI API surfaces. The OKKI CRM
+  Open API publishes no components.schemas for most modules (the harvested
+  fragments carry only four shared schemas), so entities and their identifiers
+  are derived from the module path prefixes, the per-module fields/字段 data
+  dictionary operations, and the id fields the message-push webhook payloads
+  carry — those payload fields are the provider's own statement of each
+  entity's primary key. Relationships marked inferred are read from document
+  semantics (a sales order is raised for a customer) rather than from a $ref,
+  because the specs do not model bodies.
+apis:
+  - name: Xiaoman (OKKI CRM) Open API
+    base: https://api-sandbox.xiaoman.cn
+    id_style: >-
+      Numeric/string surrogate ids per module (<module>_id) plus a human-facing
+      serial number (serial_id or <module>_no). Both are emitted on webhook
+      events. No global prefixed-id scheme (no cus_/ord_ style prefixes).
+    field_dictionary_pattern: >-
+      Every module exposes GET /v1/<module>/fields returning its data dictionary,
+      and several add /fields/selector for enumerated pickers — the machine
+      -readable substitute for the absent components.schemas.
+    entities:
+      - name: company
+        label: 客户 (customer / company)
+        ids: [company_id, serial_id]
+        operations: [GET /v1/company/list, GET /v1/company/info, GET /v1/company/query,
+          POST /v1/company/pushCompanyAndCustomers, POST /v1/company/removeCompanyAndCustomers,
+          POST /v1/company/moveToPublic, GET /v1/company/fields, GET /v1/company/companyEnums]
+        note: Root customer entity; contacts are pushed together with the company.
+      - name: customer_contact
+        label: 联系人 (contact)
+        ids: []
+        operations: [POST /v1/company/push/customer, POST /v1/company/pushCompanyAndCustomers]
+        note: >-
+          No standalone list/info operation — contacts are only created or read
+          via their parent company. POST /v1/company/push/customer is marked
+          待修改 (pending revision) in the docs.
+      - name: company_group
+        label: 客户分组
+        operations: [POST /v1/company/pushGroup, POST /v1/company/removeGroup]
+      - name: company_tag
+        label: 客户标签
+        operations: [POST /v1/company/pushTag, POST /v1/company/removeTag]
+      - name: company_trail
+        label: 客户阶段
+        operations: [POST /v1/company/pushTrail, POST /v1/company/removeTrail]
+      - name: dynamic_trail
+        label: 跟进动态 (follow-up activity)
+        ids: [trail_id]
+        operations: [GET /v1/dynamic/trail/list, POST /v1/dynamic/trail/push]
+      - name: lead
+        label: 线索
+        ids: [lead_id, serial_id]
+        operations: [GET /v1/lead/list, GET /v1/lead/info, GET /v1/lead/fields, POST /v1/lead/push]
+      - name: opportunity
+        label: 商机
+        ids: [opportunity_id, serial_id]
+        operations: [GET /v1/opportunity/list, GET /v1/opportunity/info, GET /v1/opportunity/fields,
+          GET /v1/opportunity/fields/selector, POST /v1/opportunity/push, POST /v1/opportunity/remove]
+      - name: product
+        label: 产品
+        ids: [product_id, product_no]
+        operations: [GET /v1/product/list, GET /v1/product/info, GET /v1/product/fields,
+          GET /v1/product/groups, GET /v1/product/productEnums, POST /v1/product/push,
+          GET /v1/product/remove, POST /v1/product/push-groups, POST /v1/product/remove-groups]
+      - name: product_sku_attribute
+        label: 产品规格
+        operations: [GET /v1/product/sku-attribute-list, POST /v1/product/push-sku-attribute,
+          POST /v1/product/remove-sku-attribute, POST /v1/product/append-sku-attributes-value]
+      - name: product_part
+        label: 产品配件
+        operations: [POST /v1/product/edit-parts-list]
+      - name: warehouse
+        label: 仓库
+        ids: [warehouse_id, warehouse_no]
+        operations: [GET /v1/warehouse/list]
+      - name: inventory
+        label: 库存
+        operations: [GET /v1/product/inventory-list, POST /v1/product/push-inventory]
+      - name: sales_order
+        label: 销售订单
+        ids: [order_id, order_no]
+        operations: [GET /v1/invoices/order/list, GET /v1/invoices/order/info,
+          GET /v1/invoices/order/fields, GET /v1/invoices/order/orderEnums,
+          POST /v1/invoices/order/push, POST /v1/invoices/order/remove]
+      - name: quotation
+        label: 报价单
+        ids: [quotation_id, quotation_no]
+        operations: [GET /v1/invoices/quotation/list, GET /v1/invoices/quotation/info,
+          GET /v1/invoices/quotation/fields, GET /v1/invoices/quotation/fields/selector,
+          POST /v1/invoices/quotation/push, POST /v1/invoices/quotation/remove]
+      - name: purchase_order
+        label: 采购订单
+        ids: [purchase_order_id, purchase_order_no]
+        operations: [GET /v1/purchaseOrder/list, GET /v1/purchaseOrder/info,
+          GET /v1/purchaseOrder/fields, GET /v1/purchaseOrder/fields/selector,
+          POST /v1/purchaseOrder/push]
+      - name: supplier
+        label: 供应商
+        ids: [supplier_id, supplier_no]
+        operations: [GET /v1/supplier/list, GET /v1/supplier/info, GET /v1/supplier/fields,
+          POST /v1/supplier/push, POST /v1/supplier/remove,
+          GET /v1/supplierProduct/supplierProductRelationList]
+      - name: cash_collection_invoice
+        label: 回款单
+        ids: [cash_collection_invoice_id, cash_collection_invoice_no]
+        operations: [GET /v1/invoices/receipt/list, GET /v1/invoices/receipt/info,
+          GET /v1/invoices/receipt/fields, GET /v1/invoices/receipt/types,
+          POST /v1/invoices/receipt/push]
+      - name: cash_collection
+        label: 回款登记
+        ids: [cash_collection_id]
+        operations: [GET /v1/invoices/receiptRegistration/list, GET /v1/invoices/receiptRegistration/info,
+          GET /v1/invoices/receiptRegistration/fields, POST /v1/invoices/receiptRegistration/push,
+          POST /v1/invoices/receiptRegistration/allocate]
+      - name: payment_invoice
+        label: 付款单
+        ids: [payment_invoice_id, payment_invoice_no]
+        operations: [GET /v1/paymentInvoice/list, GET /v1/paymentInvoice/info,
+          GET /v1/paymentInvoice/fields]
+      - name: cost_invoice
+        label: 费用单
+        ids: [cost_invoice_id, cost_invoice_no]
+        operations: [GET /v1/costInvoice/list, GET /v1/costInvoice/info,
+          GET /v1/costInvoice/fields, GET /v1/costInvoice/items]
+      - name: outbound_invoice
+        label: 销售出库单
+        ids: [outbound_invoice_id, serial_id]
+        operations: [GET /v1/invoices/outbound/list, GET /v1/invoices/outbound/info,
+          GET /v1/invoices/outbound/fields, POST /v1/invoices/outbound/push,
+          POST /v1/invoices/outbound/remove]
+      - name: inbound_invoice
+        label: 采购入库单
+        ids: [inbound_invoice_id, serial_id]
+        operations: [GET /v1/invoices/purchaseInbound/list, GET /v1/invoices/purchaseInbound/info,
+          GET /v1/invoices/purchaseInbound/fields, POST /v1/invoices/purchaseInbound/push,
+          POST /v1/invoices/purchaseInbound/remove]
+      - name: warehouse_return_invoice
+        label: 采购退货单
+        ids: [warehouse_return_invoice_id, serial_id]
+        operations: [GET /v1/invoices/purchaseReturn/list, GET /v1/invoices/purchaseReturn/info,
+          GET /v1/invoices/purchaseReturn/fields, POST /v1/invoices/purchaseReturn/push,
+          POST /v1/invoices/purchaseReturn/remove]
+      - name: capital_account
+        label: 资金账户
+        operations: [GET /v1/capitalAccount/list]
+      - name: user
+        label: 用户
+        operations: [GET /v1/user/list, GET /v1/user/info]
+      - name: department
+        label: 部门
+        operations: [GET /v1/user/departmentList, GET /v1/user/departmentInfo]
+      - name: webhook_config
+        label: 回调配置
+        operations: [POST /v1/webhook, PUT /v1/webhook, GET /v1/webhook, DELETE /v1/webhook,
+          POST /v1/webhook/test, POST /v1/webhook/regenerate-secret]
+      - name: subscription
+        label: 订阅配置
+        ids: [subscribe_type]
+        operations:
+          - POST /v1/subscribe
+          - GET /v1/subscribe
+          - 'GET /v1/subscribe/{subscribe_type}'
+          - 'PUT /v1/subscribe/{subscribe_type}'
+          - 'DELETE /v1/subscribe/{subscribe_type}'
+      - name: report
+        label: 统计报告
+        operations: [POST /v1/report/info]
+    relationships:
+      - {from: company, to: customer_contact, kind: has_many, via: pushCompanyAndCustomers payload, evidence: operation-semantics}
+      - {from: company, to: company_group, kind: has_one, via: group, evidence: inferred}
+      - {from: company, to: company_tag, kind: has_many, via: tag, evidence: inferred}
+      - {from: company, to: company_trail, kind: has_one, via: trail/stage, evidence: inferred}
+      - {from: company, to: dynamic_trail, kind: has_many, via: company_id, evidence: operation-semantics}
+      - {from: lead, to: company, kind: has_one, via: conversion, evidence: inferred}
+      - {from: opportunity, to: company, kind: belongs_to, via: company_id, evidence: inferred}
+      - {from: quotation, to: company, kind: belongs_to, via: company_id, evidence: inferred}
+      - {from: quotation, to: product, kind: has_many, via: line items, evidence: inferred}
+      - {from: sales_order, to: company, kind: belongs_to, via: company_id, evidence: inferred}
+      - {from: sales_order, to: quotation, kind: has_one, via: quotation_id, evidence: inferred}
+      - {from: sales_order, to: product, kind: has_many, via: line items, evidence: inferred}
+      - {from: sales_order, to: outbound_invoice, kind: has_many, via: order_id, evidence: inferred}
+      - {from: sales_order, to: cash_collection_invoice, kind: has_many, via: order_id, evidence: inferred}
+      - {from: cash_collection_invoice, to: cash_collection, kind: has_many, via: allocate, evidence: operation-semantics}
+      - {from: cash_collection, to: capital_account, kind: belongs_to, via: account, evidence: inferred}
+      - {from: purchase_order, to: supplier, kind: belongs_to, via: supplier_id, evidence: inferred}
+      - {from: purchase_order, to: product, kind: has_many, via: line items, evidence: inferred}
+      - {from: purchase_order, to: inbound_invoice, kind: has_many, via: purchase_order_id, evidence: inferred}
+      - {from: purchase_order, to: warehouse_return_invoice, kind: has_many, via: purchase_order_id, evidence: inferred}
+      - {from: purchase_order, to: payment_invoice, kind: has_many, via: purchase_order_id, evidence: inferred}
+      - {from: supplier, to: product, kind: has_many, via: supplierProductRelationList, evidence: operation-semantics}
+      - {from: product, to: product_sku_attribute, kind: has_many, via: skuId, evidence: operation-semantics}
+      - {from: product, to: product_part, kind: has_many, via: parts list, evidence: operation-semantics}
+      - {from: product, to: inventory, kind: has_many, via: skuId, evidence: operation-semantics}
+      - {from: inventory, to: warehouse, kind: belongs_to, via: warehouse_id, evidence: inferred}
+      - {from: user, to: department, kind: belongs_to, via: department, evidence: operation-semantics}
+      - {from: webhook_config, to: subscription, kind: has_many, via: subscribe_type, evidence: operation-semantics}
+  - name: OKKI Go API
+    base: https://go.okki.ai
+    id_style: >-
+      Opaque hashed identifiers — companyHashId is the only company key and is
+      only obtainable from POST /api/v1/companies/unlock. taskId and mailId key
+      the outreach objects.
+    entities:
+      - name: company
+        ids: [companyHashId]
+        operations: [searchCompaniesAdvanced, unlockCompany, getCompanyProfile, getCompanyProfileEmails]
+        note: >-
+          Unlock is the gate — profile and profileEmails 404 without a
+          companyHashId minted by unlockCompany.
+      - name: contact_email
+        operations: [getCompanyProfileEmails]
+        note: Decision-maker emails, returned only for unlocked companies.
+      - name: email_task
+        ids: [taskId]
+        operations: [sendBatchEmails, sendPersonalizedEmails, listEmailTasks, getEmailTask]
+      - name: mail
+        ids: [mailId]
+        operations: [listEmailMails, getEmailMail]
+      - name: credit_balance
+        operations: [getCreditBalance]
+        note: Search points and EDM quota; not a keyed resource.
+    relationships:
+      - {from: company, to: contact_email, kind: has_many, via: companyHashId, evidence: path-parameter}
+      - {from: email_task, to: mail, kind: has_many, via: taskId, evidence: operation-semantics}
+      - {from: email_task, to: contact_email, kind: has_many, via: recipient list, evidence: operation-semantics}
+cross_surface:
+  note: >-
+    The two surfaces share no identifier space. An OKKI Go companyHashId cannot
+    be used against the CRM, and a CRM company_id has no OKKI Go equivalent;
+    bridging prospect to customer is a client-side match on domain or company
+    name. No documented linking operation exists in either direction.
+counts:
+  crm_entities: 30
+  crm_relationships: 28
+  okki_go_entities: 5
+  okki_go_relationships: 3

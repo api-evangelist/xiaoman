@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OKKI Go Companies API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search companies (advanced profile search)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://go.okki.ai/api/v1/companies/search-advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free (no points deducted). Multi-dimensional company-profile search. At least one of companyTypeKeywords, productKeywords, or industryKeywords must be non-empty; country fields are filters only. Only the listed fields are supported — filters such as employee_range, decision_roles, website, or limit do not exist."
+        },
+        {
+          "info": {
+            "name": "Unlock a company (resolve domain to companyHashId)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://go.okki.ai/api/v1/companies/unlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "First unlock of a domain costs 1 search point; re-unlocking the same domain within 30 days is free. The returned companyHashId is the only valid key for profile and profileEmails lookups. 404 (no match) is not charged."
+        },
+        {
+          "info": {
+            "name": "Get an unlocked company profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/companies/:companyHashId/profile",
+            "params": [
+              {
+                "name": "companyHashId",
+                "value": "",
+                "type": "path",
+                "description": "Company hash id from /companies/unlock"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free (pure query). Requires a companyHashId obtained from /companies/unlock. Includes firmographics and trade data."
+        },
+        {
+          "info": {
+            "name": "Get contact emails for an unlocked company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://go.okki.ai/api/v1/companies/:companyHashId/profileEmails",
+            "params": [
+              {
+                "name": "companyHashId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts by title/name keyword"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Free (pure query). Requires companyHashId from /companies/unlock. May be called in parallel across companies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

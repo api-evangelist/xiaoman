@@ -114,7 +114,8 @@ apis:
   description: The 产品 (products and general CRM) module of the Xiaoman OKKI CRM Open API — 113 operations across products, customers, leads, opportunities, orders, quotations, payments, suppliers, inventory, users and webhook message-push.
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
-  tags:
+  tags: []
+  tags_raw:
   - 产品
   properties:
   - type: OpenAPI
@@ -133,6 +134,8 @@ apis:
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
   tags:
+  - DevOps
+  tags_raw:
   - devops相关
   properties:
   - type: OpenAPI
@@ -170,7 +173,8 @@ apis:
   description: The s7.1 release group of the Xiaoman OKKI CRM Open API — 35 operations covering customer detail/field dictionaries, follow-up trails, inventory, capital accounts and reporting.
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
-  tags:
+  tags: []
+  tags_raw:
   - s7.1
   properties:
   - type: OpenAPI

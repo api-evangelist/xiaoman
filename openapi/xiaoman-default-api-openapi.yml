@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Xiaoman (OKKI CRM) 产品 API
   description: 'Split by tag from the aggregated Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company), assembled verbatim from the per-operation OpenAPI 3.0.1 fragments published on the provider''s developer documentation site at https://open.xiaoman.cn (Apifox-hosted; each operation page embeds its own OpenAPI fragment, harvested from the .md endpoints listed in https://open.xiaoman.cn/llms.txt). OAuth2 module-scoped Bearer tokens from POST /v1/oauth2/access_token; responses use a {code, message, now, data} envelope. Corrected 2026-08-13: the tag-split pass had stamped this document with the OKKI Go title, description and server host; its operations belong to the OKKI CRM Open API on https://api-sandbox.xiaoman.cn, the host the quick-start doc labels 正式域名 (production domain).'
@@ -5601,11 +5601,12 @@ paths:
                           type: integer
                           description: 字段类型
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选字段额外信息，比如选项等枚举值
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -10074,11 +10075,12 @@ paths:
                           type: integer
                           description: "\t\n字段类型，0=特殊，1=短文本，2=长文本，3=下拉单选，4=日期，5=数字，6=图片，7=下拉多选，8=附件，9=引用字段，10=日期时间"
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选项类型字段的值列表
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -10874,11 +10876,12 @@ paths:
                           type: integer
                           description: 字段类型
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选字段额外信息，比如选项等枚举值
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -12202,11 +12205,12 @@ paths:
                           type: integer
                           description: 字段类型
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选字段额外信息，比如选项等枚举值
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -15613,11 +15617,12 @@ paths:
                           type: integer
                           description: "\t\n字段类型，0=特殊，1=短文本，2=长文本，3=下拉单选，4=日期，5=数字，6=图片，7=下拉多选，8=附件，9=引用字段，10=日期时间"
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选项类型字段的值列表
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -23691,11 +23696,12 @@ paths:
                           type: integer
                           description: 字段类型，0=特殊，1=短文本，2=长文本，3=下拉单选，4=日期，5=数字，6=图片，7=下拉多选，8=附件，9=引用字段，10=日期时间
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选项类型字段的值列表
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -27696,24 +27702,28 @@ paths:
                               type: integer
                               title: 产品总金额
                             price_contract:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 价格条款
-                              nullable: true
                             receive_remittance_way:
                               type: string
                               title: 收汇方式
                             price_contract_remark:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 价格条款说明
-                              nullable: true
                             receive_remittance_remark:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 收汇方式说明
-                              nullable: true
                             insurance_remark:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 保险说明
-                              nullable: true
                             company_name:
                               type: string
                               title: 公司名称
@@ -27724,9 +27734,10 @@ paths:
                               type: string
                               title: 公司传真
                             company_address:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 客户地址
-                              nullable: true
                             customer_name:
                               type: string
                               title: 联系人名称
@@ -27734,9 +27745,10 @@ paths:
                               type: string
                               title: 联系人电话
                             customer_address:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 联系人地址
-                              nullable: true
                             transport_mode:
                               type: string
                               title: 运输方式
@@ -27750,9 +27762,10 @@ paths:
                               type: string
                               title: 目的港口
                             shipment_deadline_remark:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               title: 交货期
-                              nullable: true
                             create_time:
                               type: string
                               title: 创建时间
@@ -32563,11 +32576,12 @@ paths:
                           type: integer
                           description: "\t\n字段类型，0=特殊，1=短文本，2=长文本，3=下拉单选，4=日期，5=数字，6=图片，7=下拉多选，8=附件，9=引用字段，10=日期时间"
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: string
                           description: 选项类型字段的值列表
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -34158,11 +34172,12 @@ paths:
                           type: integer
                           description: 字段类型
                         ext_info:
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                           items:
                             type: integer
                           description: 选字段额外信息，比如选项等枚举值
-                          nullable: true
                         require:
                           type: integer
                           description: 是否必填，1=必填，0=非必填
@@ -40624,8 +40639,9 @@ paths:
                                 '3159957916':
                                   type: string
                                 '3159957918':
-                                  type: string
-                                  nullable: true
+                                  type:
+                                  - string
+                                  - 'null'
                                 '3159957920':
                                   type: array
                                   items:

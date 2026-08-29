@@ -25,6 +25,15 @@
     "xiaoman-s7-1-api-openapi.yml: dangling $ref: #/components/schemas/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E5%93%8D%E5%BA%94"
   ],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "xiaoman-companies-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-contacts-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-credits-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-default-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-devops-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-emails-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaoman-s7-1-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

@@ -147,7 +147,7 @@ apis:
   humanURL: https://open.xiaoman.cn
   baseURL: https://api-sandbox.xiaoman.cn
   tags:
-  - devops相关
+  - DevOps
   tags_raw:
   - devops相关
   properties:

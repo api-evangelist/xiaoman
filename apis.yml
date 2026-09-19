@@ -114,6 +114,8 @@ apis:
   humanURL: https://go.okki.ai
   baseURL: https://go.okki.ai
   tags:
+  - Credit
+  tags_raw:
   - Credits
   properties:
   - type: OpenAPI
@@ -158,6 +160,8 @@ apis:
   humanURL: https://go.okki.ai
   baseURL: https://go.okki.ai
   tags:
+  - Email
+  tags_raw:
   - Emails
   properties:
   - type: OpenAPI
@@ -199,6 +203,8 @@ apis:
   humanURL: https://go.okki.ai
   baseURL: https://go.okki.ai
   tags:
+  - DevOps
+  tags_raw:
   - Dev Ops
   properties:
   - type: OpenAPI

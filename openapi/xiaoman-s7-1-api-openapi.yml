@@ -1,14 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Xiaoman (OKKI CRM) S7.1 API
-  description: 'Split by tag from the aggregated Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company), assembled verbatim from the per-operation OpenAPI 3.0.1 fragments published on the provider''s developer documentation site at https://open.xiaoman.cn (Apifox-hosted; each operation page embeds its own OpenAPI fragment, harvested from the .md endpoints listed in https://open.xiaoman.cn/llms.txt). OAuth2 module-scoped Bearer tokens from POST /v1/oauth2/access_token; responses use a {code, message, now, data} envelope. Corrected 2026-08-13: the tag-split pass had stamped this document with the OKKI Go title, description and server host; its operations belong to the OKKI CRM Open API on https://api-sandbox.xiaoman.cn, the host the quick-start doc labels 正式域名 (production domain).'
+  title: Xiaoman (OKKI CRM) Open S7.1 API
+  description: Aggregated OpenAPI for the Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company).
   version: 1.0.0
-  x-generated: '2026-08-13'
-  x-method: harvested
+  x-harvested: '2026-07-21'
   x-source: https://open.xiaoman.cn/llms.txt
 servers:
 - url: https://api-sandbox.xiaoman.cn
-  description: OKKI CRM Open API host (quick-start doc labels this 正式域名 / production domain)
+  description: Production API host (per quick-start doc)
 tags:
 - name: s7.1
 paths:
@@ -1302,6 +1301,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3473043
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyInfo
+      x-operation-id-source: derived
   /v1/dynamic/trail/list:
     get:
       summary: 跟进动态查询接口
@@ -1903,13 +1904,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478244
         description: Published operation doc (Apifox)
+      operationId: getV1DynamicTrailList
+      x-operation-id-source: derived
   /v1/company/fields:
     get:
       summary: 客户数据字典
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -1950,9 +1953,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - s7.1
       parameters:
@@ -2565,6 +2566,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478270
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyFields
+      x-operation-id-source: derived
   /v1/company/pushCompanyAndCustomers:
     post:
       summary: 客户（含联系人）新增/编辑
@@ -2575,9 +2578,7 @@ paths:
 
         | 404 | Not Found Resource | 检查传入company_id是否有误 |
 
-        | 404 | No Privilege | 检查传入user_id是否是私海客户的跟进人 |
-
-        '
+        | 404 | No Privilege | 检查传入user_id是否是私海客户的跟进人 |'
       tags:
       - s7.1
       parameters:
@@ -2954,6 +2955,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478272
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushCompanyAndCustomers
+      x-operation-id-source: derived
   /v1/company/removeCompanyAndCustomers:
     post:
       summary: 删除客户（仅支持公海客户）
@@ -3030,6 +3033,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478274
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveCompanyAndCustomers
+      x-operation-id-source: derived
   /v1/company/fields/selector:
     get:
       summary: 查询客户的阶段、分组、状态、地区、主营产品、来源
@@ -3122,6 +3127,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478275
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyFieldsSelector
+      x-operation-id-source: derived
   /v1/opportunity/list:
     get:
       summary: 商机列表
@@ -6676,6 +6683,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478286
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityList
+      x-operation-id-source: derived
   /v1/opportunity/fields:
     get:
       summary: 商机数据字典
@@ -6778,6 +6787,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478288
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityFields
+      x-operation-id-source: derived
   /v1/opportunity/push:
     post:
       summary: 商机新建/编辑接口
@@ -6944,6 +6955,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478289
         description: Published operation doc (Apifox)
+      operationId: postV1OpportunityPush
+      x-operation-id-source: derived
   /v1/invoices/outbound/push:
     post:
       summary: 新增/编辑销售出库单
@@ -6952,9 +6965,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|
-
-        '
+        | 404 | ‘xxx’ cannot be empty | 查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
       tags:
       - s7.1
       parameters:
@@ -7211,6 +7222,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478296
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOutboundPush
+      x-operation-id-source: derived
   /v1/lead/push:
     post:
       summary: 线索（含联系人）创建/编辑接口
@@ -7221,9 +7234,9 @@ paths:
 
         | 404 | Not Found Resource | 检查传入的lead_id是否存在 |
 
-        | 400  | Invalid data json | 检查传入的数据是否是json格式 |
+        | 400 | Invalid data json | 检查传入的数据是否是json格式 |
 
-        | 400  | Empty POST request body data | 检查传入的数据是否为空 |'
+        | 400 | Empty POST request body data | 检查传入的数据是否为空 |'
       tags:
       - s7.1
       parameters:
@@ -7481,6 +7494,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478299
         description: Published operation doc (Apifox)
+      operationId: postV1LeadPush
+      x-operation-id-source: derived
   /v1/company/list:
     get:
       summary: 客户列表
@@ -7688,6 +7703,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3480070
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyList
+      x-operation-id-source: derived
   /v1/invoices/outbound/info:
     get:
       summary: 销售出库单详情
@@ -8115,6 +8132,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483515
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOutboundInfo
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/list:
     get:
       summary: 采购退货单-列表
@@ -9308,6 +9327,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484264
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnList
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/info:
     get:
       summary: 采购退货单-详情
@@ -10155,13 +10176,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484265
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnInfo
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/fields:
     get:
       summary: 采购退货单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -10202,9 +10225,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - s7.1
       parameters:
@@ -10766,6 +10787,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484291
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnFields
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/push:
     post:
       summary: 采购退货单-新建/编辑
@@ -10774,7 +10797,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
+        | 404 | ‘xxx’ cannot be empty | 查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
       tags:
       - s7.1
       parameters:
@@ -10982,6 +11005,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484292
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseReturnPush
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/remove:
     post:
       summary: 采购退货单-删除
@@ -11078,6 +11103,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484293
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseReturnRemove
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/list:
     get:
       summary: 采购入库单-列表
@@ -12492,6 +12519,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484297
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundList
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/info:
     get:
       summary: 采购入库单-详情
@@ -12500,7 +12529,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 400 | Invalid query | 是否inbound_invoice_id 与  serial_id 同时为空|'
+        | 400 | Invalid query | 是否inbound_invoice_id 与 serial_id 同时为空|'
       tags:
       - s7.1
       parameters:
@@ -13280,13 +13309,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484298
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundInfo
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/fields:
     get:
       summary: 采购入库单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -13327,9 +13358,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - s7.1
       parameters:
@@ -13357,6 +13386,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484299
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundFields
+      x-operation-id-source: derived
   /v1/dynamic/trail/push:
     post:
       summary: 提交跟进动态
@@ -13371,9 +13402,7 @@ paths:
 
         | -1 | 备注内容不能为空| content传递为空 |
 
-        |-1 |lead_id and company_id and opportunity_id is empty|lead_id 与company_id 与 opportunity_id ，需要传递其中某一项|
-
-        '
+        |-1 |lead_id and company_id and opportunity_id is empty|lead_id 与company_id 与 opportunity_id ，需要传递其中某一项|'
       tags:
       - s7.1
       parameters:
@@ -13486,6 +13515,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484682
         description: Published operation doc (Apifox)
+      operationId: postV1DynamicTrailPush
+      x-operation-id-source: derived
   /v1/lead/fields:
     get:
       summary: 线索|联系人的数据字典
@@ -13781,6 +13812,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484687
         description: Published operation doc (Apifox)
+      operationId: getV1LeadFields
+      x-operation-id-source: derived
   /v1/lead/list:
     get:
       summary: 线索列表
@@ -14037,6 +14070,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484688
         description: Published operation doc (Apifox)
+      operationId: getV1LeadList
+      x-operation-id-source: derived
   /v1/lead/info:
     get:
       summary: 线索数据查询
@@ -14463,6 +14498,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484689
         description: Published operation doc (Apifox)
+      operationId: getV1LeadInfo
+      x-operation-id-source: derived
   /v1/company/pushGroup:
     post:
       summary: 客户分组新增/编辑
@@ -14591,6 +14628,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484700
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushGroup
+      x-operation-id-source: derived
   /v1/company/removeGroup:
     post:
       summary: 删除客户分组
@@ -14694,6 +14733,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484701
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveGroup
+      x-operation-id-source: derived
   /v1/company/pushTrail:
     post:
       summary: 客户阶段新增/编辑
@@ -14810,6 +14851,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484702
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushTrail
+      x-operation-id-source: derived
   /v1/company/removeTrail:
     post:
       summary: 删除客户阶段
@@ -14818,9 +14861,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 400 | Invalid query | trail_id 或者 to_trail_id没有传入，或者传入为空 |
-
-        '
+        | 400 | Invalid query | trail_id 或者 to_trail_id没有传入，或者传入为空 |'
       tags:
       - s7.1
       parameters:
@@ -14925,6 +14966,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484703
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveTrail
+      x-operation-id-source: derived
   /v1/company/pushTag:
     post:
       summary: 客户标签新增/编辑
@@ -15041,6 +15084,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484704
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushTag
+      x-operation-id-source: derived
   /v1/invoices/outbound/list:
     get:
       summary: 销售出库单列表
@@ -15435,6 +15480,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484729
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOutboundList
+      x-operation-id-source: derived
   /v1/invoices/outbound/remove:
     post:
       summary: 销售出库单删除
@@ -15530,11 +15577,23 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484730
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOutboundRemove
+      x-operation-id-source: derived
   /v1/opportunity/fields/selector:
     get:
       summary: 查询商机的销售流程 商机阶段 输单原因
       deprecated: false
-      description: "# 商机有不同的销售流程，流程中有不同商机阶段\n    请选择合适的流程和阶段进行接入\n## 1、商机流程获取\n    传入field=sales_flow 获取到某流程ID，\n## 2、商机流程阶段获取\n    传入field=stage_list,flow_id=4850316434641(流程ID)获取具体某流程的阶段"
+      description: '# 商机有不同的销售流程，流程中有不同商机阶段
+
+        请选择合适的流程和阶段进行接入
+
+        ## 1、商机流程获取
+
+        传入field=sales_flow 获取到某流程ID，
+
+        ## 2、商机流程阶段获取
+
+        传入field=stage_list,flow_id=4850316434641(流程ID)获取具体某流程的阶段'
       tags:
       - s7.1
       parameters:
@@ -15926,6 +15985,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485300
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityFieldsSelector
+      x-operation-id-source: derived
   /v1/opportunity/remove:
     post:
       summary: 商机删除接口
@@ -15936,9 +15997,7 @@ paths:
 
         | 404 | Not Found Resource | 检查opportunity_id传递是否不正确 |
 
-        | 400 | Invalid query | 检查opportunity_id传递是否为空 |
-
-        '
+        | 400 | Invalid query | 检查opportunity_id传递是否为空 |'
       tags:
       - s7.1
       parameters:
@@ -16017,6 +16076,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485301
         description: Published operation doc (Apifox)
+      operationId: postV1OpportunityRemove
+      x-operation-id-source: derived
   /v1/product/append-sku-attributes-value:
     post:
       summary: 增量更新产品规格值
@@ -16326,10 +16387,5 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3489012
         description: Published operation doc (Apifox)
-components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: 'Authorization: ApiKey sk-your-key-here — API keys issued at https://go.okki.ai after registration.'
+      operationId: postV1ProductAppendSkuAttributesValue
+      x-operation-id-source: derived

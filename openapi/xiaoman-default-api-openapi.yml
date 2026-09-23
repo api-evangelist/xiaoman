@@ -1,14 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Xiaoman (OKKI CRM) 产品 API
-  description: 'Split by tag from the aggregated Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company), assembled verbatim from the per-operation OpenAPI 3.0.1 fragments published on the provider''s developer documentation site at https://open.xiaoman.cn (Apifox-hosted; each operation page embeds its own OpenAPI fragment, harvested from the .md endpoints listed in https://open.xiaoman.cn/llms.txt). OAuth2 module-scoped Bearer tokens from POST /v1/oauth2/access_token; responses use a {code, message, now, data} envelope. Corrected 2026-08-13: the tag-split pass had stamped this document with the OKKI Go title, description and server host; its operations belong to the OKKI CRM Open API on https://api-sandbox.xiaoman.cn, the host the quick-start doc labels 正式域名 (production domain).'
+  title: Xiaoman (OKKI CRM) Open 产品 API
+  description: Aggregated OpenAPI for the Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company).
   version: 1.0.0
-  x-generated: '2026-08-13'
-  x-method: harvested
+  x-harvested: '2026-07-21'
   x-source: https://open.xiaoman.cn/llms.txt
 servers:
 - url: https://api-sandbox.xiaoman.cn
-  description: OKKI CRM Open API host (quick-start doc labels this 正式域名 / production domain)
+  description: Production API host (per quick-start doc)
 tags:
 - name: 产品
 paths:
@@ -303,11 +302,344 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478259
         description: Published operation doc (Apifox)
+      operationId: getV1ProductList
+      x-operation-id-source: derived
   /v1/product/push:
     post:
       summary: 产品新建/编辑
       deprecated: false
-      description: "**如何创建一个无规格产品**\n\n<details>\n  <summary>新建无规格产品</summary>\n  \n```\n{\n  \"images\": [],\n  \"name\": \"testname\",\n  \"product_no\": \"testno\",\n  \"product_type\": 1,\n  \"package_remark\": \"remark\"\n  }\n```\n</details>\n参数列表中有罗列可传入参数以及数据类型\n\n**如何编辑一个无规格产品**\n\n<details>\n  <summary>编辑无规格产品</summary>\n```\n{\n  \"product_id\":xxxxxx,\n  \"images\": [],\n  \"name\": \"testname\",\n  \"product_no\": \"test\",\n  \"product_type\": 1,\n  \"package_remark\": \"remark\"\n  }\n```\n</details>\n编辑无规格产品，需要获取info接口中的product_id传入，参数列表中有罗列可传入参数以及数据类型。\n\n\n===========================================================================================\n\n**如何创建一个多规格产品**\n\n<details>\n  <summary>新建多规格产品</summary>\n  \n```\n{\n\t\"images\": [],\n\t\"name\": \"测试23\",\n\t\"product_no\": \"编号12\",\n\t\"product_type\": 2,\n\t\"sku_items\": [{\n\t\t\"sku_code\": \"测试11\",\n\t\t\"attributes\": [{\n\t\t\t\"item_id\": 2056386462650, --规格类型id\n\t\t\t\"value\": {\n\t\t\t\t\"item_id\": 2268631617468  --规格值id\n\t\t\t}\n\t\t}],\n\t\t\"fob_price\": 123,\n\t\t\"disable_flag\": 0\n\t}, {\n\t\t\"sku_code\": \"测试21\",\n\t\t\"attributes\": [{\n\t\t\t\"item_id\": 2056386462650, --规格类型id\n\t\t\t\"value\": {\n\t\t\t\t\"item_id\": 2268631617469 --规格值id\n\t\t\t}\n\t\t}],\n\t\t\"fob_price\": 123,\n\t\t\"disable_flag\": 0\n\t}],\n\t\"package_remark\": \"备注\",\n\t\"sku_attributes\": [{\n    --需要包含sku_items使用的规格值与类型，如item_id规格类型 2056386462650有使用规格值2268631617469/2268631617468，则都需要填写进来\n\t\t\"item_id\": 2056386462650,\n\t\t\"value\": [{\n\t\t\t\"item_id\": 2268631617469\n\t\t}, {\n\t\t\t\"item_id\": 2268631617468\n\t\t}]\n\t}]\n}\n    \n```\n</details>\n创建多规格需要通过https://api-sandbox.xiaoman.cn/v1/product/push-sku-attribute ，创建规格后，item_id是由https://api-sandbox.xiaoman.cn/v1/product/sku-attribute-list 获得，用于创建多规格产品。多规格sku_attributes与sku_items必填，\n参数列表中有罗列可传入参数以及数据类型。\n\n**如何编辑一个多规格产品**\n<details>\n  <summary>编辑多规格产品</summary>\n  \n```\n    {\n  \"images\": [],\n  \"name\": \"测试2\",\n  \"product_no\": \"编号1\",\n  \"product_type\": 2,\n    \"product_id\":xxxxxx,\n  \"sku_items\": [\n    {\n      \"sku_id\":xxxxxx,\n      \"sku_code\": \"测试1\",\n      \"attributes\": [\n        {\n          \"item_id\": 2056386462650, --规格类型id\n          \"value\": {\n            \"item_id\": 2268631617468 --规格值id\n          }\n        }\n      ],\n      \"fob_price\": 123,\n      \"disable_flag\": 0\n    }\n  ],\n  \"package_remark\": \"备注\",\n  \"sku_attributes\": [\n    {\n      \"item_id\": 2056386462650,   --规格类型id\n      \"value\": [\n        {\n          \"item_id\": 2268631617468 --规格值id\n        }\n      ]\n    }\n  ]\n}\n    \n```\n</details>\n编辑多规格产品，需要获取info接口中的product_id与sku_id传入，参数列表中有罗列可传入参数以及数据类型。\n\n\n\n\n离岸价传参\n<details>\n  <summary>离岸价</summary>\n    ```\n1. fob_type = 1（ 单一区间定价） \n{\n  \"product_no\": \"PROD001\",\n  \"name\": \"Sample Product\",\n  \"product_type\": 1,\n  \"fob_type\": 1,\n  \"price_currency\": \"USD\",\n  \"price_min\": 8.0,\n  \"price_max\": 12.0,\n  \"quantity\": 100,\n  \"quantity_unit\": \"PCS\",\n  \"price_unit\": \"USD/PCS\"\n}\n2. fob_type = 2（ 阶梯定价） \n{\n  \"product_no\": \"PROD002\",\n  \"name\": \"Sample Product\",\n  \"product_type\": 1,\n  \"fob_type\": 2,\n  \"price_currency\": \"USD\",\n  \"gradient_price\": [{\n    \"quantity\": \"100\",\n    \"price\": \"10.0\"\n  }, {\n    \"quantity\": \"500\",\n    \"price\": \"9.5\"\n  }, {\n    \"quantity\": \"1000\",\n    \"price\": \"9.0\"\n  }],\n  \"quantity_unit\": \"PCS\",\n  \"price_unit\": \"USD/PCS\"\n}\n3. fob_type = 3（ 固定单价） \n{\n  \"product_no\": \"PROD003\",\n  \"name\": \"Sample Product\",\n  \"product_type\": 1,\n  \"fob_type\": 3,\n  \"price_currency\": \"USD\",\n  \"fob_price\": 10.5,\n  \"quantity\": 100,\n  \"quantity_unit\": \"PCS\",\n  \"price_unit\": \"USD/PCS\"\n}\n    ```\n</details>\n"
+      description: '**如何创建一个无规格产品**
+
+
+        新建无规格产品
+
+
+        ```
+
+        {
+
+        "images": [],
+
+        "name": "testname",
+
+        "product_no": "testno",
+
+        "product_type": 1,
+
+        "package_remark": "remark"
+
+        }
+
+        ```
+
+
+        参数列表中有罗列可传入参数以及数据类型
+
+
+        **如何编辑一个无规格产品**
+
+
+        编辑无规格产品
+
+        ```
+
+        {
+
+        "product_id":xxxxxx,
+
+        "images": [],
+
+        "name": "testname",
+
+        "product_no": "test",
+
+        "product_type": 1,
+
+        "package_remark": "remark"
+
+        }
+
+        ```
+
+
+        编辑无规格产品，需要获取info接口中的product_id传入，参数列表中有罗列可传入参数以及数据类型。
+
+
+        ===========================================================================================
+
+
+        **如何创建一个多规格产品**
+
+
+        新建多规格产品
+
+
+        ```
+
+        {
+
+        "images": [],
+
+        "name": "测试23",
+
+        "product_no": "编号12",
+
+        "product_type": 2,
+
+        "sku_items": [{
+
+        "sku_code": "测试11",
+
+        "attributes": [{
+
+        "item_id": 2056386462650, --规格类型id
+
+        "value": {
+
+        "item_id": 2268631617468 --规格值id
+
+        }
+
+        }],
+
+        "fob_price": 123,
+
+        "disable_flag": 0
+
+        }, {
+
+        "sku_code": "测试21",
+
+        "attributes": [{
+
+        "item_id": 2056386462650, --规格类型id
+
+        "value": {
+
+        "item_id": 2268631617469 --规格值id
+
+        }
+
+        }],
+
+        "fob_price": 123,
+
+        "disable_flag": 0
+
+        }],
+
+        "package_remark": "备注",
+
+        "sku_attributes": [{
+
+        --需要包含sku_items使用的规格值与类型，如item_id规格类型 2056386462650有使用规格值2268631617469/2268631617468，则都需要填写进来
+
+        "item_id": 2056386462650,
+
+        "value": [{
+
+        "item_id": 2268631617469
+
+        }, {
+
+        "item_id": 2268631617468
+
+        }]
+
+        }]
+
+        }
+
+
+        ```
+
+
+        创建多规格需要通过https://api-sandbox.xiaoman.cn/v1/product/push-sku-attribute ，创建规格后，item_id是由https://api-sandbox.xiaoman.cn/v1/product/sku-attribute-list 获得，用于创建多规格产品。多规格sku_attributes与sku_items必填，
+
+        参数列表中有罗列可传入参数以及数据类型。
+
+
+        **如何编辑一个多规格产品**
+
+
+        编辑多规格产品
+
+
+        ```
+
+        {
+
+        "images": [],
+
+        "name": "测试2",
+
+        "product_no": "编号1",
+
+        "product_type": 2,
+
+        "product_id":xxxxxx,
+
+        "sku_items": [
+
+        {
+
+        "sku_id":xxxxxx,
+
+        "sku_code": "测试1",
+
+        "attributes": [
+
+        {
+
+        "item_id": 2056386462650, --规格类型id
+
+        "value": {
+
+        "item_id": 2268631617468 --规格值id
+
+        }
+
+        }
+
+        ],
+
+        "fob_price": 123,
+
+        "disable_flag": 0
+
+        }
+
+        ],
+
+        "package_remark": "备注",
+
+        "sku_attributes": [
+
+        {
+
+        "item_id": 2056386462650, --规格类型id
+
+        "value": [
+
+        {
+
+        "item_id": 2268631617468 --规格值id
+
+        }
+
+        ]
+
+        }
+
+        ]
+
+        }
+
+
+        ```
+
+
+        编辑多规格产品，需要获取info接口中的product_id与sku_id传入，参数列表中有罗列可传入参数以及数据类型。
+
+
+        离岸价传参
+
+
+        离岸价
+
+        ```
+
+        1. fob_type = 1（ 单一区间定价）
+
+        {
+
+        "product_no": "PROD001",
+
+        "name": "Sample Product",
+
+        "product_type": 1,
+
+        "fob_type": 1,
+
+        "price_currency": "USD",
+
+        "price_min": 8.0,
+
+        "price_max": 12.0,
+
+        "quantity": 100,
+
+        "quantity_unit": "PCS",
+
+        "price_unit": "USD/PCS"
+
+        }
+
+        2. fob_type = 2（ 阶梯定价）
+
+        {
+
+        "product_no": "PROD002",
+
+        "name": "Sample Product",
+
+        "product_type": 1,
+
+        "fob_type": 2,
+
+        "price_currency": "USD",
+
+        "gradient_price": [{
+
+        "quantity": "100",
+
+        "price": "10.0"
+
+        }, {
+
+        "quantity": "500",
+
+        "price": "9.5"
+
+        }, {
+
+        "quantity": "1000",
+
+        "price": "9.0"
+
+        }],
+
+        "quantity_unit": "PCS",
+
+        "price_unit": "USD/PCS"
+
+        }
+
+        3. fob_type = 3（ 固定单价）
+
+        {
+
+        "product_no": "PROD003",
+
+        "name": "Sample Product",
+
+        "product_type": 1,
+
+        "fob_type": 3,
+
+        "price_currency": "USD",
+
+        "fob_price": 10.5,
+
+        "quantity": 100,
+
+        "quantity_unit": "PCS",
+
+        "price_unit": "USD/PCS"
+
+        }
+
+        ```'
       tags:
       - 产品
       parameters:
@@ -864,6 +1196,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478260
         description: Published operation doc (Apifox)
+      operationId: postV1ProductPush
+      x-operation-id-source: derived
   /v1/product/fields:
     get:
       summary: 产品库的数据字典
@@ -872,7 +1206,7 @@ paths:
 
         # 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -937,9 +1271,7 @@ paths:
         | 35 | 编号|
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -1038,17 +1370,17 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478262
         description: Published operation doc (Apifox)
+      operationId: getV1ProductFields
+      x-operation-id-source: derived
   /v1/product/info:
     get:
       summary: 产品详情
       deprecated: false
-      description: 'product_no  与 product_id 选择其中一个传入
+      description: 'product_no 与 product_id 选择其中一个传入
 
         选择product_no会根据编号找到对应的产品展示详情
 
-        选择product_id会根据product_id找到对应的产品展示详情
-
-        '
+        选择product_id会根据product_id找到对应的产品展示详情'
       tags:
       - 产品
       parameters:
@@ -1503,6 +1835,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478263
         description: Published operation doc (Apifox)
+      operationId: getV1ProductInfo
+      x-operation-id-source: derived
   /v1/product/push-groups:
     post:
       summary: 产品分组新增/编辑
@@ -1677,6 +2011,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478264
         description: Published operation doc (Apifox)
+      operationId: postV1ProductPushGroups
+      x-operation-id-source: derived
   /v1/product/remove-sku-attribute:
     post:
       summary: 删除产品规格
@@ -1788,6 +2124,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478265
         description: Published operation doc (Apifox)
+      operationId: postV1ProductRemoveSkuAttribute
+      x-operation-id-source: derived
   /v1/product/groups:
     get:
       summary: 查询产品分组
@@ -1943,6 +2281,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478266
         description: Published operation doc (Apifox)
+      operationId: getV1ProductGroups
+      x-operation-id-source: derived
   /v1/product/push-sku-attribute:
     post:
       summary: 新增/编辑规格
@@ -2191,6 +2531,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478267
         description: Published operation doc (Apifox)
+      operationId: postV1ProductPushSkuAttribute
+      x-operation-id-source: derived
   /v1/product/sku-attribute-list:
     get:
       summary: 查询产品规格列表
@@ -2411,9 +2753,11 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478269
         description: Published operation doc (Apifox)
+      operationId: getV1ProductSkuAttributeList
+      x-operation-id-source: derived
   /v1/product/productEnums:
     get:
-      summary: '产品枚举:产品类型，离岸价设置类型，创建方式，产品计量单位 '
+      summary: 产品枚举:产品类型，离岸价设置类型，创建方式，产品计量单位
       deprecated: false
       description: ''
       tags:
@@ -2516,6 +2860,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484723
         description: Published operation doc (Apifox)
+      operationId: getV1ProductProductEnums
+      x-operation-id-source: derived
   /v1/product/remove-groups:
     post:
       summary: 产品分组删除
@@ -2626,9 +2972,11 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485272
         description: Published operation doc (Apifox)
+      operationId: postV1ProductRemoveGroups
+      x-operation-id-source: derived
   /v1/product/inventory-list:
     get:
-      summary: 库存查询(通过skuId) 
+      summary: 库存查询(通过skuId)
       deprecated: false
       description: ''
       tags:
@@ -2978,6 +3326,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485273
         description: Published operation doc (Apifox)
+      operationId: getV1ProductInventoryList
+      x-operation-id-source: derived
   /v1/product/append-sku-attributes-value:
     post:
       summary: 增量更新产品规格值
@@ -3287,6 +3637,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3489012
         description: Published operation doc (Apifox)
+      operationId: postV1ProductAppendSkuAttributesValue
+      x-operation-id-source: derived
   /v1/product/remove:
     get:
       summary: 产品删除接口
@@ -3375,6 +3727,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3501017
         description: Published operation doc (Apifox)
+      operationId: getV1ProductRemove
+      x-operation-id-source: derived
   /v1/product/edit-parts-list:
     post:
       summary: 产品配件新建/编辑
@@ -3473,6 +3827,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3501059
         description: Published operation doc (Apifox)
+      operationId: postV1ProductEditPartsList
+      x-operation-id-source: derived
   /v1/paymentInvoice/info:
     get:
       summary: 付款单详情
@@ -3895,13 +4251,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483962
         description: Published operation doc (Apifox)
+      operationId: getV1PaymentInvoiceInfo
+      x-operation-id-source: derived
   /v1/paymentInvoice/fields:
     get:
       summary: 付款单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -3942,9 +4300,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -4441,6 +4797,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483963
         description: Published operation doc (Apifox)
+      operationId: getV1PaymentInvoiceFields
+      x-operation-id-source: derived
   /v1/paymentInvoice/list:
     get:
       summary: 付款单列表
@@ -4830,6 +5188,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484721
         description: Published operation doc (Apifox)
+      operationId: getV1PaymentInvoiceList
+      x-operation-id-source: derived
   /v1/supplier/info:
     get:
       summary: 供应商详情
@@ -5086,6 +5446,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478283
         description: Published operation doc (Apifox)
+      operationId: getV1SupplierInfo
+      x-operation-id-source: derived
   /v1/supplier/push:
     post:
       summary: 供应商新增/编辑
@@ -5227,6 +5589,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478285
         description: Published operation doc (Apifox)
+      operationId: postV1SupplierPush
+      x-operation-id-source: derived
   /v1/supplier/list:
     get:
       summary: 供应商列表
@@ -5553,6 +5917,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3481691
         description: Published operation doc (Apifox)
+      operationId: getV1SupplierList
+      x-operation-id-source: derived
   /v1/supplier/fields:
     get:
       summary: 供应商字段
@@ -5684,6 +6050,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3481699
         description: Published operation doc (Apifox)
+      operationId: getV1SupplierFields
+      x-operation-id-source: derived
   /v1/supplier/remove:
     post:
       summary: 供应商删除
@@ -5776,6 +6144,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484731
         description: Published operation doc (Apifox)
+      operationId: postV1SupplierRemove
+      x-operation-id-source: derived
   /v1/supplierProduct/supplierProductRelationList:
     get:
       summary: 获取供应商产品列表
@@ -5913,6 +6283,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3498455
         description: Published operation doc (Apifox)
+      operationId: getV1SupplierProductSupplierProductRelationList
+      x-operation-id-source: derived
   /v1/opportunity/list:
     get:
       summary: 商机列表
@@ -9467,6 +9839,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478286
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityList
+      x-operation-id-source: derived
   /v1/opportunity/info:
     get:
       summary: 商机数据查询
@@ -10028,6 +10402,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478287
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityInfo
+      x-operation-id-source: derived
   /v1/opportunity/fields:
     get:
       summary: 商机数据字典
@@ -10130,6 +10506,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478288
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityFields
+      x-operation-id-source: derived
   /v1/opportunity/push:
     post:
       summary: 商机新建/编辑接口
@@ -10296,11 +10674,23 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478289
         description: Published operation doc (Apifox)
+      operationId: postV1OpportunityPush
+      x-operation-id-source: derived
   /v1/opportunity/fields/selector:
     get:
       summary: 查询商机的销售流程 商机阶段 输单原因
       deprecated: false
-      description: "# 商机有不同的销售流程，流程中有不同商机阶段\n    请选择合适的流程和阶段进行接入\n## 1、商机流程获取\n    传入field=sales_flow 获取到某流程ID，\n## 2、商机流程阶段获取\n    传入field=stage_list,flow_id=4850316434641(流程ID)获取具体某流程的阶段"
+      description: '# 商机有不同的销售流程，流程中有不同商机阶段
+
+        请选择合适的流程和阶段进行接入
+
+        ## 1、商机流程获取
+
+        传入field=sales_flow 获取到某流程ID，
+
+        ## 2、商机流程阶段获取
+
+        传入field=stage_list,flow_id=4850316434641(流程ID)获取具体某流程的阶段'
       tags:
       - 产品
       parameters:
@@ -10692,6 +11082,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485300
         description: Published operation doc (Apifox)
+      operationId: getV1OpportunityFieldsSelector
+      x-operation-id-source: derived
   /v1/opportunity/remove:
     post:
       summary: 商机删除接口
@@ -10702,9 +11094,7 @@ paths:
 
         | 404 | Not Found Resource | 检查opportunity_id传递是否不正确 |
 
-        | 400 | Invalid query | 检查opportunity_id传递是否为空 |
-
-        '
+        | 400 | Invalid query | 检查opportunity_id传递是否为空 |'
       tags:
       - 产品
       parameters:
@@ -10783,13 +11173,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485301
         description: Published operation doc (Apifox)
+      operationId: postV1OpportunityRemove
+      x-operation-id-source: derived
   /v1/invoices/receipt/fields:
     get:
       summary: 回款单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -10830,9 +11222,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -10938,6 +11328,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478276
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptFields
+      x-operation-id-source: derived
   /v1/invoices/receipt/info:
     get:
       summary: 回款单详情
@@ -11353,6 +11745,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478277
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptInfo
+      x-operation-id-source: derived
   /v1/invoices/receipt/push:
     post:
       summary: 回款单新建/编辑
@@ -11505,6 +11899,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478278
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesReceiptPush
+      x-operation-id-source: derived
   /v1/invoices/receipt/list:
     get:
       summary: 回款单列表
@@ -12017,6 +12413,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478279
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptList
+      x-operation-id-source: derived
   /v1/invoices/receipt/types:
     get:
       summary: 回款方式枚举
@@ -12112,13 +12510,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485302
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptTypes
+      x-operation-id-source: derived
   /v1/invoices/receiptRegistration/fields:
     get:
       summary: 回款登记字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -12159,9 +12559,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -12267,6 +12665,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478292
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptRegistrationFields
+      x-operation-id-source: derived
   /v1/invoices/receiptRegistration/push:
     post:
       summary: 回款登记新建/编辑
@@ -12493,6 +12893,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478293
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesReceiptRegistrationPush
+      x-operation-id-source: derived
   /v1/invoices/receiptRegistration/list:
     get:
       summary: 回款登记列表
@@ -12841,6 +13243,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478294
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptRegistrationList
+      x-operation-id-source: derived
   /v1/invoices/receiptRegistration/allocate:
     post:
       summary: 回款登记核销
@@ -13059,6 +13463,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478295
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesReceiptRegistrationAllocate
+      x-operation-id-source: derived
   /v1/invoices/receiptRegistration/info:
     get:
       summary: 回款登记详情
@@ -13628,6 +14034,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484727
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesReceiptRegistrationInfo
+      x-operation-id-source: derived
   /v1/company/info:
     get:
       summary: 客户详情
@@ -14918,6 +15326,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3473043
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyInfo
+      x-operation-id-source: derived
   /v1/dynamic/trail/list:
     get:
       summary: 跟进动态查询接口
@@ -15519,13 +15929,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478244
         description: Published operation doc (Apifox)
+      operationId: getV1DynamicTrailList
+      x-operation-id-source: derived
   /v1/company/fields:
     get:
       summary: 客户数据字典
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -15566,9 +15978,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -16181,6 +16591,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478270
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyFields
+      x-operation-id-source: derived
   /v1/company/pushCompanyAndCustomers:
     post:
       summary: 客户（含联系人）新增/编辑
@@ -16191,9 +16603,7 @@ paths:
 
         | 404 | Not Found Resource | 检查传入company_id是否有误 |
 
-        | 404 | No Privilege | 检查传入user_id是否是私海客户的跟进人 |
-
-        '
+        | 404 | No Privilege | 检查传入user_id是否是私海客户的跟进人 |'
       tags:
       - 产品
       parameters:
@@ -16570,6 +16980,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478272
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushCompanyAndCustomers
+      x-operation-id-source: derived
   /v1/company/removeCompanyAndCustomers:
     post:
       summary: 删除客户（仅支持公海客户）
@@ -16646,6 +17058,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478274
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveCompanyAndCustomers
+      x-operation-id-source: derived
   /v1/company/fields/selector:
     get:
       summary: 查询客户的阶段、分组、状态、地区、主营产品、来源
@@ -16738,6 +17152,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478275
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyFieldsSelector
+      x-operation-id-source: derived
   /v1/company/list:
     get:
       summary: 客户列表
@@ -16945,6 +17361,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3480070
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyList
+      x-operation-id-source: derived
   /v1/company/push/customer:
     post:
       summary: 新增客户的联系人（待修改）
@@ -17036,6 +17454,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484681
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushCustomer
+      x-operation-id-source: derived
   /v1/dynamic/trail/push:
     post:
       summary: 提交跟进动态
@@ -17050,9 +17470,7 @@ paths:
 
         | -1 | 备注内容不能为空| content传递为空 |
 
-        |-1 |lead_id and company_id and opportunity_id is empty|lead_id 与company_id 与 opportunity_id ，需要传递其中某一项|
-
-        '
+        |-1 |lead_id and company_id and opportunity_id is empty|lead_id 与company_id 与 opportunity_id ，需要传递其中某一项|'
       tags:
       - 产品
       parameters:
@@ -17165,6 +17583,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484682
         description: Published operation doc (Apifox)
+      operationId: postV1DynamicTrailPush
+      x-operation-id-source: derived
   /v1/company/pushGroup:
     post:
       summary: 客户分组新增/编辑
@@ -17293,6 +17713,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484700
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushGroup
+      x-operation-id-source: derived
   /v1/company/removeGroup:
     post:
       summary: 删除客户分组
@@ -17396,6 +17818,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484701
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveGroup
+      x-operation-id-source: derived
   /v1/company/pushTrail:
     post:
       summary: 客户阶段新增/编辑
@@ -17512,6 +17936,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484702
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushTrail
+      x-operation-id-source: derived
   /v1/company/removeTrail:
     post:
       summary: 删除客户阶段
@@ -17520,9 +17946,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 400 | Invalid query | trail_id 或者 to_trail_id没有传入，或者传入为空 |
-
-        '
+        | 400 | Invalid query | trail_id 或者 to_trail_id没有传入，或者传入为空 |'
       tags:
       - 产品
       parameters:
@@ -17627,6 +18051,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484703
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveTrail
+      x-operation-id-source: derived
   /v1/company/pushTag:
     post:
       summary: 客户标签新增/编辑
@@ -17743,6 +18169,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484704
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyPushTag
+      x-operation-id-source: derived
   /v1/company/removeTag:
     post:
       summary: 删除客户标签
@@ -17844,6 +18272,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484705
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyRemoveTag
+      x-operation-id-source: derived
   /v1/company/companyEnums:
     get:
       summary: 客户枚举:客户类型，客户标签，时区，规模，星级，采购意向，采购额度，职级
@@ -18249,6 +18679,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484706
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyCompanyEnums
+      x-operation-id-source: derived
   /v1/company/moveToPublic:
     post:
       summary: 移入公海
@@ -18375,6 +18807,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496722
         description: Published operation doc (Apifox)
+      operationId: postV1CompanyMoveToPublic
+      x-operation-id-source: derived
   /v1/company/query:
     get:
       summary: 客户查重
@@ -18495,6 +18929,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3501118
         description: Published operation doc (Apifox)
+      operationId: getV1CompanyQuery
+      x-operation-id-source: derived
   /v1/product/push-inventory:
     post:
       summary: 库存写入
@@ -18591,6 +19027,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478297
         description: Published operation doc (Apifox)
+      operationId: postV1ProductPushInventory
+      x-operation-id-source: derived
   /v1/warehouse/list:
     get:
       summary: 仓库查询
@@ -23486,6 +23924,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478298
         description: Published operation doc (Apifox)
+      operationId: getV1WarehouseList
+      x-operation-id-source: derived
   /v1/invoices/quotation/push:
     post:
       summary: 报价单新建/编辑
@@ -23649,6 +24089,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478280
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesQuotationPush
+      x-operation-id-source: derived
   /v1/invoices/quotation/fields:
     get:
       summary: 报价单数据字典
@@ -27024,6 +27466,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478281
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesQuotationFields
+      x-operation-id-source: derived
   /v1/invoices/quotation/info:
     get:
       summary: 查询报价单详情
@@ -27568,6 +28012,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478282
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesQuotationInfo
+      x-operation-id-source: derived
   /v1/invoices/quotation/list:
     get:
       summary: 报价单列表
@@ -28714,6 +29160,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3480192
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesQuotationList
+      x-operation-id-source: derived
   /v1/invoices/quotation/fields/selector:
     get:
       summary: 报价单状态、币种查询
@@ -30352,6 +30800,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3480193
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesQuotationFieldsSelector
+      x-operation-id-source: derived
   /v1/invoices/quotation/remove:
     post:
       summary: 报价单删除
@@ -30442,11 +30892,32 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3480194
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesQuotationRemove
+      x-operation-id-source: derived
   /v1/oauth2/access_token:
     post:
       summary: 鉴权接口
       deprecated: false
-      description: "当使用client_credentials时可以参考下面传入，这种情况下不会有刷新token，可以在过期前重新再次请求一下即可，这种格式下请在请求body中写入如下JSON数据\n{\n    \"grant_type\":\"client_credentials\",\n    \"client_id\": \"xxx\",\n    \"client_secret\": \"xxxx\",\n    \"scope\": \"invoices purchaseOrder\"\n}\n\n注意：\n1、不管是password 还是 client_credentials 返回的token都有有效期，一般为8小时，期间8小时内重新获取不会刷新token有效时间，区别于走client_credentials没有expires_in，refresh_token返回。\n2、其中参数scope理解为我们每个模块都有一个scope值，申请token时带入，比如客户模块为company，若只需要对接客户的模块的话，只需要在scope参数填入company即可，这时token只能访问客户模块的API，其他模块API不允许访问，否则会提示无权限比如no permission invoices scopes；但是若有其他模块需要，则需要在scope中增加对应模块的scope，比如订单和客户模块scope=company invoices 中间以空格隔开。每个模块的scope可以在下面参数说明中查到，也可以到模块下首个页面获得。"
+      description: '当使用client_credentials时可以参考下面传入，这种情况下不会有刷新token，可以在过期前重新再次请求一下即可，这种格式下请在请求body中写入如下JSON数据
+
+        {
+
+        "grant_type":"client_credentials",
+
+        "client_id": "xxx",
+
+        "client_secret": "xxxx",
+
+        "scope": "invoices purchaseOrder"
+
+        }
+
+
+        注意：
+
+        1、不管是password 还是 client_credentials 返回的token都有有效期，一般为8小时，期间8小时内重新获取不会刷新token有效时间，区别于走client_credentials没有expires_in，refresh_token返回。
+
+        2、其中参数scope理解为我们每个模块都有一个scope值，申请token时带入，比如客户模块为company，若只需要对接客户的模块的话，只需要在scope参数填入company即可，这时token只能访问客户模块的API，其他模块API不允许访问，否则会提示无权限比如no permission invoices scopes；但是若有其他模块需要，则需要在scope中增加对应模块的scope，比如订单和客户模块scope=company invoices 中间以空格隔开。每个模块的scope可以在下面参数说明中查到，也可以到模块下首个页面获得。'
       tags:
       - 产品
       parameters: []
@@ -30525,6 +30996,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3473041
         description: Published operation doc (Apifox)
+      operationId: postV1Oauth2AccessToken
+      x-operation-id-source: derived
   /v1/oauth2/refresh_token:
     post:
       summary: 刷新令牌接口
@@ -30664,6 +31137,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483803
         description: Published operation doc (Apifox)
+      operationId: postV1Oauth2RefreshToken
+      x-operation-id-source: derived
   /v1/webhook:
     post:
       summary: 创建回调配置
@@ -30730,6 +31205,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497011
         description: Published operation doc (Apifox)
+      operationId: postV1Webhook
+      x-operation-id-source: derived
     put:
       summary: 修改回调配置
       deprecated: false
@@ -30805,6 +31282,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497056
         description: Published operation doc (Apifox)
+      operationId: putV1Webhook
+      x-operation-id-source: derived
     get:
       summary: 获取回调配置
       deprecated: false
@@ -30870,6 +31349,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497057
         description: Published operation doc (Apifox)
+      operationId: getV1Webhook
+      x-operation-id-source: derived
     delete:
       summary: 删除回调配置
       deprecated: false
@@ -30916,6 +31397,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497058
         description: Published operation doc (Apifox)
+      operationId: deleteV1Webhook
+      x-operation-id-source: derived
   /v1/subscribe:
     post:
       summary: 创建订阅配置
@@ -31029,6 +31512,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497012
         description: Published operation doc (Apifox)
+      operationId: postV1Subscribe
+      x-operation-id-source: derived
     get:
       summary: 获取订阅配置列表
       deprecated: false
@@ -31091,11 +31576,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497061
         description: Published operation doc (Apifox)
+      operationId: getV1Subscribe
+      x-operation-id-source: derived
   /v1/webhook/test:
     post:
       summary: 测试回调接口
       deprecated: false
-      description: "## 回调接口说明\n1. 调用该接口会向 回调配置中 添加的 callback_url 发送一个请求\n1.1 Header 包含一个 X-Signature 校验头， X-Timestamp 时间戳\n1.2 Body格式： {\"message_id\":\"msg_xxx\",\"data\":\"加密内容\"}\n1.3 用户可根据自身需要对 消息内容进行校验，加密方式：HMAC-SHA256 通过Header中X-Timestamp的内容+Body中的data数据，以及创建回调配置时返回的 加密串 security_config 进行解密校验\n2. 该接口需要一个正确的响应\n2.1 响应内容需要包含 message_id 这个与后续消息推送的响应一致\n2.2 测试接口需要额外返回biz_data 进行校验\n2.2.1 解密逻辑通过 AES-256-GCM 方式进行解密，最终得到 {\"biz\":[{\"biz_type\":\"xiaoman.open.callback.test\",\"biz_data\":\"xxx\"}]} 的数据结构\n2.3 响应体结构 ： {\"code\":200,\"data\":{\"message_id\":\"msg_xxx\",\"data\":\"xxx\"}}\n\nJS 签名校验示例\n```\nconst crypto = require('crypto');\n\n// 生成 HMAC-SHA256 签名\nfunction generateHMAC(message, secretKey) {\n    return crypto\n        .createHmac('sha256', secretKey)\n        .update(message)\n        .digest('hex');\n}\n\n// 验证 HMAC-SHA256 签名\nfunction verifyHMAC(message, signature, secretKey) {\n    const generatedSignature = generateHMAC(message, secretKey);\n    return crypto.timingSafeEqual(\n        Buffer.from(generatedSignature, 'hex'),\n        Buffer.from(signature, 'hex')\n    );\n}\n\n// 使用示例\nconst message = '{\"message_id\":\"msg_68d6527b8e41f8.33205216\",\"data\":\"LWNoQmm5sYYzwiohzlgXpTuOvZd1GtoeLC05wCzMlG0hk2px0vLiul7kDd3rJ4XgmxclwuYAtacNynl4AFdESsntPwco8SrG8x8rPlO1AN0QO8V34SEQTQ41wi2JG4HjqL5CKw==\"}'; // 接口返回的响应内容\nconst secretKey = 'IdXEy84pL6gVehBPZdJytBYJ5pt85RCGnV3NPqt3D0k='; // 创建webhook 返回的 security_config\nconst signature = 'aae37cb66c8b54b423837526025144afe23f5ac3958626b898b48607eb5f8d69'; // 响应Header 上的 X-Signature\nconst timestamp = '1758876283'; // 响应 Header 上的 X-Timestamp\n\nconsole.log(timestamp+message);\n// 验证签名\nconst isValid = verifyHMAC(timestamp+message, signature, secretKey);\nconsole.log('Signature valid:', isValid);\n```\n\nJS 解密示例\n```\nconst crypto = require('crypto');\n\nfunction decryptWithAES256GCM(data, key) {\n    try {\n        console.log('=== 解密调试信息 ===');\n        console.log('输入data类型:', typeof data);\n        console.log('输入key类型:', typeof key);\n        \n        // 确保输入数据正确\n        let dataBuffer;\n        if (typeof data === 'string') {\n            dataBuffer = Buffer.from(data, 'base64');\n        } else {\n            dataBuffer = Buffer.isBuffer(data) ? data : Buffer.from(data);\n        }\n        \n        console.log('dataBuffer长度:', dataBuffer.length);\n        console.log('dataBuffer内容(HEX):', dataBuffer.toString('hex'));\n        \n        // 确保密钥正确处理\n        let keyBuffer;\n        if (typeof key === 'string') {\n            keyBuffer = Buffer.from(key, 'base64');\n        } else {\n            keyBuffer = Buffer.isBuffer(key) ? key : Buffer.from(key);\n        }\n        \n        console.log('keyBuffer长度:', keyBuffer.length);\n        console.log('keyBuffer内容(HEX):', keyBuffer.toString('hex'));\n        \n        // 验证密钥长度\n        if (keyBuffer.length !== 32) {\n            throw new Error(`密钥长度不正确: ${keyBuffer.length} 字节，应为32字节`);\n        }\n        \n        // 检查数据长度\n        if (dataBuffer.length < 28) {\n            throw new Error('加密数据太短');\n        }\n        \n        // 提取IV、标签和加密内容\n        const iv = dataBuffer.subarray(0, 12);\n        const tag = dataBuffer.subarray(12, 28);\n        const encrypted = dataBuffer.subarray(28);\n        \n        console.log('IV length:', iv.length);\n        console.log('Tag length:', tag.length);\n        console.log('Encrypted data length:', encrypted.length);\n        console.log('IV (hex):', iv.toString('hex'));\n        console.log('Tag (hex):', tag.toString('hex'));\n        console.log('Encrypted (hex):', encrypted.toString('hex'));\n        \n        // 验证提取的数据完整性\n        if (iv.length !== 12 || tag.length !== 16) {\n            throw new Error('加密数据格式不正确');\n        }\n        \n        // 创建解密器\n        const decipher = crypto.createDecipheriv('aes-256-gcm', keyBuffer, iv);\n        \n        // 设置认证标签\n        decipher.setAuthTag(tag);\n        \n        // 解密数据\n        let decrypted = decipher.update(encrypted, null, 'utf8');\n        console.log('update阶段解密成功');\n        decrypted += decipher.final('utf8');\n        console.log('final阶段解密成功');\n        \n        return decrypted;\n    } catch (error) {\n        console.error('解密失败详细信息:', {\n            message: error.message,\n            stack: error.stack,\n            dataLength: data ? (typeof data === 'string' ? Buffer.from(data, 'base64').length : data.length) : 0\n        });\n        throw new Error(`解密失败: ${error.message}`);\n    }\n}\n\n// 测试数据\nconst message = '{\"message_id\":\"msg_68d6527b8e41f8.33205216\",\"data\":\"LWNoQmm5sYYzwiohzlgXpTuOvZd1GtoeLC05wCzMlG0hk2px0vLiul7kDd3rJ4XgmxclwuYAtacNynl4AFdESsntPwco8SrG8x8rPlO1AN0QO8V34SEQTQ41wi2JG4HjqL5CKw==\"}';\nconst secretKey = 'IdXEy84pL6gVehBPZdJytBYJ5pt85RCGnV3NPqt3D0k=';\n\nconsole.log('原始消息:', message);\nconsole.log('密钥:', secretKey);\n\n// 解析消息\nconst messageJson = JSON.parse(message);\nconst messageData = messageJson.data;\n\nconsole.log('要解密的data字段:', messageData);\n\ntry {\n    const decryptedData = decryptWithAES256GCM(messageData, secretKey);\n    console.log('解密成功:', decryptedData);\n    \n    // 尝试解析解密后的JSON\n    try {\n        const parsedData = JSON.parse(decryptedData);\n        console.log('解析后的JSON:', JSON.stringify(parsedData, null, 2));\n    } catch (parseError) {\n        console.log('解密数据不是有效的JSON格式');\n        console.log('解密数据内容:', decryptedData);\n    }\n} catch (error) {\n    console.error('解密失败:', error.message);\n    \n    // 额外的调试信息\n    console.log('\\n=== 额外调试信息 ===');\n    console.log('Base64解码后的数据长度:', Buffer.from(messageData, 'base64').length);\n    console.log('Base64数据是否有效:', /^[A-Za-z0-9+/]*={0,2}$/.test(messageData));\n}\n```"
+      description: '## 回调接口说明
+
+        1.'
       tags:
       - 产品
       parameters:
@@ -31138,6 +31627,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497013
         description: Published operation doc (Apifox)
+      operationId: postV1WebhookTest
+      x-operation-id-source: derived
   /v1/subscribe/{subscribe_type}:
     put:
       summary: 修改订阅配置
@@ -31227,6 +31718,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497054
         description: Published operation doc (Apifox)
+      operationId: putV1SubscribeBySubscribeType
+      x-operation-id-source: derived
     delete:
       summary: 删除订阅配置
       deprecated: false
@@ -31285,6 +31778,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497055
         description: Published operation doc (Apifox)
+      operationId: deleteV1SubscribeBySubscribeType
+      x-operation-id-source: derived
     get:
       summary: 获取订阅配置详情
       deprecated: false
@@ -31354,6 +31849,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497060
         description: Published operation doc (Apifox)
+      operationId: getV1SubscribeBySubscribeType
+      x-operation-id-source: derived
   /v1/webhook/regenerate-secret:
     post:
       summary: 重新生成加密密钥
@@ -31412,6 +31909,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3497059
         description: Published operation doc (Apifox)
+      operationId: postV1WebhookRegenerateSecret
+      x-operation-id-source: derived
   /v1/user/list:
     get:
       summary: 用户列表
@@ -31877,6 +32376,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478290
         description: Published operation doc (Apifox)
+      operationId: getV1UserList
+      x-operation-id-source: derived
   /v1/user/info:
     get:
       summary: 用户详情
@@ -32024,6 +32525,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478291
         description: Published operation doc (Apifox)
+      operationId: getV1UserInfo
+      x-operation-id-source: derived
   /v1/user/departmentList:
     get:
       summary: 用户部门列表
@@ -32142,6 +32645,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478460
         description: Published operation doc (Apifox)
+      operationId: getV1UserDepartmentList
+      x-operation-id-source: derived
   /v1/user/departmentInfo:
     get:
       summary: 用户部门详情
@@ -32251,6 +32756,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478461
         description: Published operation doc (Apifox)
+      operationId: getV1UserDepartmentInfo
+      x-operation-id-source: derived
   /v1/lead/push:
     post:
       summary: 线索（含联系人）创建/编辑接口
@@ -32261,9 +32768,9 @@ paths:
 
         | 404 | Not Found Resource | 检查传入的lead_id是否存在 |
 
-        | 400  | Invalid data json | 检查传入的数据是否是json格式 |
+        | 400 | Invalid data json | 检查传入的数据是否是json格式 |
 
-        | 400  | Empty POST request body data | 检查传入的数据是否为空 |'
+        | 400 | Empty POST request body data | 检查传入的数据是否为空 |'
       tags:
       - 产品
       parameters:
@@ -32521,6 +33028,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478299
         description: Published operation doc (Apifox)
+      operationId: postV1LeadPush
+      x-operation-id-source: derived
   /v1/lead/fields:
     get:
       summary: 线索|联系人的数据字典
@@ -32816,6 +33325,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484687
         description: Published operation doc (Apifox)
+      operationId: getV1LeadFields
+      x-operation-id-source: derived
   /v1/lead/list:
     get:
       summary: 线索列表
@@ -33072,6 +33583,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484688
         description: Published operation doc (Apifox)
+      operationId: getV1LeadList
+      x-operation-id-source: derived
   /v1/lead/info:
     get:
       summary: 线索数据查询
@@ -33498,6 +34011,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484689
         description: Published operation doc (Apifox)
+      operationId: getV1LeadInfo
+      x-operation-id-source: derived
   /v1/report/info:
     post:
       summary: 统计报告-统计详细
@@ -33640,6 +34155,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478247
         description: Published operation doc (Apifox)
+      operationId: postV1ReportInfo
+      x-operation-id-source: derived
   /v1/costInvoice/info:
     get:
       summary: 费用单-详情
@@ -34079,13 +34596,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483958
         description: Published operation doc (Apifox)
+      operationId: getV1CostInvoiceInfo
+      x-operation-id-source: derived
   /v1/costInvoice/fields:
     get:
       summary: 费用单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -34126,9 +34645,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -34569,6 +35086,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483961
         description: Published operation doc (Apifox)
+      operationId: getV1CostInvoiceFields
+      x-operation-id-source: derived
   /v1/costInvoice/items:
     get:
       summary: 费用项目列表
@@ -34728,6 +35247,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484020
         description: Published operation doc (Apifox)
+      operationId: getV1CostInvoiceItems
+      x-operation-id-source: derived
   /v1/costInvoice/list:
     get:
       summary: 费用单列表
@@ -35221,6 +35742,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484720
         description: Published operation doc (Apifox)
+      operationId: getV1CostInvoiceList
+      x-operation-id-source: derived
   /v1/capitalAccount/list:
     get:
       summary: 资金账户列表
@@ -35356,6 +35879,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478248
         description: Published operation doc (Apifox)
+      operationId: getV1CapitalAccountList
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/list:
     get:
       summary: 采购入库单-列表
@@ -36770,6 +37295,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484297
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundList
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/info:
     get:
       summary: 采购入库单-详情
@@ -36778,7 +37305,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 400 | Invalid query | 是否inbound_invoice_id 与  serial_id 同时为空|'
+        | 400 | Invalid query | 是否inbound_invoice_id 与 serial_id 同时为空|'
       tags:
       - 产品
       parameters:
@@ -37558,13 +38085,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484298
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundInfo
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/fields:
     get:
       summary: 采购入库单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -37605,9 +38134,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -37635,6 +38162,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484299
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseInboundFields
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/remove:
     post:
       summary: 采购入库单-删除
@@ -37706,6 +38235,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484312
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseInboundRemove
+      x-operation-id-source: derived
   /v1/invoices/purchaseInbound/push:
     post:
       summary: 采购入库单-新建/编辑
@@ -37714,9 +38245,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|
-
-        '
+        | 404 | ‘xxx’ cannot be empty | 查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
       tags:
       - 产品
       parameters:
@@ -37972,6 +38501,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484333
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseInboundPush
+      x-operation-id-source: derived
   /v1/purchaseOrder/push:
     post:
       summary: 采购订单新增/编辑
@@ -38299,6 +38830,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478249
         description: Published operation doc (Apifox)
+      operationId: postV1PurchaseOrderPush
+      x-operation-id-source: derived
   /v1/purchaseOrder/info:
     get:
       summary: 采购订单详情
@@ -38736,6 +39269,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478250
         description: Published operation doc (Apifox)
+      operationId: getV1PurchaseOrderInfo
+      x-operation-id-source: derived
   /v1/purchaseOrder/list:
     get:
       summary: 采购订单列表
@@ -40145,13 +40680,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478331
         description: Published operation doc (Apifox)
+      operationId: getV1PurchaseOrderList
+      x-operation-id-source: derived
   /v1/purchaseOrder/fields:
     get:
       summary: 采购订单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -40192,9 +40729,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -40268,6 +40803,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484725
         description: Published operation doc (Apifox)
+      operationId: getV1PurchaseOrderFields
+      x-operation-id-source: derived
   /v1/purchaseOrder/fields/selector:
     get:
       summary: 采购订单状态
@@ -40495,6 +41032,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484726
         description: Published operation doc (Apifox)
+      operationId: getV1PurchaseOrderFieldsSelector
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/list:
     get:
       summary: 采购退货单-列表
@@ -41688,6 +42227,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484264
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnList
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/info:
     get:
       summary: 采购退货单-详情
@@ -42535,13 +43076,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484265
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnInfo
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/fields:
     get:
       summary: 采购退货单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -42582,9 +43125,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -43146,6 +43687,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484291
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesPurchaseReturnFields
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/push:
     post:
       summary: 采购退货单-新建/编辑
@@ -43154,7 +43697,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
+        | 404 | ‘xxx’ cannot be empty | 查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
       tags:
       - 产品
       parameters:
@@ -43362,6 +43905,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484292
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseReturnPush
+      x-operation-id-source: derived
   /v1/invoices/purchaseReturn/remove:
     post:
       summary: 采购退货单-删除
@@ -43458,6 +44003,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484293
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesPurchaseReturnRemove
+      x-operation-id-source: derived
   /v1/invoices/outbound/push:
     post:
       summary: 新增/编辑销售出库单
@@ -43466,9 +44013,7 @@ paths:
 
         | --- | --- | --- |
 
-        | 404 | ‘xxx’ cannot be empty |  查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|
-
-        '
+        | 404 | ‘xxx’ cannot be empty | 查看字段说明为“如果传入不能为空”，是否有字段传入了并且是空值|'
       tags:
       - 产品
       parameters:
@@ -43725,6 +44270,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478296
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOutboundPush
+      x-operation-id-source: derived
   /v1/invoices/outbound/info:
     get:
       summary: 销售出库单详情
@@ -44152,13 +44699,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3483515
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOutboundInfo
+      x-operation-id-source: derived
   /v1/invoices/outbound/fields:
     get:
       summary: 销售出库单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -44199,9 +44748,7 @@ paths:
         | 23 | 引用 |
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -45027,6 +45574,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484728
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOutboundFields
+      x-operation-id-source: derived
   /v1/invoices/outbound/list:
     get:
       summary: 销售出库单列表
@@ -45421,6 +45970,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484729
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOutboundList
+      x-operation-id-source: derived
   /v1/invoices/outbound/remove:
     post:
       summary: 销售出库单删除
@@ -45516,6 +46067,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3484730
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOutboundRemove
+      x-operation-id-source: derived
   /v1/invoices/order/info:
     get:
       summary: 销售订单详情
@@ -46552,11 +47105,291 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478251
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOrderInfo
+      x-operation-id-source: derived
   /v1/invoices/order/push:
     post:
       summary: 销售订单新建/编辑
       deprecated: false
-      description: "## 错误码解释\n| 异常码 | 异常消息 |异常解决方案|\n| --- | --- | --- |\n| 404 | Not Found Resource没有权限编辑XXX| 若传入user_id字段，则会根据该用户ID校验用户是否有操作订单相关字段权限，若出现该错误可以到【角色权限中新增权限】或者【更改传入有订单权限的用户ID】 |\n## 价格条款\n\n需要对接 price_contract 价格条款 字段的同学，临时参考下面价格条款传入对应的CODE，后面会维护在销售订单枚举接口中，目前小满CRM只下面几种：\n传入例子：\n\n```\n{\n     \"price_contract\": \"EXW\"\n}\n```\n\n| 价格条款CODE | 价格条款名称 |\n| --- | --- |\n|EXW|卖方工厂交货|\n|FOB|指定装运港船上交货|\n|CFR|成本加运费|\n|CIF|成本加运费保险费|\n|DDU|未完税交货|\n|DDP|完税后交货|\n|FCA|货交承运人|\n|CPT|运费付至|\n|FAS|指定装运港船边交货|\n|CIP|运费、保险费付至|\n|DPU|卸货地交货|\n|DEQ|目的港码头交货|\n|DAP|目的地交货|\n|DAF|边境交货|\n|DE|目的港船上交货|\n\n产品单位枚举unit：\n\n| 单位枚举 |\n| --- |\n| Bag |\n| Short Ton |\n| Pound |\n| Piece |\n| Pair |\n| Ounce |\n| Metric Ton |\n| Meter |\n| Long Ton |\n| Kilometer |\n| Ton |\n| Square Meter |\n| Cubic Meter |\n| Dozen |\n| Gallon |\n| Kilogram |\n| Gram |\n| Bushel |\n| Barrel |\n| Set |\n| Pack |\n| Liter |\n| Yard |\n| Milligram |\n| Unit |\n| Acre |\n| Ampere |\n| Box |\n| Carton |\n| Case |\n| Centimeter |\n| Chain |\n| Cubic Centimeter |\n| Cubic Foot |\n| Cubic Inch |\n| Cubic Yard |\n| Degrees Celsius |\n| Degrees Fahrenheit |\n| Dram |\n| Fluid Ounce |\n| Foot |\n| Furlong |\n| Gill |\n| Grain |\n| Hectare |\n| Hertz |\n| Inch |\n| Kiloampere |\n| Kilohertz |\n| Kiloohm |\n| Kilovolt |\n| Kilowatt |\n| Megahertz |\n| Mile |\n| Milliampere |\n| Millihertz |\n| Milliliter |\n| Millimeter |\n| Milliohm |\n| Millivolt |\n| Milliwatt |\n| Nautical Mile |\n| Ohm |\n| Parcel |\n| Perch |\n| Pint |\n| Pole |\n| Quart |\n| Quarter |\n| Rod |\n| Roll |\n| Square Centimeter |\n| Square Foot |\n| Square Inch |\n| Square Mile |\n| Square Yard |\n| Stone |\n| Tonne |\n| Tray |\n| Volt |\n| Watt |\n| Wp |\n| Twenty-Foot Container |\n| Strand |\n| Plant |\n| Pallet |\n| Gross |\n| Forty-Foot Container |\n| Sheet |\n| Carat |\n| Blade |\n| Combo |\n| Bottle |\n| LB |\n\n\n## 订单特殊对接\n注意！注意！\n\n1、订单产品明细(product_list)不是必要的，并且接口不会自动创建非产品库中的产品。也不接受乱传入。若需要产品明细至少传入产品库的product_id和sku_id，否则乱传入非小满产品库id或者没有上述两个字段，则会忽略该明细。\n\n2、若订单中存在多条产品明细，明细有相同的规格产品时，比如A，B记录都是相同的规格产品，可能在单价上存在差异，那么在新建订单后，获取返回值中的product_list的unique_id自行保留起来做好映射。下次编辑时需要带入，否则编辑时接口将会根据product_id、sku_id进行去重保留一条记录。（ 实际上小满使用unique_id作为唯一区别。删除明细的时候需要带入至少有unique_id，remove字段，举例：unique_id=123，remove=1，product_id=321，sku_id=456）。\n\n3、订单中产品明细的金额小计(cost_amount)，与在小满web端不同的是，open接口不会主动计算，需要用户自己计算后传入，否则当成0重新保存。\n\n4、处理人(handler)，新建时不传入则默认使用当前操作人(user_id)，而user_id不传入则使用获取token时的账号作为默认值。订单中用户和部门相关字段传入值是小满内的用户ID和部门ID。\n\n5、订单状态(status)，状态值不通用也不是固定，每个企业有自己的状态ID，该字段的值必须来自/v1/invoices/order/orderEnums中的order_status_list的code，传入不是自己企业的订单状态或者乱传入可能订单变更失败，但不会有什么提示，即会忽略本次变更。\n\n6、订单汇率（exchange_rate，exchange_rate_usd）和币种(currency)传入时，若只传入currency字段，没有exchange_rate字段时，系统会主动补充exchange_rate，exchange_rate_usd汇率的值，但是若传入exchange_rate字段，不管该字段有没有值都不会自动补充。我们只看有没有exchange_rate字段去取默认值。小满系统内记录的实际汇率都是乘了100的，比如订单是USD币种，那么exchange_rate_usd=100，则订单兑换人民币的应该是exchange_rate=710。乘100的逻辑需要用户自己计算后传入，系统不会自主处理。\n"
+      description: '## 错误码解释
+
+        | 异常码 | 异常消息 |异常解决方案|
+
+        | --- | --- | --- |
+
+        | 404 | Not Found Resource没有权限编辑XXX| 若传入user_id字段，则会根据该用户ID校验用户是否有操作订单相关字段权限，若出现该错误可以到【角色权限中新增权限】或者【更改传入有订单权限的用户ID】 |
+
+        ## 价格条款
+
+
+        需要对接 price_contract 价格条款 字段的同学，临时参考下面价格条款传入对应的CODE，后面会维护在销售订单枚举接口中，目前小满CRM只下面几种：
+
+        传入例子：
+
+
+        ```
+
+        {
+
+        "price_contract": "EXW"
+
+        }
+
+        ```
+
+
+        | 价格条款CODE | 价格条款名称 |
+
+        | --- | --- |
+
+        |EXW|卖方工厂交货|
+
+        |FOB|指定装运港船上交货|
+
+        |CFR|成本加运费|
+
+        |CIF|成本加运费保险费|
+
+        |DDU|未完税交货|
+
+        |DDP|完税后交货|
+
+        |FCA|货交承运人|
+
+        |CPT|运费付至|
+
+        |FAS|指定装运港船边交货|
+
+        |CIP|运费、保险费付至|
+
+        |DPU|卸货地交货|
+
+        |DEQ|目的港码头交货|
+
+        |DAP|目的地交货|
+
+        |DAF|边境交货|
+
+        |DE|目的港船上交货|
+
+
+        产品单位枚举unit：
+
+
+        | 单位枚举 |
+
+        | --- |
+
+        | Bag |
+
+        | Short Ton |
+
+        | Pound |
+
+        | Piece |
+
+        | Pair |
+
+        | Ounce |
+
+        | Metric Ton |
+
+        | Meter |
+
+        | Long Ton |
+
+        | Kilometer |
+
+        | Ton |
+
+        | Square Meter |
+
+        | Cubic Meter |
+
+        | Dozen |
+
+        | Gallon |
+
+        | Kilogram |
+
+        | Gram |
+
+        | Bushel |
+
+        | Barrel |
+
+        | Set |
+
+        | Pack |
+
+        | Liter |
+
+        | Yard |
+
+        | Milligram |
+
+        | Unit |
+
+        | Acre |
+
+        | Ampere |
+
+        | Box |
+
+        | Carton |
+
+        | Case |
+
+        | Centimeter |
+
+        | Chain |
+
+        | Cubic Centimeter |
+
+        | Cubic Foot |
+
+        | Cubic Inch |
+
+        | Cubic Yard |
+
+        | Degrees Celsius |
+
+        | Degrees Fahrenheit |
+
+        | Dram |
+
+        | Fluid Ounce |
+
+        | Foot |
+
+        | Furlong |
+
+        | Gill |
+
+        | Grain |
+
+        | Hectare |
+
+        | Hertz |
+
+        | Inch |
+
+        | Kiloampere |
+
+        | Kilohertz |
+
+        | Kiloohm |
+
+        | Kilovolt |
+
+        | Kilowatt |
+
+        | Megahertz |
+
+        | Mile |
+
+        | Milliampere |
+
+        | Millihertz |
+
+        | Milliliter |
+
+        | Millimeter |
+
+        | Milliohm |
+
+        | Millivolt |
+
+        | Milliwatt |
+
+        | Nautical Mile |
+
+        | Ohm |
+
+        | Parcel |
+
+        | Perch |
+
+        | Pint |
+
+        | Pole |
+
+        | Quart |
+
+        | Quarter |
+
+        | Rod |
+
+        | Roll |
+
+        | Square Centimeter |
+
+        | Square Foot |
+
+        | Square Inch |
+
+        | Square Mile |
+
+        | Square Yard |
+
+        | Stone |
+
+        | Tonne |
+
+        | Tray |
+
+        | Volt |
+
+        | Watt |
+
+        | Wp |
+
+        | Twenty-Foot Container |
+
+        | Strand |
+
+        | Plant |
+
+        | Pallet |
+
+        | Gross |
+
+        | Forty-Foot Container |
+
+        | Sheet |
+
+        | Carat |
+
+        | Blade |
+
+        | Combo |
+
+        | Bottle |
+
+        | LB |
+
+
+        ## 订单特殊对接
+
+        注意！注意！
+
+
+        1、订单产品明细(product_list)不是必要的，并且接口不会自动创建非产品库中的产品。也不接受乱传入。若需要产品明细至少传入产品库的product_id和sku_id，否则乱传入非小满产品库id或者没有上述两个字段，则会忽略该明细。
+
+
+        2、若订单中存在多条产品明细，明细有相同的规格产品时，比如A，B记录都是相同的规格产品，可能在单价上存在差异，那么在新建订单后，获取返回值中的product_list的unique_id自行保留起来做好映射。下次编辑时需要带入，否则编辑时接口将会根据product_id、sku_id进行去重保留一条记录。（ 实际上小满使用unique_id作为唯一区别。删除明细的时候需要带入至少有unique_id，remove字段，举例：unique_id=123，remove=1，product_id=321，sku_id=456）。
+
+
+        3、订单中产品明细的金额小计(cost_amount)，与在小满web端不同的是，open接口不会主动计算，需要用户自己计算后传入，否则当成0重新保存。
+
+
+        4、处理人(handler)，新建时不传入则默认使用当前操作人(user_id)，而user_id不传入则使用获取token时的账号作为默认值。订单中用户和部门相关字段传入值是小满内的用户ID和部门ID。
+
+
+        5、订单状态(status)，状态值不通用也不是固定，每个企业有自己的状态ID，该字段的值必须来自/v1/invoices/order/orderEnums中的order_status_list的code，传入不是自己企业的订单状态或者乱传入可能订单变更失败，但不会有什么提示，即会忽略本次变更。
+
+
+        6、订单汇率（exchange_rate，exchange_rate_usd）和币种(currency)传入时，若只传入currency字段，没有exchange_rate字段时，系统会主动补充exchange_rate，exchange_rate_usd汇率的值，但是若传入exchange_rate字段，不管该字段有没有值都不会自动补充。我们只看有没有exchange_rate字段去取默认值。小满系统内记录的实际汇率都是乘了100的，比如订单是USD币种，那么exchange_rate_usd=100，则订单兑换人民币的应该是exchange_rate=710。乘100的逻辑需要用户自己计算后传入，系统不会自主处理。'
       tags:
       - 产品
       parameters:
@@ -47127,13 +47960,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478252
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOrderPush
+      x-operation-id-source: derived
   /v1/invoices/order/fields:
     get:
       summary: 销售订单字段
       deprecated: false
       description: '# 字段类型有哪些
 
-        | field_type |  |
+        | field_type | |
 
         | --- | --- |
 
@@ -47198,9 +48033,7 @@ paths:
         | 35 | 编号|
 
 
-        若发现没有的字段类型可以咨询对接群，或者提客户工单。
-
-        '
+        若发现没有的字段类型可以咨询对接群，或者提客户工单。'
       tags:
       - 产品
       parameters:
@@ -47303,6 +48136,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478253
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOrderFields
+      x-operation-id-source: derived
   /v1/invoices/order/list:
     get:
       summary: 销售订单列表
@@ -47314,10 +48149,7 @@ paths:
 
         更新日志：
 
-        1、增加time_type=4 ，该参数枚举于2026年2月6日之后生效。
-
-
-        '
+        1、增加time_type=4 ，该参数枚举于2026年2月6日之后生效。'
       tags:
       - 产品
       parameters:
@@ -47775,6 +48607,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478254
         description: Published operation doc (Apifox)
+      operationId: getV1InvoicesOrderList
+      x-operation-id-source: derived
   /v1/invoices/order/remove:
     post:
       summary: 销售订单删除
@@ -47851,6 +48685,8 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3478257
         description: Published operation doc (Apifox)
+      operationId: postV1InvoicesOrderRemove
+      x-operation-id-source: derived
   /v1/invoices/order/orderEnums:
     get:
       summary: 销售订单枚举:货币，付款方式，国家/地区，订单类型，订单状态，订单创建方式
@@ -48957,10 +49793,5 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3485287
         description: Published operation doc (Apifox)
-components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: 'Authorization: ApiKey sk-your-key-here — API keys issued at https://go.okki.ai after registration.'
+      operationId: getV1InvoicesOrderOrderEnums
+      x-operation-id-source: derived

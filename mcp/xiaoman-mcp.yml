@@ -49,18 +49,7 @@ crm_note: The OKKI CRM Open API (openapi/xiaoman-openapi.yml, 125 operations acr
   → list_customers, POST /v1/company → upsert_customer) once ids are assigned via overlays/xiaoman-openapi-overlay.yaml.
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
-  verified: probed
+  verified: derived
   tools: 11
-  checked: '2026-08-13'
-  source: >-
-    Direct probe 2026-08-13 — https://go.okki.ai/mcp returns HTTP 200 with the
-    site's SPA HTML shell, byte-identical to the shell served for a deliberately
-    nonexistent path, so it is not a JSON-RPC MCP endpoint. No stdio server
-    either: the npm scope publishes an Agent Skill (@okki-global/okki-go) and a
-    protected-tool CLI (@okki-aireach/aireach-cli), neither of which speaks MCP.
-    Xiaoman's agent surface is the packaged Agent Skill, not MCP — see
-    skills/okki-go/ and mcp/xiaoman-tool-crosswalk.yml.
+  checked: '2026-08-12'
+  source: catalog MCP census

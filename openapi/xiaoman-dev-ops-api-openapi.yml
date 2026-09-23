@@ -1,16 +1,15 @@
 openapi: 3.2.0
 info:
-  title: Xiaoman (OKKI CRM) Devops相关 API
-  description: 'Split by tag from the aggregated Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company), assembled verbatim from the per-operation OpenAPI 3.0.1 fragments published on the provider''s developer documentation site at https://open.xiaoman.cn (Apifox-hosted; each operation page embeds its own OpenAPI fragment, harvested from the .md endpoints listed in https://open.xiaoman.cn/llms.txt). OAuth2 module-scoped Bearer tokens from POST /v1/oauth2/access_token; responses use a {code, message, now, data} envelope. Corrected 2026-08-13: the tag-split pass had stamped this document with the OKKI Go title, description and server host; its operations belong to the OKKI CRM Open API on https://api-sandbox.xiaoman.cn, the host the quick-start doc labels 正式域名 (production domain).'
+  title: Xiaoman (OKKI CRM) Open Devops相关 API
+  description: Aggregated OpenAPI for the Xiaoman / OKKI CRM Open API (小满科技, an Alibaba company).
   version: 1.0.0
-  x-generated: '2026-08-13'
-  x-method: harvested
+  x-harvested: '2026-07-21'
   x-source: https://open.xiaoman.cn/llms.txt
 servers:
 - url: https://api-sandbox.xiaoman.cn
-  description: OKKI CRM Open API host (quick-start doc labels this 正式域名 / production domain)
+  description: Production API host (per quick-start doc)
 tags:
-- name: devops相关
+- name: Dev Ops
 paths:
   /v1/dingtalk/webhook:
     post:
@@ -18,7 +17,7 @@ paths:
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: Authorization
         in: header
@@ -65,13 +64,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496683
         description: Published operation doc (Apifox)
+      operationId: postV1DingtalkWebhook
+      x-operation-id-source: derived
   /v1/tapd/webhook:
     get:
       summary: tapd回调接口
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: Authorization
         in: header
@@ -118,13 +119,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496684
         description: Published operation doc (Apifox)
+      operationId: getV1TapdWebhook
+      x-operation-id-source: derived
   /api/internal/sobot/getsobottoken:
     get:
       summary: 获取智齿token
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: Authorization
         in: header
@@ -171,13 +174,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496685
         description: Published operation doc (Apifox)
+      operationId: getApiInternalSobotGetsobottoken
+      x-operation-id-source: derived
   /api/internal/sobot/refreshsobottoken:
     get:
       summary: 智齿刷新接口
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: Authorization
         in: header
@@ -224,13 +229,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496686
         description: Published operation doc (Apifox)
+      operationId: getApiInternalSobotRefreshsobottoken
+      x-operation-id-source: derived
   /api/internal/prometheus/cisaveappversion:
     post:
       summary: app版本发布
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: Authorization
         in: header
@@ -346,13 +353,15 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496687
         description: Published operation doc (Apifox)
+      operationId: postApiInternalPrometheusCisaveappversion
+      x-operation-id-source: derived
   /api/dingtalkwrite/deletedingtalkmember:
     post:
       summary: 钉钉管理-删除账号
       deprecated: false
       description: ''
       tags:
-      - devops相关
+      - Dev Ops
       parameters:
       - name: dingtalk_user_id
         in: query
@@ -411,10 +420,5 @@ paths:
       externalDocs:
         url: https://open.xiaoman.cn/api-3496688
         description: Published operation doc (Apifox)
-components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: 'Authorization: ApiKey sk-your-key-here — API keys issued at https://go.okki.ai after registration.'
+      operationId: postApiDingtalkwriteDeletedingtalkmember
+      x-operation-id-source: derived

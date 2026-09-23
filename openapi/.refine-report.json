@@ -1,39 +1,40 @@
 {
   "provider": "xiaoman",
   "sources": [
-    "xiaoman-companies-api-openapi.yml",
-    "xiaoman-contacts-api-openapi.yml",
-    "xiaoman-credits-api-openapi.yml",
-    "xiaoman-default-api-openapi.yml",
-    "xiaoman-devops-api-openapi.yml",
-    "xiaoman-emails-api-openapi.yml",
-    "xiaoman-s7-1-api-openapi.yml"
+    "_original/xiaoman-openapi.yml",
+    "_ae-authored/xiaoman-okki-go-openapi.yml"
   ],
   "outputs": [
+    "xiaoman-devops-api-openapi.yml",
+    "xiaoman-s7-1-api-openapi.yml",
+    "xiaoman-default-api-openapi.yml",
     "xiaoman-companies-api-openapi.yml",
     "xiaoman-contacts-api-openapi.yml",
     "xiaoman-credits-api-openapi.yml",
-    "xiaoman-default-api-openapi.yml",
-    "xiaoman-devops-api-openapi.yml",
-    "xiaoman-emails-api-openapi.yml",
-    "xiaoman-s7-1-api-openapi.yml"
+    "xiaoman-emails-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [
-    "xiaoman-default-api-openapi.yml: dangling $ref: #/components/schemas/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E5%93%8D%E5%BA%94",
-    "xiaoman-default-api-openapi.yml: dangling $ref: #/components/schemas/%E6%96%B0%E5%A2%9E%E5%AE%A2%E6%88%B7%E8%81%94%E7%B3%BB%E4%BA%BA",
-    "xiaoman-s7-1-api-openapi.yml: dangling $ref: #/components/schemas/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E5%93%8D%E5%BA%94"
+    "xiaoman-openapi.yml: dangling $ref: #/components/schemas/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E5%93%8D%E5%BA%94",
+    "xiaoman-openapi.yml: dangling $ref: #/components/schemas/%E6%96%B0%E5%A2%9E%E5%AE%A2%E6%88%B7%E8%81%94%E7%B3%BB%E4%BA%BA"
   ],
   "warnings": [],
   "notes": [
-    "xiaoman-companies-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-contacts-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-credits-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-default-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-devops-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-emails-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "xiaoman-s7-1-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "xiaoman-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 4 component key(s) illegal in 3.x (e.g. \u56fe\u7247\u5bf9\u8c61)",
+    "xiaoman-okki-go-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: xiaoman-dev-ops-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 7 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "xiaoman-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-credits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-default-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-dev-ops-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-emails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaoman-s7-1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

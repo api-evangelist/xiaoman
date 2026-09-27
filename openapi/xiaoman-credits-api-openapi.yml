@@ -51,6 +51,19 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  responses:
+    Unauthorized:
+      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    RateLimited:
+      description: 'RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
   schemas:
     Problem:
       type: object
@@ -68,19 +81,6 @@ components:
           type: string
         code:
           type: string
-  responses:
-    Unauthorized:
-      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    RateLimited:
-      description: 'RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
   securitySchemes:
     apiKey:
       type: apiKey

@@ -292,8 +292,14 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   responses:
-    RateLimited:
-      description: 'RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints'
+    NotFound:
+      description: 'RFC 7807 not-found: resource does not exist or belongs to another user'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
       content:
         application/json:
           schema:
@@ -304,20 +310,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Problem'
-    NotFound:
-      description: 'RFC 7807 not-found: resource does not exist or belongs to another user'
+    RateLimited:
+      description: 'RFC 7807 rate-limit / quota-exceeded: 60 requests/minute shared across authenticated endpoints'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Problem'
     InsufficientCredits:
       description: 'RFC 7807 insufficient-credits: search points or EDM quota exhausted'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    Unauthorized:
-      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
       content:
         application/json:
           schema:

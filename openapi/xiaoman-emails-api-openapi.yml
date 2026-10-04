@@ -445,40 +445,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
-    EmailMail:
-      type: object
-      properties:
-        mailId:
-          type: integer
-        taskId:
-          type: integer
-        recipientEmail:
-          type: string
-        recipientNickname:
-          type: string
-        subject:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - requested
-          - sent
-          - failed
-        sentAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        callbackReceivedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        failureReason:
-          type:
-          - string
-          - 'null'
     EmailTask:
       type: object
       properties:
@@ -526,27 +492,43 @@ components:
           type: string
         code:
           type: string
+    EmailMail:
+      type: object
+      properties:
+        mailId:
+          type: integer
+        taskId:
+          type: integer
+        recipientEmail:
+          type: string
+        recipientNickname:
+          type: string
+        subject:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - requested
+          - sent
+          - failed
+        sentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        callbackReceivedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        failureReason:
+          type:
+          - string
+          - 'null'
   responses:
-    UpstreamError:
-      description: 'RFC 7807 upstream-error: EDM third-party service failure; deducted quota is refunded'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    NotFound:
-      description: 'RFC 7807 not-found: resource does not exist or belongs to another user'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
     InsufficientCredits:
       description: 'RFC 7807 insufficient-credits: search points or EDM quota exhausted'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-    Unauthorized:
-      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
       content:
         application/json:
           schema:
@@ -557,8 +539,26 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: 'RFC 7807 unauthorized: API key missing, invalid, or revoked'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
     Forbidden:
       description: 'RFC 7807 forbidden: plan does not include EDM sending'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: 'RFC 7807 not-found: resource does not exist or belongs to another user'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    UpstreamError:
+      description: 'RFC 7807 upstream-error: EDM third-party service failure; deducted quota is refunded'
       content:
         application/json:
           schema:

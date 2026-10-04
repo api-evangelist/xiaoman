@@ -206,6 +206,8 @@ apis:
   humanURL: https://go.okki.ai
   baseURL: https://go.okki.ai
   tags:
+  - DevOps
+  tags_raw:
   - Dev Ops
   properties:
   - type: OpenAPI

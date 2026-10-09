@@ -81,3 +81,44 @@ plans:
     type: edition
     description: OKKI CRM Open API webhook/message-push subscriptions are available on the Pro edition only; the Smart edition does not support them. CRM pricing is quote-based via the xiaoman.cn sales funnel.
     entries: []
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - tiered
+  units:
+  - credit
+  - message
+  plans:
+  - name: OKKI Go — Free
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
+  - name: OKKI Go — Basic / Professional / Enterprise
+    access: other
+    model: tiered
+    model_how: stated
+    units:
+    - message
+    - other
+    periods:
+    - per-use
+  - name: OKKI Go — Add-on pack
+    access: addon
+    model: free
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - per-use
+  - name: OKKI CRM — Pro (API-relevant edition)
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []

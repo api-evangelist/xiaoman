@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/xiaoman/integrations
+- https://zapier.com/apps/xiaoman-okki/integrations
+- https://n8n.io/integrations/xiaoman/
+- https://composio.dev/toolkits/xiaoman
+- https://monid.ai/tools/xiaoman
+checked:
+- https://composio.dev/toolkits/xiaoman
+- https://monid.ai/tools/xiaoman
+- https://n8n.io/integrations/xiaoman/
+- https://zapier.com/apps/xiaoman-okki/integrations
+- https://zapier.com/apps/xiaoman/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
